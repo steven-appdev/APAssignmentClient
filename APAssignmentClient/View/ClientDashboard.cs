@@ -1,4 +1,6 @@
-﻿using System;
+﻿using APAssignmentClient.Data_Service;
+using APAssignmentClient.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,7 +47,9 @@ namespace APAssignmentClient
         private void btnEnrolNew_Click(object sender, EventArgs e)
         {
             EnrolNewCourse screen = new EnrolNewCourse();
-            EnrolNewCoursePresenter presenter = new EnrolNewCoursePresenter(screen);
+            DataAccess access = new DataAccess();
+            EnrollNewCourseModel model = new EnrollNewCourseModel(access);
+            EnrolNewCoursePresenter presenter = new EnrolNewCoursePresenter(screen, model);
             screen.ShowDialog();
         }
 

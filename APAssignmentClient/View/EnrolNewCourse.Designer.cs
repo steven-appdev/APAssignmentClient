@@ -71,6 +71,7 @@
             this.Name = "EnrolNewCourse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Enrol New Courses";
+            this.Load += new System.EventHandler(this.EnrolNewCourse_Load);
             this.ResumeLayout(false);
 
         }

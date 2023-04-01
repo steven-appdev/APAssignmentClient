@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace APAssignmentClient
 {
-    public interface IEnrolNewCourse
+    public interface IDataAccess
     {
-        ListBox availableCourses { get; }
-        void Register(EnrolNewCoursePresenter presenter);
+        bool IsCourseEmpty();
+        List<Course> RetrieveAllCourses();
+        void AddNewCourse(Course course);
     }
 }

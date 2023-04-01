@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APAssignmentClient.Data_Access
+namespace APAssignmentClient.Model
 {
-    internal class Context
+    public interface IEnrollNewCourseModel
     {
+        List<Course> RetrieveAllCourses();
     }
 }

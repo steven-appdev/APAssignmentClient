@@ -19,6 +19,11 @@ namespace APAssignmentClient
             InitializeComponent();
         }
 
+        public ListBox availableCourses
+        {
+            get { return lsbAvailableCourses; }
+        }
+
         public void Register(EnrolNewCoursePresenter _presenter)
         {
             presenter = _presenter;
@@ -27,6 +32,11 @@ namespace APAssignmentClient
         private void btnEnrol_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void EnrolNewCourse_Load(object sender, EventArgs e)
+        {
+            presenter.EnrolNewCourse_Load();
         }
     }
 }
