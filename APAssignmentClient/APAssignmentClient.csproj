@@ -46,15 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientDashboard.cs">
+    <Compile Include="View\ClientDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ClientDashboard.Designer.cs">
+    <Compile Include="View\ClientDashboard.Designer.cs">
       <DependentUpon>ClientDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\ClientDashboardModel.cs" />
+    <Compile Include="Presenter\ClientDashboardPresenter.cs" />
+    <Compile Include="Model\IClientDashboardModel.cs" />
+    <Compile Include="View\IClientDashboardView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ClientDashboard.resx">
+    <EmbeddedResource Include="View\ClientDashboard.resx">
       <DependentUpon>ClientDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -79,5 +83,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
