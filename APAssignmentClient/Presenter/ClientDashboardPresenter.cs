@@ -9,18 +9,23 @@ namespace APAssignmentClient
     public class ClientDashboardPresenter
     {
         private IClientDashboardModel model;
-        private IClientDashboardView screen;
+        private IClientDashboard screen;
 
-        public ClientDashboardPresenter(IClientDashboardView _screen, IClientDashboardModel _model)
+        public ClientDashboardPresenter(IClientDashboard _screen, IClientDashboardModel _model)
         {
             model = _model;
             screen = _screen;
-            screen.register(this);
+            screen.Register(this);
         }
 
         public void ChangeClientName()
         {
             screen.username = model.testname("Test");
+        }
+
+        public void ClientDashboard_Activated()
+        {
+            screen.enrolledCourses.Items.Add("Test");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace APAssignmentClient
 {
     //Client Dashboard (View)
 
-    public partial class ClientDashboard : Form, IClientDashboardView
+    public partial class ClientDashboard : Form, IClientDashboard
     {
         ClientDashboardPresenter presenter;
 
@@ -27,7 +27,12 @@ namespace APAssignmentClient
             get { return lblUsername.Text; }
         }
 
-        public void register(ClientDashboardPresenter _presenter)
+        public ListBox enrolledCourses
+        {
+            get { return lsbEnrolledCourses;}
+        }
+
+        public void Register(ClientDashboardPresenter _presenter)
         {
             presenter = _presenter;
         }
@@ -35,6 +40,18 @@ namespace APAssignmentClient
         private void ClientDashboard_Load(object sender, EventArgs e)
         {
             presenter.ChangeClientName();
+        }
+
+        private void btnEnrolNew_Click(object sender, EventArgs e)
+        {
+            EnrolNewCourse screen = new EnrolNewCourse();
+            EnrolNewCoursePresenter presenter = new EnrolNewCoursePresenter(screen);
+            screen.ShowDialog();
+        }
+
+        private void ClientDashboard_Activated(object sender, EventArgs e)
+        {
+            presenter.ClientDashboard_Activated();
         }
     }
 }

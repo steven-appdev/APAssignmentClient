@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace APAssignmentClient
 {
-    public interface IClientDashboardView
+    public interface IClientDashboard
     {
         string username { get; set; }
-        void register(ClientDashboardPresenter presenter);
+        ListBox enrolledCourses { get; }
+        void Register(ClientDashboardPresenter presenter);
     }
 }
