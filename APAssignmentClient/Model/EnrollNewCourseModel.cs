@@ -33,9 +33,9 @@ namespace APAssignmentClient.Model
         public void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice)
         {
             Course course = new Course();
-            course.courseName = _courseName;
-            course.coursePrice = _coursePrice;
-            course.courseDescription = _courseDescription;
+            course.CourseName = _courseName;
+            course.CoursePrice = _coursePrice;
+            course.CourseDescription = _courseDescription;
             access.AddNewCourse(course);
         }
     }

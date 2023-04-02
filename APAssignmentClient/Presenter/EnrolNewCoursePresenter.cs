@@ -31,7 +31,7 @@ namespace APAssignmentClient
             {
                 foreach(Course c in courses)
                 {
-                    screen.availableCourses.Items.Add(c.courseName.ToString() + " (£" + c.coursePrice.ToString() + ")");
+                    screen.availableCourses.Items.Add(c.CourseName.ToString() + " (£" + c.CoursePrice.ToString() + ")");
                 }
             }
         }
