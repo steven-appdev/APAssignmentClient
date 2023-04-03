@@ -11,9 +11,20 @@ namespace APAssignmentClient
 {
     public class Course
     {
-        public Course()
+        private static Course _instance = null;
+
+        private Course()
         {
             Clients = new List<Client>();
+        }
+
+        public static Course GetInstance()
+        {
+            if(_instance == null)
+            {
+                _instance = new Course();
+            }
+            return _instance;
         }
 
         [Key]

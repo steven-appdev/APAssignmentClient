@@ -1,23 +1,41 @@
-﻿using System;
+﻿using APAssignmentClient.Data_Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APAssignmentClient.Model
+namespace APAssignmentClient
 {
-    public class EnrollNewCourseModel : IEnrollNewCourseModel
+    public class CourseModel : ICourseModel
     {
+        private static CourseModel _instance = null;
         IDataAccess access;
+        private int _courseID = 0;
 
-        public EnrollNewCourseModel(IDataAccess _access)
+        private CourseModel()
         {
-            access = _access;
+            access = new DataAccess();
+        }
+
+        public static CourseModel GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new CourseModel();
+            }
+            return _instance;
+        }
+
+        public int CourseID
+        {
+            set { _courseID = value; }
+            get { return _courseID; }
         }
 
         public List<Course> RetrieveAllCourses()
         {
-            if(access.IsCourseEmpty() == true)
+            if (access.IsCourseEmpty() == true)
             {
                 AddNewCourse("Introduction to the Architectural and Build Option", "Example Description 1", 300.00);
                 AddNewCourse("Choosing a plot of lang", "Example Description 2", 250.00);
@@ -32,7 +50,7 @@ namespace APAssignmentClient.Model
 
         public void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice)
         {
-            Course course = new Course();
+            Course course = Course.GetInstance();
             course.CourseName = _courseName;
             course.CoursePrice = _coursePrice;
             course.CourseDescription = _courseDescription;
@@ -41,12 +59,17 @@ namespace APAssignmentClient.Model
 
         public String ConvertPrice(double price)
         {
-            if(price % 1 != 0)
+            if (price % 1 != 0)
             {
                 return price.ToString() + "0";
             }
 
             return price.ToString() + ".00";
+        }
+
+        public Course RetrieveCourseInformation()
+        {
+            return access.RetrieveOneCourse(_courseID);
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using APAssignmentClient.Data_Service;
-using APAssignmentClient.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +11,9 @@ namespace APAssignmentClient
     public class EnrolNewCoursePresenter
     {
         private IEnrolNewCourse screen;
-        private IEnrollNewCourseModel model;
+        private ICourseModel model;
 
-        public EnrolNewCoursePresenter(IEnrolNewCourse _screen, IEnrollNewCourseModel _model)
+        public EnrolNewCoursePresenter(IEnrolNewCourse _screen, ICourseModel _model)
         {
             screen = _screen;
             model = _model;
@@ -39,12 +38,17 @@ namespace APAssignmentClient
 
         public void btnViewCourseDescription_Click()
         {
-            CourseDescription screen = new CourseDescription();
-            DataAccess access = new DataAccess();
-            CourseDescriptionModel model = new CourseDescriptionModel(access);
-            CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, model);
             model.CourseID = Int32.Parse(this.screen.availableCourses.SelectedRows[0].Cells[0].Value.ToString());
+
+            CourseDescription screen = new CourseDescription();
+            CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, model);
+
             screen.ShowDialog();
+        }
+
+        public void btnEnrol_Click()
+        {
+            
         }
     }
 }

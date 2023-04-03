@@ -10,8 +10,8 @@ namespace APAssignmentClient
     public class CourseDescriptionPresenter
     {
         private ICourseDescription screen;
-        private ICourseDescriptionModel model;
-        public CourseDescriptionPresenter(ICourseDescription _screen, ICourseDescriptionModel _model)
+        private ICourseModel model;
+        public CourseDescriptionPresenter(ICourseDescription _screen, ICourseModel _model)
         {
             screen = _screen;
             model = _model;

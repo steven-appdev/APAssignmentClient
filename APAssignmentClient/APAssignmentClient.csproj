@@ -77,10 +77,8 @@
     <Compile Include="Data Service\DataAccess.cs" />
     <Compile Include="Data Service\IDataAccess.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\CourseDescriptionModel.cs" />
-    <Compile Include="Model\EnrollNewCourseModel.cs" />
-    <Compile Include="Model\ICourseDescriptionModel.cs" />
-    <Compile Include="Model\IEnrollNewCourseModel.cs" />
+    <Compile Include="Model\CourseModel.cs" />
+    <Compile Include="Model\ICourseModel.cs" />
     <Compile Include="Presenter\CourseDescriptionPresenter.cs" />
     <Compile Include="Presenter\EnrolNewCoursePresenter.cs" />
     <Compile Include="View\ClientDashboard.cs">
@@ -127,6 +125,7 @@
     <EmbeddedResource Include="View\EnrolNewCourse.resx">
       <DependentUpon>EnrolNewCourse.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

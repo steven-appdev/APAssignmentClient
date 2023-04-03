@@ -1,5 +1,4 @@
 ﻿using APAssignmentClient.Data_Service;
-using APAssignmentClient.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +32,7 @@ namespace APAssignmentClient
 
         private void btnEnrol_Click(object sender, EventArgs e)
         {
-            this.Close();
+            presenter.btnEnrol_Click();
         }
 
         private void EnrolNewCourse_Load(object sender, EventArgs e)

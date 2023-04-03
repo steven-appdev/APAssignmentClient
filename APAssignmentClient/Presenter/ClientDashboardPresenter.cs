@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APAssignmentClient.Data_Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,14 @@ namespace APAssignmentClient
         public void ClientDashboard_Activated()
         {
             screen.enrolledCourses.Items.Add("Test");
+        }
+
+        public void btnEnrolNew_Click()
+        {
+            EnrolNewCourse screen = new EnrolNewCourse();
+            CourseModel model = CourseModel.GetInstance();
+            EnrolNewCoursePresenter presenter = new EnrolNewCoursePresenter(screen, model);
+            screen.ShowDialog();
         }
     }
 }
