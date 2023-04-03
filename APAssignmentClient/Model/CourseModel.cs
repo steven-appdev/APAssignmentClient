@@ -49,10 +49,21 @@ namespace APAssignmentClient
                 AddNewCourse("Building regulations and inspections", "Example Description 3", 500.00);
                 AddNewCourse("Groundwork and Foundations", "Example Description 4", 200.00);
                 AddNewCourse("Insulation", "Example Description 5", 150.00);
-                Console.WriteLine("New data added");
             }
 
-            return access.RetrieveAllCourses();
+            List<Course> retrievedCourses = access.RetrieveAllCourses();
+            List<Course> retrievedEnrolledCourses = RetrieveEnrolledCourses();
+            List<Course> currentAvailableCourses = new List<Course>();
+
+            foreach(Course c in retrievedCourses)
+            {
+                if (!retrievedEnrolledCourses.Any(crs => crs.CourseId == c.CourseId))
+                {
+                    currentAvailableCourses.Add(c);
+                }
+            }
+
+            return currentAvailableCourses;
         }
 
         public void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice)
