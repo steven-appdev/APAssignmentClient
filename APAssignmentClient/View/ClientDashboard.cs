@@ -27,9 +27,9 @@ namespace APAssignmentClient
             get { return lblUsername.Text; }
         }
 
-        public ListBox enrolledCourses
+        public DataGridView enrolledCourses
         {
-            get { return lsbEnrolledCourses;}
+            get { return dgvEnrolledCourses;}
         }
 
         public void Register(ClientDashboardPresenter _presenter)

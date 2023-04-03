@@ -37,7 +37,7 @@ namespace APAssignmentClient.Data_Service
         {
             using (var context = new Context())
             {
-                return context.Courses.Where(c => c.CourseId == courseID).First<Course>();
+                return context.Courses.First(crs => crs.CourseId == courseID);
             }
         }
 
@@ -47,6 +47,26 @@ namespace APAssignmentClient.Data_Service
             {
                 context.Courses.Add(course);
                 context.SaveChanges();
+            }
+        }
+
+        public void EnrolCourse(int clientID, int courseID)
+        {
+            using (var context = new Context())
+            {
+                Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                Course course = context.Courses.First(crs => crs.CourseId == courseID);
+                client.Courses.Add(course);
+                context.SaveChanges();
+            }
+        }
+
+        public List<Course> RetrieveEnrolledCourses(int clientID)
+        {
+            using (var context = new Context())
+            {
+                Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                return client.Courses.ToList();
             }
         }
     }

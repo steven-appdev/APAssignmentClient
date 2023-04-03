@@ -17,8 +17,9 @@ namespace APAssignmentClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ClientDashboard screen = new ClientDashboard();
-            ClientDashboardModel model = new ClientDashboardModel();
-            ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, model);
+            ClientDashboardModel clientModel = new ClientDashboardModel();
+            CourseModel courseModel = CourseModel.GetInstance();
+            ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, clientModel, courseModel);
             Application.Run(screen);
         }
     }

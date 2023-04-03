@@ -32,7 +32,10 @@ namespace APAssignmentClient
 
         private void btnEnrol_Click(object sender, EventArgs e)
         {
-            presenter.btnEnrol_Click();
+            if(presenter.btnEnrol_Click() == true)
+            {
+                this.Close();
+            }
         }
 
         private void EnrolNewCourse_Load(object sender, EventArgs e)

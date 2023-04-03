@@ -38,7 +38,7 @@ namespace APAssignmentClient
 
         public void btnViewCourseDescription_Click()
         {
-            model.CourseID = Int32.Parse(this.screen.availableCourses.SelectedRows[0].Cells[0].Value.ToString());
+            UpdateSelectedCourseID();
 
             CourseDescription screen = new CourseDescription();
             CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, model);
@@ -46,9 +46,21 @@ namespace APAssignmentClient
             screen.ShowDialog();
         }
 
-        public void btnEnrol_Click()
+        public bool btnEnrol_Click()
         {
-            
+            UpdateSelectedCourseID();
+            DialogResult result = MessageBox.Show("Do you want to enrol the course?", "Enrolment Confirmation", MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
+            {
+                model.EnrolSelectedCourse();
+                return true;
+            }
+            return false;
+        }
+
+        private void UpdateSelectedCourseID()
+        {
+            model.CourseID = Int32.Parse(screen.availableCourses.SelectedRows[0].Cells[0].Value.ToString());
         }
     }
 }

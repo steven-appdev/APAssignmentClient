@@ -8,6 +8,12 @@ namespace APAssignmentClient
 {
     public class ClientDashboardModel : IClientDashboardModel
     {
+        private int _clientID;
+        public int ClientID
+        {
+            set { _clientID = value; }
+            get { return _clientID; }
+        }
         public string testname(String name)
         {
             return name;

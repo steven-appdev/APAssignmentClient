@@ -12,6 +12,7 @@ namespace APAssignmentClient
         private static CourseModel _instance = null;
         IDataAccess access;
         private int _courseID = 0;
+        private int _currentUser = 1;
 
         private CourseModel()
         {
@@ -25,6 +26,12 @@ namespace APAssignmentClient
                 _instance = new CourseModel();
             }
             return _instance;
+        }
+
+        public int CurrentUser
+        {
+            set { _currentUser = value; }
+            get { return _currentUser; }
         }
 
         public int CourseID
@@ -70,6 +77,16 @@ namespace APAssignmentClient
         public Course RetrieveCourseInformation()
         {
             return access.RetrieveOneCourse(_courseID);
+        }
+
+        public void EnrolSelectedCourse()
+        {
+            access.EnrolCourse(_currentUser, _courseID);
+        }
+
+        public List<Course> RetrieveEnrolledCourses()
+        {
+            return access.RetrieveEnrolledCourses(_currentUser);
         }
     }
 }

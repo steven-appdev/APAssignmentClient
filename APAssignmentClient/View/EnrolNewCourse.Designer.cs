@@ -68,7 +68,7 @@
             this.clmID,
             this.clmName,
             this.clmPrice});
-            this.dgvAvailableCourses.Location = new System.Drawing.Point(12, 12);
+            this.dgvAvailableCourses.Location = new System.Drawing.Point(11, 12);
             this.dgvAvailableCourses.MultiSelect = false;
             this.dgvAvailableCourses.Name = "dgvAvailableCourses";
             this.dgvAvailableCourses.ReadOnly = true;

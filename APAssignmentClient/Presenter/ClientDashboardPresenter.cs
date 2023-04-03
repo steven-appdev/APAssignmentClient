@@ -9,24 +9,36 @@ namespace APAssignmentClient
 {
     public class ClientDashboardPresenter
     {
-        private IClientDashboardModel model;
+        private IClientDashboardModel clientModel;
+        private ICourseModel courseModel;
         private IClientDashboard screen;
 
-        public ClientDashboardPresenter(IClientDashboard _screen, IClientDashboardModel _model)
+        public ClientDashboardPresenter(IClientDashboard _screen, IClientDashboardModel _clientModel, ICourseModel _courseModel)
         {
-            model = _model;
+            clientModel = _clientModel;
+            courseModel = _courseModel;
             screen = _screen;
             screen.Register(this);
         }
 
         public void ChangeClientName()
         {
-            screen.username = model.testname("Test");
+            screen.username = clientModel.testname("Test");
         }
 
         public void ClientDashboard_Activated()
         {
-            screen.enrolledCourses.Items.Add("Test");
+            //courseModel.CurrentUser = clientModel.ClientID;
+            List<Course> courses = courseModel.RetrieveEnrolledCourses();
+            screen.enrolledCourses.Rows.Clear();
+            if(courses != null )
+            {
+                foreach (Course c in courses)
+                {
+                    screen.enrolledCourses.Rows.Add(c.CourseId.ToString(), c.CourseName.ToString(), "temp placeholder text");
+                }
+            }
+            return;
         }
 
         public void btnEnrolNew_Click()

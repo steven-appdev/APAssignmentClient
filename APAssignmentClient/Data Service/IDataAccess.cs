@@ -12,6 +12,7 @@ namespace APAssignmentClient
         List<Course> RetrieveAllCourses();
         Course RetrieveOneCourse(int courseID);
         void AddNewCourse(Course course);
-        //void EnrolNewCourse(Client client, Course course);
+        void EnrolCourse(int clientID, int courseID);
+        List<Course> RetrieveEnrolledCourses(int clientID);
     }
 }

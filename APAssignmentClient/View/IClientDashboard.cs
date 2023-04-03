@@ -10,7 +10,7 @@ namespace APAssignmentClient
     public interface IClientDashboard
     {
         String username { get; set; }
-        ListBox enrolledCourses { get; }
+        DataGridView enrolledCourses { get; }
         void Register(ClientDashboardPresenter presenter);
     }
 }
