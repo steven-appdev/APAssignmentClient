@@ -1,5 +1,4 @@
-﻿using APAssignmentClient.Data_Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,7 +51,7 @@ namespace APAssignmentClient
             }
 
             List<Course> retrievedCourses = access.RetrieveAllCourses();
-            List<Course> retrievedEnrolledCourses = RetrieveEnrolledCourses();
+            List<Course> retrievedEnrolledCourses = access.RetrieveEnrolledCourses(_currentUser);
             List<Course> currentAvailableCourses = new List<Course>();
 
             foreach(Course c in retrievedCourses)
@@ -100,9 +99,26 @@ namespace APAssignmentClient
             access.DropCourse(_currentUser, _courseID);
         }
 
-        public List<Course> RetrieveEnrolledCourses()
+        public List<String> RetrieveEnrolledCourses()
         {
-            return access.RetrieveEnrolledCourses(_currentUser);
+            List<Course> course = access.RetrieveEnrolledCourses(_currentUser);
+            List<String> enrolledCourses = new List<String>();
+            foreach(Course c in course)
+            {
+                enrolledCourses.Add(c.CourseId.ToString()+";"+c.CourseName+";"+ RetrieveCourseStatus(Int32.Parse(c.CourseId.ToString())));
+            }
+            return enrolledCourses;
+        }
+
+        public String[] SplitCourseInformation(String s)
+        {
+            return s.Split(';');
+        }
+
+        private String RetrieveCourseStatus(int courseID)
+        {
+            CourseClients course = access.RetrieveCourseStatus(_currentUser, courseID);
+            return course.Status.ToString();
         }
     }
 }

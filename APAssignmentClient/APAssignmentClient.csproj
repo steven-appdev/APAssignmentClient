@@ -74,6 +74,7 @@
     <Compile Include="Data Service\Client.cs" />
     <Compile Include="Data Service\Context.cs" />
     <Compile Include="Data Service\Course.cs" />
+    <Compile Include="Data Service\CourseClients.cs" />
     <Compile Include="Data Service\DataAccess.cs" />
     <Compile Include="Data Service\IDataAccess.cs" />
     <Compile Include="Migrations\Configuration.cs" />

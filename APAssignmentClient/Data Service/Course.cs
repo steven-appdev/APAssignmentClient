@@ -13,10 +13,7 @@ namespace APAssignmentClient
     {
         private static Course _instance = null;
 
-        private Course()
-        {
-            Clients = new List<Client>();
-        }
+        private Course(){}
 
         public static Course GetInstance()
         {
@@ -39,6 +36,6 @@ namespace APAssignmentClient
         [DefaultValue(0.00)]
         public double CoursePrice { get; set; }
 
-        public virtual ICollection<Client> Clients { get; set; }
+        public virtual ICollection<CourseClients> CourseClients { get; set; }
     }
 }

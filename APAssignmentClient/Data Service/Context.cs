@@ -12,6 +12,7 @@ namespace APAssignmentClient
         public Context() : base("name=conString") { }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<CourseClients> CourseClients { get; set; }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

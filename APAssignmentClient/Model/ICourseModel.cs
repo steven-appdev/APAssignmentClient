@@ -16,6 +16,7 @@ namespace APAssignmentClient
         Course RetrieveCourseInformation();
         void EnrolSelectedCourse();
         void DropSelectedCourse();
-        List<Course> RetrieveEnrolledCourses();
+        List<String> RetrieveEnrolledCourses();
+        String[] SplitCourseInformation(String s);
     }
 }

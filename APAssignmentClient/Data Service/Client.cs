@@ -10,9 +10,17 @@ namespace APAssignmentClient
 {
     public class Client
     {
-        public Client()
+        private static Client _instance = null;
+
+        private Client() { }
+
+        public static Client GetInstance()
         {
-            Courses = new List<Course>();
+            if(_instance == null)
+            {
+                _instance = new Client();
+            }
+            return _instance;
         }
 
         [Key]
@@ -30,6 +38,6 @@ namespace APAssignmentClient
         [Required]
         public int ClientContact { get; set; }
 
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<CourseClients> CourseClients { get; set; }
     }
 }

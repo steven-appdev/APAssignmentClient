@@ -1,5 +1,4 @@
-﻿using APAssignmentClient.Data_Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,7 +29,6 @@ namespace APAssignmentClient
         public void ClientDashboard_Activated()
         {
             //courseModel.CurrentUser = clientModel.ClientID;
-            List<Course> courses = courseModel.RetrieveEnrolledCourses();
             screen.enrolledCourses.Rows.Clear();
             PopulateDataTable();
         }
@@ -77,13 +75,14 @@ namespace APAssignmentClient
 
         private void PopulateDataTable()
         {
-            List<Course> courses = courseModel.RetrieveEnrolledCourses();
+            List<String> courses = courseModel.RetrieveEnrolledCourses();
             screen.enrolledCourses.Rows.Clear();
             if (courses != null)
             {
-                foreach (Course c in courses)
+                foreach (String s in courses)
                 {
-                    screen.enrolledCourses.Rows.Add(c.CourseId.ToString(), c.CourseName.ToString(), "temp placeholder text");
+                    String[] course = courseModel.SplitCourseInformation(s);
+                    screen.enrolledCourses.Rows.Add(course[0], course[1], course[2]);
                 }
             }
         }
