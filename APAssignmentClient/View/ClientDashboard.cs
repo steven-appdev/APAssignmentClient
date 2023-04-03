@@ -32,6 +32,12 @@ namespace APAssignmentClient
             get { return dgvEnrolledCourses;}
         }
 
+        public bool dropCourse
+        {
+            get { return btnDropCourse.Enabled; }
+            set { btnDropCourse.Enabled = value; }
+        }
+
         public void Register(ClientDashboardPresenter _presenter)
         {
             presenter = _presenter;
@@ -39,7 +45,7 @@ namespace APAssignmentClient
 
         private void ClientDashboard_Load(object sender, EventArgs e)
         {
-            presenter.ChangeClientName();
+            presenter.ClientDashboard_Load();
         }
 
         private void btnEnrolNew_Click(object sender, EventArgs e)
@@ -50,6 +56,21 @@ namespace APAssignmentClient
         private void ClientDashboard_Activated(object sender, EventArgs e)
         {
             presenter.ClientDashboard_Activated();
+        }
+
+        private void btnDropCourse_Click(object sender, EventArgs e)
+        {
+            presenter.btnDropCourse_Click();
+        }
+
+        private void dgvEnrolledCourses_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            presenter.dgvEnrolledCourses_RowsAdded();
+        }
+
+        private void dgvEnrolledCourses_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            presenter.dgvEnrolledCourses_RowsRemoved();
         }
     }
 }

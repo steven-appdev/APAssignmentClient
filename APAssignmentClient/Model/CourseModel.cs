@@ -95,6 +95,11 @@ namespace APAssignmentClient
             access.EnrolCourse(_currentUser, _courseID);
         }
 
+        public void DropSelectedCourse()
+        {
+            access.DropCourse(_currentUser, _courseID);
+        }
+
         public List<Course> RetrieveEnrolledCourses()
         {
             return access.RetrieveEnrolledCourses(_currentUser);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace APAssignmentClient
 {
@@ -21,7 +22,7 @@ namespace APAssignmentClient
             screen.Register(this);
         }
 
-        public void ChangeClientName()
+        public void ClientDashboard_Load()
         {
             screen.username = clientModel.testname("Test");
         }
@@ -31,14 +32,7 @@ namespace APAssignmentClient
             //courseModel.CurrentUser = clientModel.ClientID;
             List<Course> courses = courseModel.RetrieveEnrolledCourses();
             screen.enrolledCourses.Rows.Clear();
-            if(courses != null )
-            {
-                foreach (Course c in courses)
-                {
-                    screen.enrolledCourses.Rows.Add(c.CourseId.ToString(), c.CourseName.ToString(), "temp placeholder text");
-                }
-            }
-            return;
+            PopulateDataTable();
         }
 
         public void btnEnrolNew_Click()
@@ -47,6 +41,51 @@ namespace APAssignmentClient
             CourseModel model = CourseModel.GetInstance();
             EnrolNewCoursePresenter presenter = new EnrolNewCoursePresenter(screen, model);
             screen.ShowDialog();
+        }
+
+        public void btnDropCourse_Click()
+        {
+            UpdateSelectedCourseID();
+            DialogResult result = MessageBox.Show("Do you want to drop the course?", "Are you sure?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                courseModel.DropSelectedCourse();
+                PopulateDataTable();
+            }
+        }
+
+        public void dgvEnrolledCourses_RowsAdded()
+        {
+            if(screen.dropCourse == false)
+            {
+                screen.dropCourse = true;
+            }
+        }
+
+        public void dgvEnrolledCourses_RowsRemoved()
+        {
+            if (screen.dropCourse == true)
+            {
+                screen.dropCourse = false;
+            }
+        }
+
+        private void UpdateSelectedCourseID()
+        {
+            courseModel.CourseID = Int32.Parse(screen.enrolledCourses.SelectedRows[0].Cells[0].Value.ToString());
+        }
+
+        private void PopulateDataTable()
+        {
+            List<Course> courses = courseModel.RetrieveEnrolledCourses();
+            screen.enrolledCourses.Rows.Clear();
+            if (courses != null)
+            {
+                foreach (Course c in courses)
+                {
+                    screen.enrolledCourses.Rows.Add(c.CourseId.ToString(), c.CourseName.ToString(), "temp placeholder text");
+                }
+            }
         }
     }
 }

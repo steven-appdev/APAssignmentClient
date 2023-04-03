@@ -11,6 +11,7 @@ namespace APAssignmentClient
     {
         String username { get; set; }
         DataGridView enrolledCourses { get; }
+        bool dropCourse { get; set; }
         void Register(ClientDashboardPresenter presenter);
     }
 }

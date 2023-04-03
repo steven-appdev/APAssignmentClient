@@ -15,6 +15,7 @@ namespace APAssignmentClient
         String ConvertPrice(double price);
         Course RetrieveCourseInformation();
         void EnrolSelectedCourse();
+        void DropSelectedCourse();
         List<Course> RetrieveEnrolledCourses();
     }
 }

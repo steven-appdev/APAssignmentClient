@@ -36,6 +36,7 @@
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDropCourse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEnrolledCourses)).BeginInit();
             this.SuspendLayout();
             // 
@@ -98,6 +99,8 @@
             this.dgvEnrolledCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEnrolledCourses.Size = new System.Drawing.Size(774, 336);
             this.dgvEnrolledCourses.TabIndex = 5;
+            this.dgvEnrolledCourses.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvEnrolledCourses_RowsAdded);
+            this.dgvEnrolledCourses.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvEnrolledCourses_RowsRemoved);
             // 
             // ID
             // 
@@ -120,11 +123,23 @@
             this.status.ReadOnly = true;
             this.status.Width = 200;
             // 
+            // btnDropCourse
+            // 
+            this.btnDropCourse.Enabled = false;
+            this.btnDropCourse.Location = new System.Drawing.Point(623, 446);
+            this.btnDropCourse.Name = "btnDropCourse";
+            this.btnDropCourse.Size = new System.Drawing.Size(165, 33);
+            this.btnDropCourse.TabIndex = 6;
+            this.btnDropCourse.Text = "Drop Course";
+            this.btnDropCourse.UseVisualStyleBackColor = true;
+            this.btnDropCourse.Click += new System.EventHandler(this.btnDropCourse_Click);
+            // 
             // ClientDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 464);
+            this.ClientSize = new System.Drawing.Size(800, 484);
+            this.Controls.Add(this.btnDropCourse);
             this.Controls.Add(this.dgvEnrolledCourses);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnEnrolNew);
@@ -151,6 +166,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn title;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.Button btnDropCourse;
     }
 }
 

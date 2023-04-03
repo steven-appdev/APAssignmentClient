@@ -61,6 +61,17 @@ namespace APAssignmentClient.Data_Service
             }
         }
 
+        public void DropCourse(int clientID, int courseID)
+        {
+            using (var context = new Context())
+            {
+                Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                Course course = context.Courses.First(crs => crs.CourseId == courseID);
+                client.Courses.Remove(course);
+                context.SaveChanges();
+            }
+        }
+
         public List<Course> RetrieveEnrolledCourses(int clientID)
         {
             using (var context = new Context())
