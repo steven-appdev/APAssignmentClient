@@ -1,4 +1,6 @@
-﻿using System;
+﻿using APAssignmentClient.Data_Service;
+using APAssignmentClient.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,9 +21,9 @@ namespace APAssignmentClient
             InitializeComponent();
         }
 
-        public ListBox availableCourses
+        public DataGridView availableCourses
         {
-            get { return lsbAvailableCourses; }
+            get { return dgvAvailableCourses; }
         }
 
         public void Register(EnrolNewCoursePresenter _presenter)
@@ -37,6 +39,11 @@ namespace APAssignmentClient
         private void EnrolNewCourse_Load(object sender, EventArgs e)
         {
             presenter.EnrolNewCourse_Load();
+        }
+
+        private void btnViewCourseDescription_Click(object sender, EventArgs e)
+        {
+            presenter.btnViewCourseDescription_Click();
         }
     }
 }

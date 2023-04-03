@@ -38,5 +38,15 @@ namespace APAssignmentClient.Model
             course.CourseDescription = _courseDescription;
             access.AddNewCourse(course);
         }
+
+        public String ConvertPrice(double price)
+        {
+            if(price % 1 != 0)
+            {
+                return price.ToString() + "0";
+            }
+
+            return price.ToString() + ".00";
+        }
     }
 }

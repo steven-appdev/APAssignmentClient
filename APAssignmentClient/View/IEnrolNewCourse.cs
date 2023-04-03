@@ -9,7 +9,7 @@ namespace APAssignmentClient
 {
     public interface IEnrolNewCourse
     {
-        ListBox availableCourses { get; }
+        DataGridView availableCourses { get; }
         void Register(EnrolNewCoursePresenter presenter);
     }
 }

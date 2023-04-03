@@ -28,18 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lsbAvailableCourses = new System.Windows.Forms.ListBox();
             this.btnEnrol = new System.Windows.Forms.Button();
             this.btnViewCourseDescription = new System.Windows.Forms.Button();
+            this.dgvAvailableCourses = new System.Windows.Forms.DataGridView();
+            this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAvailableCourses)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lsbAvailableCourses
-            // 
-            this.lsbAvailableCourses.FormattingEnabled = true;
-            this.lsbAvailableCourses.Location = new System.Drawing.Point(12, 12);
-            this.lsbAvailableCourses.Name = "lsbAvailableCourses";
-            this.lsbAvailableCourses.Size = new System.Drawing.Size(507, 251);
-            this.lsbAvailableCourses.TabIndex = 0;
             // 
             // btnEnrol
             // 
@@ -59,27 +55,72 @@
             this.btnViewCourseDescription.TabIndex = 2;
             this.btnViewCourseDescription.Text = "View Course Description";
             this.btnViewCourseDescription.UseVisualStyleBackColor = true;
+            this.btnViewCourseDescription.Click += new System.EventHandler(this.btnViewCourseDescription_Click);
+            // 
+            // dgvAvailableCourses
+            // 
+            this.dgvAvailableCourses.AllowUserToAddRows = false;
+            this.dgvAvailableCourses.AllowUserToDeleteRows = false;
+            this.dgvAvailableCourses.AllowUserToResizeColumns = false;
+            this.dgvAvailableCourses.AllowUserToResizeRows = false;
+            this.dgvAvailableCourses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAvailableCourses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmID,
+            this.clmName,
+            this.clmPrice});
+            this.dgvAvailableCourses.Location = new System.Drawing.Point(12, 12);
+            this.dgvAvailableCourses.MultiSelect = false;
+            this.dgvAvailableCourses.Name = "dgvAvailableCourses";
+            this.dgvAvailableCourses.ReadOnly = true;
+            this.dgvAvailableCourses.RowHeadersVisible = false;
+            this.dgvAvailableCourses.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvAvailableCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAvailableCourses.Size = new System.Drawing.Size(507, 251);
+            this.dgvAvailableCourses.TabIndex = 3;
+            // 
+            // clmID
+            // 
+            this.clmID.HeaderText = "ID";
+            this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
+            this.clmID.Width = 50;
+            // 
+            // clmName
+            // 
+            this.clmName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.clmName.HeaderText = "Course Name";
+            this.clmName.Name = "clmName";
+            this.clmName.ReadOnly = true;
+            // 
+            // clmPrice
+            // 
+            this.clmPrice.HeaderText = "Price";
+            this.clmPrice.Name = "clmPrice";
+            this.clmPrice.ReadOnly = true;
             // 
             // EnrolNewCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(531, 315);
+            this.Controls.Add(this.dgvAvailableCourses);
             this.Controls.Add(this.btnViewCourseDescription);
             this.Controls.Add(this.btnEnrol);
-            this.Controls.Add(this.lsbAvailableCourses);
             this.Name = "EnrolNewCourse";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Enrol New Courses";
             this.Load += new System.EventHandler(this.EnrolNewCourse_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAvailableCourses)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox lsbAvailableCourses;
         private System.Windows.Forms.Button btnEnrol;
         private System.Windows.Forms.Button btnViewCourseDescription;
+        private System.Windows.Forms.DataGridView dgvAvailableCourses;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmPrice;
     }
 }

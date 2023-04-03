@@ -33,6 +33,14 @@ namespace APAssignmentClient.Data_Service
             }
         }
 
+        public Course RetrieveOneCourse(int courseID)
+        {
+            using (var context = new Context())
+            {
+                return context.Courses.Where(c => c.CourseId == courseID).First<Course>();
+            }
+        }
+
         public void AddNewCourse(Course course)
         {
             using (var context = new Context())

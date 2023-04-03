@@ -1,4 +1,5 @@
-﻿using APAssignmentClient.Model;
+﻿using APAssignmentClient.Data_Service;
+using APAssignmentClient.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,19 @@ namespace APAssignmentClient
             {
                 foreach(Course c in courses)
                 {
-                    screen.availableCourses.Items.Add(c.CourseName.ToString() + " (£" + c.CoursePrice.ToString() + ")");
+                    screen.availableCourses.Rows.Add(c.CourseId.ToString(), c.CourseName.ToString(), model.ConvertPrice(c.CoursePrice));
                 }
             }
+        }
+
+        public void btnViewCourseDescription_Click()
+        {
+            CourseDescription screen = new CourseDescription();
+            DataAccess access = new DataAccess();
+            CourseDescriptionModel model = new CourseDescriptionModel(access);
+            CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, model);
+            model.CourseID = Int32.Parse(this.screen.availableCourses.SelectedRows[0].Cells[0].Value.ToString());
+            screen.ShowDialog();
         }
     }
 }

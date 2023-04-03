@@ -9,5 +9,6 @@ namespace APAssignmentClient.Model
     public interface IEnrollNewCourseModel
     {
         List<Course> RetrieveAllCourses();
+        String ConvertPrice(double price);
     }
 }

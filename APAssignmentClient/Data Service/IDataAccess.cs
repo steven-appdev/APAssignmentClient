@@ -10,6 +10,7 @@ namespace APAssignmentClient
     {
         bool IsCourseEmpty();
         List<Course> RetrieveAllCourses();
+        Course RetrieveOneCourse(int courseID);
         void AddNewCourse(Course course);
     }
 }
