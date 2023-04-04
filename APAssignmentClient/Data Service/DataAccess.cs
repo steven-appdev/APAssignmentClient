@@ -58,10 +58,12 @@ namespace APAssignmentClient
                 Client client = context.Clients.First(cli => cli.ClientId == clientID);
                 Course course = context.Courses.First(crs => crs.CourseId == courseID);
 
-                CourseClients newEnrolment = CourseClients.GetInstance();
-                newEnrolment.Client = client;
-                newEnrolment.Course = course;
-                newEnrolment.Status = "placeholder";
+                CourseClients newEnrolment = new CourseClients
+                {
+                    Client = client,
+                    Course = course,
+                    Status = SetEnrolmentStatus(course)
+                };
                 context.CourseClients.Add(newEnrolment);
                 context.SaveChanges();
             }
@@ -91,6 +93,23 @@ namespace APAssignmentClient
             using (var context = new Context())
             {
                 return context.CourseClients.First(cc => cc.ClientId == clientID && cc.CourseId == courseID);
+            }
+        }
+
+        private String SetEnrolmentStatus(Course course)
+        {
+            if(course.CourseType == "Practical Course")
+            {
+                return "Placed in waiting list";
+            }
+            return "Course Ready";
+        }
+
+        public Client RetrieveClientInformation(int clientID)
+        {
+            using (var context = new Context())
+            {
+                return context.Clients.First(cli => cli.ClientId == clientID);
             }
         }
     }

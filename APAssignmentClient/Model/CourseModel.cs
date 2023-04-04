@@ -10,11 +10,11 @@ namespace APAssignmentClient
     {
         private static CourseModel _instance = null;
         IDataAccess access;
-        private int _courseID = 0;
-        private int _currentUser = 1;
+        private Course course;
 
         private CourseModel()
         {
+            course = new Course();
             access = new DataAccess();
         }
 
@@ -27,19 +27,13 @@ namespace APAssignmentClient
             return _instance;
         }
 
-        public int CurrentUser
-        {
-            set { _currentUser = value; }
-            get { return _currentUser; }
-        }
-
         public int CourseID
         {
-            set { _courseID = value; }
-            get { return _courseID; }
+            set { course.CourseId = value; }
+            get { return course.CourseId; }
         }
 
-        public List<Course> RetrieveAllCourses()
+        public List<Course> RetrieveAllCourses(int ClientID)
         {
             if (access.IsCourseEmpty() == true)
             {
@@ -51,7 +45,7 @@ namespace APAssignmentClient
             }
 
             List<Course> retrievedCourses = access.RetrieveAllCourses();
-            List<Course> retrievedEnrolledCourses = access.RetrieveEnrolledCourses(_currentUser);
+            List<Course> retrievedEnrolledCourses = access.RetrieveEnrolledCourses(ClientID);
             List<Course> currentAvailableCourses = new List<Course>();
 
             foreach(Course c in retrievedCourses)
@@ -67,11 +61,13 @@ namespace APAssignmentClient
 
         public void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice)
         {
-            Course course = Course.GetInstance();
-            course.CourseName = _courseName;
-            course.CoursePrice = _coursePrice;
-            course.CourseDescription = _courseDescription;
-            access.AddNewCourse(course);
+            Course newCourse = new Course
+            {
+                CourseName = _courseName,
+                CoursePrice = _coursePrice,
+                CourseDescription = _courseDescription
+            };      
+            access.AddNewCourse(newCourse);
         }
 
         public String ConvertPrice(double price)
@@ -84,28 +80,37 @@ namespace APAssignmentClient
             return price.ToString() + ".00";
         }
 
+        public String ConvertDuration(int duration)
+        {
+            if (duration == 0)
+            {
+                return "-";
+            }
+            return duration.ToString();
+        }
+
         public Course RetrieveCourseInformation()
         {
-            return access.RetrieveOneCourse(_courseID);
+            return access.RetrieveOneCourse(CourseID);
         }
 
-        public void EnrolSelectedCourse()
+        public void EnrolSelectedCourse(int ClientID, int CourseID)
         {
-            access.EnrolCourse(_currentUser, _courseID);
+            access.EnrolCourse(ClientID, CourseID);
         }
 
-        public void DropSelectedCourse()
+        public void DropSelectedCourse(int ClientID, int CourseID)
         {
-            access.DropCourse(_currentUser, _courseID);
+            access.DropCourse(ClientID, CourseID);
         }
 
-        public List<String> RetrieveEnrolledCourses()
+        public List<String> RetrieveEnrolledCourses(int ClientID)
         {
-            List<Course> course = access.RetrieveEnrolledCourses(_currentUser);
+            List<Course> course = access.RetrieveEnrolledCourses(ClientID);
             List<String> enrolledCourses = new List<String>();
             foreach(Course c in course)
             {
-                enrolledCourses.Add(c.CourseId.ToString()+";"+c.CourseName+";"+ RetrieveCourseStatus(Int32.Parse(c.CourseId.ToString())));
+                enrolledCourses.Add(c.CourseId.ToString()+";"+c.CourseName+";"+c.CourseType+";"+ RetrieveCourseStatus(ClientID, Int32.Parse(c.CourseId.ToString())));
             }
             return enrolledCourses;
         }
@@ -115,9 +120,9 @@ namespace APAssignmentClient
             return s.Split(';');
         }
 
-        private String RetrieveCourseStatus(int courseID)
+        private String RetrieveCourseStatus(int ClientID, int _courseID)
         {
-            CourseClients course = access.RetrieveCourseStatus(_currentUser, courseID);
+            CourseClients course = access.RetrieveCourseStatus(ClientID, _courseID);
             return course.Status.ToString();
         }
     }

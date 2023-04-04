@@ -24,6 +24,11 @@ namespace APAssignmentClient
             get { return dgvAvailableCourses; }
         }
 
+        public Object GetSelectedNewCourse
+        {
+            get { return dgvAvailableCourses.SelectedRows[0].Cells[0].Value; }
+        }
+
         public void Register(EnrolNewCoursePresenter _presenter)
         {
             presenter = _presenter;

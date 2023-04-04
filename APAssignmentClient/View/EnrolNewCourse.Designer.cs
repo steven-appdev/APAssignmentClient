@@ -33,13 +33,15 @@
             this.dgvAvailableCourses = new System.Windows.Forms.DataGridView();
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAvailableCourses)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEnrol
             // 
-            this.btnEnrol.Location = new System.Drawing.Point(378, 269);
+            this.btnEnrol.Location = new System.Drawing.Point(580, 269);
             this.btnEnrol.Name = "btnEnrol";
             this.btnEnrol.Size = new System.Drawing.Size(141, 34);
             this.btnEnrol.TabIndex = 1;
@@ -49,7 +51,7 @@
             // 
             // btnViewCourseDescription
             // 
-            this.btnViewCourseDescription.Location = new System.Drawing.Point(231, 269);
+            this.btnViewCourseDescription.Location = new System.Drawing.Point(433, 269);
             this.btnViewCourseDescription.Name = "btnViewCourseDescription";
             this.btnViewCourseDescription.Size = new System.Drawing.Size(141, 34);
             this.btnViewCourseDescription.TabIndex = 2;
@@ -67,6 +69,8 @@
             this.dgvAvailableCourses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmID,
             this.clmName,
+            this.clmType,
+            this.clmDuration,
             this.clmPrice});
             this.dgvAvailableCourses.Location = new System.Drawing.Point(11, 12);
             this.dgvAvailableCourses.MultiSelect = false;
@@ -75,7 +79,7 @@
             this.dgvAvailableCourses.RowHeadersVisible = false;
             this.dgvAvailableCourses.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvAvailableCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAvailableCourses.Size = new System.Drawing.Size(507, 251);
+            this.dgvAvailableCourses.Size = new System.Drawing.Size(710, 251);
             this.dgvAvailableCourses.TabIndex = 3;
             // 
             // clmID
@@ -92,6 +96,20 @@
             this.clmName.Name = "clmName";
             this.clmName.ReadOnly = true;
             // 
+            // clmType
+            // 
+            this.clmType.HeaderText = "Course Type";
+            this.clmType.Name = "clmType";
+            this.clmType.ReadOnly = true;
+            this.clmType.Width = 150;
+            // 
+            // clmDuration
+            // 
+            this.clmDuration.HeaderText = "Duration";
+            this.clmDuration.Name = "clmDuration";
+            this.clmDuration.ReadOnly = true;
+            this.clmDuration.Width = 70;
+            // 
             // clmPrice
             // 
             this.clmPrice.HeaderText = "Price";
@@ -102,7 +120,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(531, 315);
+            this.ClientSize = new System.Drawing.Size(733, 315);
             this.Controls.Add(this.dgvAvailableCourses);
             this.Controls.Add(this.btnViewCourseDescription);
             this.Controls.Add(this.btnEnrol);
@@ -121,6 +139,8 @@
         private System.Windows.Forms.DataGridView dgvAvailableCourses;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDuration;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPrice;
     }
 }

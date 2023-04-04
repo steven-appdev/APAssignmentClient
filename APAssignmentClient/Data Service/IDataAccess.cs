@@ -16,5 +16,6 @@ namespace APAssignmentClient
         void DropCourse(int clientID, int courseID);
         List<Course> RetrieveEnrolledCourses(int clientID);
         CourseClients RetrieveCourseStatus(int clientID, int courseID);
+        Client RetrieveClientInformation(int clientID);
     }
 }

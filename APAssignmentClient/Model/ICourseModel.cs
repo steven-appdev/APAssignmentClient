@@ -8,15 +8,15 @@ namespace APAssignmentClient
 {
     public interface ICourseModel
     {
-        int CurrentUser { get; set; }
         int CourseID { get; set; }
-        List<Course> RetrieveAllCourses();
+        List<Course> RetrieveAllCourses(int id);
         void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice);
         String ConvertPrice(double price);
+        String ConvertDuration(int duration);
         Course RetrieveCourseInformation();
-        void EnrolSelectedCourse();
-        void DropSelectedCourse();
-        List<String> RetrieveEnrolledCourses();
+        void EnrolSelectedCourse(int clientID, int courseID);
+        void DropSelectedCourse(int clientID, int courseID);
+        List<String> RetrieveEnrolledCourses(int id);
         String[] SplitCourseInformation(String s);
     }
 }

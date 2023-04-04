@@ -11,19 +11,6 @@ namespace APAssignmentClient
 {
     public class Course
     {
-        private static Course _instance = null;
-
-        private Course(){}
-
-        public static Course GetInstance()
-        {
-            if(_instance == null)
-            {
-                _instance = new Course();
-            }
-            return _instance;
-        }
-
         [Key]
         public int CourseId { get; set; }
 
@@ -32,6 +19,9 @@ namespace APAssignmentClient
 
         [Required]
         public String CourseDescription { get; set; }
+        [Required]
+        public String CourseType { get; set; }
+        public int CourseDuration { get; set; }
 
         [DefaultValue(0.00)]
         public double CoursePrice { get; set; }

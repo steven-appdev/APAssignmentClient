@@ -10,19 +10,6 @@ namespace APAssignmentClient
 {
     public class Client
     {
-        private static Client _instance = null;
-
-        private Client() { }
-
-        public static Client GetInstance()
-        {
-            if(_instance == null)
-            {
-                _instance = new Client();
-            }
-            return _instance;
-        }
-
         [Key]
         public int ClientId { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,11 @@ namespace APAssignmentClient
 {
     public class ClientDashboardPresenter
     {
-        private IClientDashboardModel clientModel;
+        private IClientModel clientModel;
         private ICourseModel courseModel;
         private IClientDashboard screen;
 
-        public ClientDashboardPresenter(IClientDashboard _screen, IClientDashboardModel _clientModel, ICourseModel _courseModel)
+        public ClientDashboardPresenter(IClientDashboard _screen, IClientModel _clientModel, ICourseModel _courseModel)
         {
             clientModel = _clientModel;
             courseModel = _courseModel;
@@ -23,12 +24,11 @@ namespace APAssignmentClient
 
         public void ClientDashboard_Load()
         {
-            screen.username = clientModel.testname("Test");
+            screen.username = clientModel.GetClientName();
         }
 
         public void ClientDashboard_Activated()
         {
-            //courseModel.CurrentUser = clientModel.ClientID;
             screen.enrolledCourses.Rows.Clear();
             PopulateDataTable();
         }
@@ -36,18 +36,17 @@ namespace APAssignmentClient
         public void btnEnrolNew_Click()
         {
             EnrolNewCourse screen = new EnrolNewCourse();
-            CourseModel model = CourseModel.GetInstance();
-            EnrolNewCoursePresenter presenter = new EnrolNewCoursePresenter(screen, model);
+            EnrolNewCoursePresenter presenter = new EnrolNewCoursePresenter(screen, clientModel, courseModel);
             screen.ShowDialog();
         }
 
         public void btnDropCourse_Click()
         {
-            UpdateSelectedCourseID();
+            int dropID = RetrieveSelectedID();
             DialogResult result = MessageBox.Show("Do you want to drop the course?", "Are you sure?", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                courseModel.DropSelectedCourse();
+                courseModel.DropSelectedCourse(clientModel.GetClientID(), dropID);
                 PopulateDataTable();
             }
         }
@@ -68,23 +67,24 @@ namespace APAssignmentClient
             }
         }
 
-        private void UpdateSelectedCourseID()
-        {
-            courseModel.CourseID = Int32.Parse(screen.enrolledCourses.SelectedRows[0].Cells[0].Value.ToString());
-        }
-
         private void PopulateDataTable()
         {
-            List<String> courses = courseModel.RetrieveEnrolledCourses();
+            List<String> courses = courseModel.RetrieveEnrolledCourses(clientModel.GetClientID());
             screen.enrolledCourses.Rows.Clear();
             if (courses != null)
             {
                 foreach (String s in courses)
                 {
                     String[] course = courseModel.SplitCourseInformation(s);
-                    screen.enrolledCourses.Rows.Add(course[0], course[1], course[2]);
+                    screen.enrolledCourses.Rows.Add(course[0], course[1], course[2], course[3]);
                 }
             }
+            screen.enrolledCourses.Sort(screen.enrolledCourses.Columns["id"], ListSortDirection.Ascending);
+        }
+
+        private int RetrieveSelectedID()
+        {
+            return Int32.Parse(screen.GetSelectedValue.ToString());
         }
     }
 }

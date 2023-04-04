@@ -33,10 +33,11 @@
             this.btnEnrolNew = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
             this.dgvEnrolledCourses = new System.Windows.Forms.DataGridView();
+            this.btnDropCourse = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.courseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDropCourse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEnrolledCourses)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +91,7 @@
             this.dgvEnrolledCourses.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ID,
             this.title,
+            this.courseType,
             this.status});
             this.dgvEnrolledCourses.Location = new System.Drawing.Point(14, 105);
             this.dgvEnrolledCourses.Name = "dgvEnrolledCourses";
@@ -101,6 +103,17 @@
             this.dgvEnrolledCourses.TabIndex = 5;
             this.dgvEnrolledCourses.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvEnrolledCourses_RowsAdded);
             this.dgvEnrolledCourses.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvEnrolledCourses_RowsRemoved);
+            // 
+            // btnDropCourse
+            // 
+            this.btnDropCourse.Enabled = false;
+            this.btnDropCourse.Location = new System.Drawing.Point(623, 446);
+            this.btnDropCourse.Name = "btnDropCourse";
+            this.btnDropCourse.Size = new System.Drawing.Size(165, 33);
+            this.btnDropCourse.TabIndex = 6;
+            this.btnDropCourse.Text = "Drop Course";
+            this.btnDropCourse.UseVisualStyleBackColor = true;
+            this.btnDropCourse.Click += new System.EventHandler(this.btnDropCourse_Click);
             // 
             // ID
             // 
@@ -116,23 +129,19 @@
             this.title.Name = "title";
             this.title.ReadOnly = true;
             // 
+            // courseType
+            // 
+            this.courseType.HeaderText = "Course Type";
+            this.courseType.Name = "courseType";
+            this.courseType.ReadOnly = true;
+            this.courseType.Width = 200;
+            // 
             // status
             // 
             this.status.HeaderText = "Status";
             this.status.Name = "status";
             this.status.ReadOnly = true;
             this.status.Width = 200;
-            // 
-            // btnDropCourse
-            // 
-            this.btnDropCourse.Enabled = false;
-            this.btnDropCourse.Location = new System.Drawing.Point(623, 446);
-            this.btnDropCourse.Name = "btnDropCourse";
-            this.btnDropCourse.Size = new System.Drawing.Size(165, 33);
-            this.btnDropCourse.TabIndex = 6;
-            this.btnDropCourse.Text = "Drop Course";
-            this.btnDropCourse.UseVisualStyleBackColor = true;
-            this.btnDropCourse.Click += new System.EventHandler(this.btnDropCourse_Click);
             // 
             // ClientDashboard
             // 
@@ -163,10 +172,11 @@
         private System.Windows.Forms.Button btnEnrolNew;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.DataGridView dgvEnrolledCourses;
+        private System.Windows.Forms.Button btnDropCourse;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn courseType;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.Button btnDropCourse;
     }
 }
 

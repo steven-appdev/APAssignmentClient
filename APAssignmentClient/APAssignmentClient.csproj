@@ -88,9 +88,9 @@
     <Compile Include="View\ClientDashboard.Designer.cs">
       <DependentUpon>ClientDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\ClientDashboardModel.cs" />
+    <Compile Include="Model\ClientModel.cs" />
     <Compile Include="Presenter\ClientDashboardPresenter.cs" />
-    <Compile Include="Model\IClientDashboardModel.cs" />
+    <Compile Include="Model\IClientModel.cs" />
     <Compile Include="View\CourseDescription.cs">
       <SubType>Form</SubType>
     </Compile>

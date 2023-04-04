@@ -10,6 +10,7 @@ namespace APAssignmentClient
     public interface IEnrolNewCourse
     {
         DataGridView availableCourses { get; }
+        Object GetSelectedNewCourse { get; }
         void Register(EnrolNewCoursePresenter presenter);
     }
 }

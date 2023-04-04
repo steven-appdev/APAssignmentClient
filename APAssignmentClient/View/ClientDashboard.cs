@@ -29,7 +29,12 @@ namespace APAssignmentClient
 
         public DataGridView enrolledCourses
         {
-            get { return dgvEnrolledCourses;}
+            get { return dgvEnrolledCourses; }
+        }
+
+        public Object GetSelectedValue
+        {
+            get { return dgvEnrolledCourses.SelectedRows[0].Cells[0].Value; }
         }
 
         public bool dropCourse

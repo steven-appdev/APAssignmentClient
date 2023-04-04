@@ -10,18 +10,20 @@ namespace APAssignmentClient
     public class EnrolNewCoursePresenter
     {
         private IEnrolNewCourse screen;
-        private ICourseModel model;
+        private IClientModel clientModel;
+        private ICourseModel courseModel;
 
-        public EnrolNewCoursePresenter(IEnrolNewCourse _screen, ICourseModel _model)
+        public EnrolNewCoursePresenter(IEnrolNewCourse _screen, IClientModel _clientModel, ICourseModel _courseModel)
         {
             screen = _screen;
-            model = _model;
+            clientModel = _clientModel;
+            courseModel = _courseModel;
             screen.Register(this);
         }
 
         public void EnrolNewCourse_Load()
         {
-            List<Course> courses = model.RetrieveAllCourses();
+            List<Course> courses = courseModel.RetrieveAllCourses(clientModel.GetClientID());
             if(courses == null)
             {
                 MessageBox.Show("No data retrieved!");
@@ -30,36 +32,36 @@ namespace APAssignmentClient
             {
                 foreach(Course c in courses)
                 {
-                    screen.availableCourses.Rows.Add(c.CourseId.ToString(), c.CourseName.ToString(), model.ConvertPrice(c.CoursePrice));
+                    screen.availableCourses.Rows.Add(c.CourseId.ToString(), c.CourseName, c.CourseType, courseModel.ConvertDuration(c.CourseDuration), courseModel.ConvertPrice(c.CoursePrice));
                 }
             }
         }
 
         public void btnViewCourseDescription_Click()
         {
-            UpdateSelectedCourseID();
+            courseModel.CourseID = RetrieveSelectedID();
 
             CourseDescription screen = new CourseDescription();
-            CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, model);
+            CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, courseModel);
 
             screen.ShowDialog();
         }
 
         public bool btnEnrol_Click()
         {
-            UpdateSelectedCourseID();
+            int enrolID = RetrieveSelectedID();
             DialogResult result = MessageBox.Show("Do you want to enrol the course?", "Enrolment Confirmation", MessageBoxButtons.YesNo);
             if(result == DialogResult.Yes)
             {
-                model.EnrolSelectedCourse();
+                courseModel.EnrolSelectedCourse(clientModel.GetClientID(), enrolID);
                 return true;
             }
             return false;
         }
 
-        private void UpdateSelectedCourseID()
+        private int RetrieveSelectedID()
         {
-            model.CourseID = Int32.Parse(screen.availableCourses.SelectedRows[0].Cells[0].Value.ToString());
+            return Int32.Parse(screen.GetSelectedNewCourse.ToString());
         }
     }
 }
