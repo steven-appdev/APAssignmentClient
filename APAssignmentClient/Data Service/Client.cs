@@ -23,7 +23,7 @@ namespace APAssignmentClient
         public String ClientEmail { get; set; }
 
         [Required]
-        public int ClientContact { get; set; }
+        public String ClientContact { get; set; }
 
         public virtual ICollection<CourseClients> CourseClients { get; set; }
     }

@@ -10,7 +10,10 @@ namespace APAssignmentClient
     {
         void SetClient(Client client);
         Client GetClient();
-        int GetClientID();
-        String GetClientName();
+        int ClientID { get; }
+        String ClientName { get; }
+        String ClientAddress { get; }
+        String ClientEmailAddress { get; }
+        String ClientContactNumber { get; }
     }
 }

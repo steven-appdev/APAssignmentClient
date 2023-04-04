@@ -23,7 +23,7 @@ namespace APAssignmentClient
 
         public void EnrolNewCourse_Load()
         {
-            List<Course> courses = courseModel.RetrieveAllCourses(clientModel.GetClientID());
+            List<Course> courses = courseModel.RetrieveAllCourses(clientModel.ClientID);
             if(courses == null)
             {
                 MessageBox.Show("No data retrieved!");
@@ -53,7 +53,7 @@ namespace APAssignmentClient
             DialogResult result = MessageBox.Show("Do you want to enrol the course?", "Enrolment Confirmation", MessageBoxButtons.YesNo);
             if(result == DialogResult.Yes)
             {
-                courseModel.EnrolSelectedCourse(clientModel.GetClientID(), enrolID);
+                courseModel.EnrolSelectedCourse(clientModel.ClientID, enrolID);
                 return true;
             }
             return false;

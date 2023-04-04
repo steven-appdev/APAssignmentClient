@@ -77,5 +77,10 @@ namespace APAssignmentClient
         {
             presenter.dgvEnrolledCourses_RowsRemoved();
         }
+
+        private void btnClientInformation_Click(object sender, EventArgs e)
+        {
+            presenter.btnClientInformation_Click();
+        }
     }
 }

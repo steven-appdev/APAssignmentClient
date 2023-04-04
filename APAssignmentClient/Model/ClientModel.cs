@@ -19,14 +19,29 @@ namespace APAssignmentClient
             return client;
         }
 
-        public int GetClientID()
+        public int ClientID
         {
-            return client.ClientId;
+            get { return client.ClientId; }
         }
 
-        public String GetClientName()
+        public String ClientName
         {
-            return client.ClientName;
+            get { return client.ClientName; }
+        }
+
+        public String ClientAddress
+        {
+            get { return client.ClientAddress; }
+        }
+
+        public String ClientEmailAddress
+        {
+            get { return client.ClientEmail; }
+        }
+
+        public String ClientContactNumber
+        {
+            get { return client.ClientContact; }
         }
     }
 }
