@@ -15,5 +15,7 @@ namespace APAssignmentClient
         String ClientAddress { get; }
         String ClientEmailAddress { get; }
         String ClientContactNumber { get; }
+        double ClientBill { get; }
+        String ConvertBill(double bill);
     }
 }

@@ -53,5 +53,11 @@ namespace APAssignmentClient
             set { txtbContact.Text = value; }
             get { return txtbContact.Text; }
         }
+
+        public String ClientBill
+        {
+            set { txtbBill.Text = value; }
+            get { return txtbBill.Text; }
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,6 +43,21 @@ namespace APAssignmentClient
         public String ClientContactNumber
         {
             get { return client.ClientContact; }
+        }
+
+        public double ClientBill
+        {
+            get { return client.ClientBill; }
+        }
+
+        public String ConvertBill(double bill)
+        {
+            if (bill % 1 != 0)
+            {
+                return bill.ToString() + "0";
+            }
+
+            return bill.ToString() + ".00";
         }
     }
 }

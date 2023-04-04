@@ -27,6 +27,7 @@ namespace APAssignmentClient.Presenter
             screen.ClientAddress = client.ClientAddress;
             screen.ClientEmailAddress = client.ClientEmail;
             screen.ClientContactNumber = client.ClientContact;
+            screen.ClientBill = clientModel.ConvertBill(client.ClientBill);
         }
     }
 }

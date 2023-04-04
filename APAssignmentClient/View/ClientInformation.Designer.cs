@@ -38,6 +38,8 @@
             this.txtbContact = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtbBill = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -130,11 +132,31 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Contact Number";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 149);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(80, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Outstanding Bill";
+            // 
+            // txtbBill
+            // 
+            this.txtbBill.Enabled = false;
+            this.txtbBill.Location = new System.Drawing.Point(118, 146);
+            this.txtbBill.Name = "txtbBill";
+            this.txtbBill.ReadOnly = true;
+            this.txtbBill.Size = new System.Drawing.Size(232, 20);
+            this.txtbBill.TabIndex = 11;
+            // 
             // ClientInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(385, 159);
+            this.ClientSize = new System.Drawing.Size(385, 187);
+            this.Controls.Add(this.txtbBill);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtbContact);
@@ -165,5 +187,7 @@
         private System.Windows.Forms.TextBox txtbContact;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtbBill;
     }
 }

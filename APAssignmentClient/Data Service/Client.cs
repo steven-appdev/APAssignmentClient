@@ -25,6 +25,9 @@ namespace APAssignmentClient
         [Required]
         public String ClientContact { get; set; }
 
+        [Required]
+        public double ClientBill { get; set; }
+
         public virtual ICollection<CourseClients> CourseClients { get; set; }
     }
 }
