@@ -31,6 +31,7 @@ namespace APAssignmentClient
         public void ClientDashboard_Activated()
         {
             screen.enrolledCourses.Rows.Clear();
+            clientModel.UpdateClientBill();
             PopulateDataTable();
         }
 
@@ -55,6 +56,7 @@ namespace APAssignmentClient
             if (result == DialogResult.Yes)
             {
                 courseModel.DropSelectedCourse(clientModel.ClientID, dropID);
+                clientModel.UpdateClientBill();
                 PopulateDataTable();
             }
         }

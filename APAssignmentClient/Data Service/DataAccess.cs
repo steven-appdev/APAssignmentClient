@@ -65,6 +65,7 @@ namespace APAssignmentClient
                     Status = SetEnrolmentStatus(course)
                 };
                 context.CourseClients.Add(newEnrolment);
+                client.ClientBill += course.CoursePrice;
                 context.SaveChanges();
             }
         }
@@ -76,6 +77,7 @@ namespace APAssignmentClient
                 Client client = context.Clients.First(cli => cli.ClientId == clientID);
                 Course course = context.Courses.First(crs => crs.CourseId == courseID);
                 context.CourseClients.Remove(context.CourseClients.First(cc => cc.ClientId == clientID && cc.CourseId == courseID));
+                client.ClientBill -= course.CoursePrice;
                 context.SaveChanges();
             }
         }

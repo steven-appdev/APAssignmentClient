@@ -9,7 +9,24 @@ namespace APAssignmentClient
 {
     public class ClientModel : IClientModel
     {
+        private static ClientModel _instance = null;
+        IDataAccess access;
         private Client client;
+
+        private ClientModel()
+        {
+            access = new DataAccess();
+        }
+
+        public static ClientModel GetInstance()
+        {
+            if(_instance == null)
+            {
+                _instance = new ClientModel();
+            }
+            return _instance;
+        }
+
         public void SetClient(Client _client)
         {
             client = _client;
@@ -58,6 +75,11 @@ namespace APAssignmentClient
             }
 
             return bill.ToString() + ".00";
+        }
+
+        public void UpdateClientBill()
+        {
+            client.ClientBill = access.RetrieveClientInformation(ClientID).ClientBill;
         }
     }
 }

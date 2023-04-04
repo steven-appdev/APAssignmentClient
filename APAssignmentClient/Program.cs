@@ -17,7 +17,7 @@ namespace APAssignmentClient
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ClientDashboard screen = new ClientDashboard();
-            ClientModel clientModel = new ClientModel();
+            ClientModel clientModel = ClientModel.GetInstance();
             CourseModel courseModel = CourseModel.GetInstance();
 
             //Simulate user has login (DEV MODE ONLY) (REMOVE IN FINAL PRODUCT)
