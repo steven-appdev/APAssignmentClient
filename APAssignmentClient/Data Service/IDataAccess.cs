@@ -19,5 +19,9 @@ namespace APAssignmentClient
         Client RetrieveClientInformation(int clientID);
         List<Management> RetrieveAllManagement();
         Management RetrieveOneManagement(int managementID);
+        void AddNewBooking(int clientID, int managementID, int duration, DateTime date);
+        void DropBooking(int clientID, int bookingID);
+        List<Booking> RetrieveAllBooking(int clientID);
+        String RetrieveManagementName(int managementID);
     }
 }

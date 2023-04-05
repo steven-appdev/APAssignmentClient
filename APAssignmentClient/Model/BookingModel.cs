@@ -11,6 +11,7 @@ namespace APAssignmentClient
         private static BookingModel _instance = null;
         private IDataAccess access;
         private Management management;
+        private int bookingID;
 
         private BookingModel()
         {
@@ -32,15 +33,41 @@ namespace APAssignmentClient
             return access.RetrieveAllManagement();
         }
 
+        public List<Booking> RetrieveAllBooking(int clientID)
+        {
+            return access.RetrieveAllBooking(clientID);
+        }
+
         public int ManagementID
         {
             set { management.ManagementID = value; }
             get { return management.ManagementID; }
         }
+
+        public int BookingID
+        {
+            set { bookingID = value; }
+            get { return bookingID; }
+        }
+
+        public String RetrieveManagementName(int managementID)
+        {
+            return access.RetrieveManagementName(managementID);
+        }
         
         public String RetrieveSupportSession()
         {
             return access.RetrieveOneManagement(ManagementID).ManagementSupportSession;
+        }
+
+        public void AddNewBooking(int clientID, int duration, DateTime date)
+        {
+            access.AddNewBooking(clientID, ManagementID, duration, date);
+        }
+
+        public void DropBooking(int clientID)
+        {
+            access.DropBooking(clientID, BookingID);
         }
     }
 }

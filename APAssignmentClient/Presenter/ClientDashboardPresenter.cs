@@ -13,12 +13,14 @@ namespace APAssignmentClient
     {
         private IClientModel clientModel;
         private ICourseModel courseModel;
+        private IBookingModel bookingModel;
         private IClientDashboard screen;
 
-        public ClientDashboardPresenter(IClientDashboard _screen, IClientModel _clientModel, ICourseModel _courseModel)
+        public ClientDashboardPresenter(IClientDashboard _screen, IClientModel _clientModel, ICourseModel _courseModel, IBookingModel _bookingModel)
         {
             clientModel = _clientModel;
             courseModel = _courseModel;
+            bookingModel = _bookingModel;
             screen = _screen;
             screen.Register(this);
         }
@@ -52,7 +54,6 @@ namespace APAssignmentClient
         public void btnNewBooking_Click()
         {
             NewBooking screen = new NewBooking();
-            BookingModel bookingModel = BookingModel.GetInstance();
             NewBookingPresenter presenter = new NewBookingPresenter(screen, clientModel, bookingModel);
             screen.ShowDialog();
         }
@@ -64,6 +65,18 @@ namespace APAssignmentClient
             if (result == DialogResult.Yes)
             {
                 courseModel.DropSelectedCourse(clientModel.ClientID, dropID);
+                clientModel.UpdateClientBill();
+                PopulateDataTable();
+            }
+        }
+
+        public void btnDropBooking_Click()
+        {
+            bookingModel.BookingID = RetrieveSelectedBookingID();
+            DialogResult result = MessageBox.Show("Do you want to drop the booking?", "Are you sure?", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                bookingModel.DropBooking(clientModel.ClientID);
                 clientModel.UpdateClientBill();
                 PopulateDataTable();
             }
@@ -96,13 +109,29 @@ namespace APAssignmentClient
                     String[] course = courseModel.SplitCourseInformation(s);
                     screen.enrolledCourses.Rows.Add(course[0], course[1], course[2], course[3]);
                 }
+                screen.enrolledCourses.Sort(screen.enrolledCourses.Columns["id"], ListSortDirection.Ascending);
             }
-            screen.enrolledCourses.Sort(screen.enrolledCourses.Columns["id"], ListSortDirection.Ascending);
+
+            List<Booking> booking = bookingModel.RetrieveAllBooking(clientModel.ClientID);
+            screen.BookedSession.Rows.Clear();
+            if(booking != null)
+            {
+                foreach (Booking bk in booking)
+                {
+                    screen.BookedSession.Rows.Add(bk.BookingID, bookingModel.RetrieveManagementName(bk.ManagementId), bk.BookingDate, bk.BookingDuration);
+                }
+                screen.BookedSession.Sort(screen.BookedSession.Columns["clmID"], ListSortDirection.Ascending);
+            }
         }
 
         private int RetrieveSelectedID()
         {
             return Int32.Parse(screen.GetSelectedValue.ToString());
+        }
+
+        private int RetrieveSelectedBookingID()
+        {
+            return Int32.Parse(screen.GetSelectedBookingID.ToString());
         }
     }
 }

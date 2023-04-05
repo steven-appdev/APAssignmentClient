@@ -32,9 +32,19 @@ namespace APAssignmentClient
             get { return dgvEnrolledCourses; }
         }
 
+        public DataGridView BookedSession
+        {
+            get { return dgvBooking; }
+        }
+
         public Object GetSelectedValue
         {
             get { return dgvEnrolledCourses.SelectedRows[0].Cells[0].Value; }
+        }
+
+        public Object GetSelectedBookingID
+        {
+            get { return dgvBooking.SelectedRows[0].Cells[0].Value; }
         }
 
         public bool dropCourse
@@ -90,7 +100,7 @@ namespace APAssignmentClient
 
         private void btnDropBooking_Click(object sender, EventArgs e)
         {
-            //presenter.btnDropBooking_Click();
+            presenter.btnDropBooking_Click();
         }
     }
 }

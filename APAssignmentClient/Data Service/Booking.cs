@@ -17,5 +17,7 @@ namespace APAssignmentClient
         public virtual Management Management { get; set; }
         [Required]
         public int BookingDuration { get; set; }
+        [Required]
+        public DateTime BookingDate { get; set; }
     }
 }

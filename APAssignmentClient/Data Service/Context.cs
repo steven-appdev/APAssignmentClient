@@ -14,7 +14,7 @@ namespace APAssignmentClient
         public DbSet<Client> Clients { get; set; }
         public DbSet<CourseClients> CourseClients { get; set; }
         public DbSet<Management> Managements { get; set; }
-        
+        public DbSet<Booking> Bookings { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

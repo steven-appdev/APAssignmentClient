@@ -10,6 +10,11 @@ namespace APAssignmentClient
     {
         List<Management> RetrieveAllManagement();
         int ManagementID { set; get; }
+        int BookingID { set; get; }
         String RetrieveSupportSession();
+        void AddNewBooking(int clientID, int duration, DateTime date);
+        void DropBooking(int clientID);
+        List<Booking> RetrieveAllBooking(int clientID);
+        String RetrieveManagementName(int managementID);
     }
 }

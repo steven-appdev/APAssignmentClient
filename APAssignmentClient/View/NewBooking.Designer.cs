@@ -100,6 +100,8 @@
             // 
             // dtSessionDate
             // 
+            this.dtSessionDate.CustomFormat = "MM/dd/yyyy";
+            this.dtSessionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtSessionDate.Location = new System.Drawing.Point(131, 97);
             this.dtSessionDate.Name = "dtSessionDate";
             this.dtSessionDate.Size = new System.Drawing.Size(227, 20);

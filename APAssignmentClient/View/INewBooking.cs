@@ -13,6 +13,7 @@ namespace APAssignmentClient
         DateTime DateTime { get; }
         String SupportSession { get; set; }
         ComboBox ManagementName { get; }
+        ComboBox Duration { get; }
         void Register(NewBookingPresenter _presenter);
         void AddName(String name);
     }

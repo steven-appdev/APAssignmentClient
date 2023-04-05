@@ -39,6 +39,11 @@ namespace APAssignmentClient
             get { return cmbManagementName; }
         }
 
+        public ComboBox Duration
+        {
+            get { return cmbSessionDuration; }
+        }
+
         public void Register(NewBookingPresenter _presenter)
         {
             presenter = _presenter;
@@ -56,7 +61,10 @@ namespace APAssignmentClient
 
         private void btnConfirmBooking_Click(object sender, EventArgs e)
         {
-            
+            if (presenter.btnConfirmBooking_Click())
+            {
+                this.Close();
+            }
         }
 
         private void cmbManagementName_SelectedIndexChanged(object sender, EventArgs e)

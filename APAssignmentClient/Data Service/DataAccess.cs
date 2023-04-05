@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ExceptionServices;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -128,6 +129,57 @@ namespace APAssignmentClient
             using (var context = new Context())
             {
                 return context.Managements.First(m => m.ManagementID == managementID);
+            }
+        }
+
+        public void AddNewBooking(int clientID, int managementID, int duration, DateTime date)
+        {
+            using (var context = new Context())
+            {
+                Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                Management management = context.Managements.First(m => m.ManagementID == managementID);
+
+                Booking newBooking = new Booking
+                {
+                    Client = client,
+                    Management = management,
+                    BookingDuration = duration,
+                    BookingDate = date
+                };
+
+                context.Bookings.Add(newBooking);
+
+                client.ClientBill += (duration / 15) * 40;
+
+                context.SaveChanges();
+            }
+        }
+
+        public void DropBooking(int clientID, int bookingID)
+        {
+            using (var context = new Context())
+            {
+                Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                int duration = context.Bookings.First(bk => bk.BookingID == bookingID).BookingDuration;
+                context.Bookings.Remove(context.Bookings.First(bk => bk.BookingID == bookingID));
+                client.ClientBill -= (duration / 15) * 40;
+                context.SaveChanges();
+            }
+        }
+
+        public List<Booking> RetrieveAllBooking(int clientID)
+        {
+            using (var context = new Context())
+            {
+                return context.Bookings.Where(bk => bk.ClientId == clientID).ToList();
+            }
+        }
+
+        public String RetrieveManagementName(int managementID)
+        {
+            using (var context = new Context())
+            {
+                return context.Managements.First(m => m.ManagementID == managementID).ManagementName.ToString();
             }
         }
     }

@@ -19,12 +19,13 @@ namespace APAssignmentClient
             ClientDashboard screen = new ClientDashboard();
             ClientModel clientModel = ClientModel.GetInstance();
             CourseModel courseModel = CourseModel.GetInstance();
+            BookingModel bookingModel = BookingModel.GetInstance();
 
             //Simulate user has login (DEV MODE ONLY) (REMOVE IN FINAL PRODUCT)
             IDataAccess data = new DataAccess();
             clientModel.SetClient(data.RetrieveClientInformation(1));
 
-            ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, clientModel, courseModel);
+            ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, clientModel, courseModel, bookingModel);
             Application.Run(screen);
         }
     }
