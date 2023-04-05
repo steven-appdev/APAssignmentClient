@@ -13,6 +13,7 @@ namespace APAssignmentClient
         public DbSet<Course> Courses { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<CourseClients> CourseClients { get; set; }
+        public DbSet<Management> Managements { get; set; }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

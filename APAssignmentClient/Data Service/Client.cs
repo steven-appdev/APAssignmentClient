@@ -29,5 +29,6 @@ namespace APAssignmentClient
         public double ClientBill { get; set; }
 
         public virtual ICollection<CourseClients> CourseClients { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }

@@ -49,6 +49,14 @@ namespace APAssignmentClient
             screen.ShowDialog();
         }
 
+        public void btnNewBooking_Click()
+        {
+            NewBooking screen = new NewBooking();
+            BookingModel bookingModel = BookingModel.GetInstance();
+            NewBookingPresenter presenter = new NewBookingPresenter(screen, clientModel, bookingModel);
+            screen.ShowDialog();
+        }
+
         public void btnDropCourse_Click()
         {
             int dropID = RetrieveSelectedID();

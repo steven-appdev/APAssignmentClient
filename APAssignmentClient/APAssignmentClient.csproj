@@ -71,18 +71,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data Service\Booking.cs" />
     <Compile Include="Data Service\Client.cs" />
     <Compile Include="Data Service\Context.cs" />
     <Compile Include="Data Service\Course.cs" />
     <Compile Include="Data Service\CourseClients.cs" />
     <Compile Include="Data Service\DataAccess.cs" />
     <Compile Include="Data Service\IDataAccess.cs" />
+    <Compile Include="Data Service\Management.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Model\BookingModel.cs" />
     <Compile Include="Model\CourseModel.cs" />
+    <Compile Include="Model\IBookingModel.cs" />
     <Compile Include="Model\ICourseModel.cs" />
     <Compile Include="Presenter\ClientInformationPresenter.cs" />
     <Compile Include="Presenter\CourseDescriptionPresenter.cs" />
     <Compile Include="Presenter\EnrolNewCoursePresenter.cs" />
+    <Compile Include="Presenter\NewBookingPresenter.cs" />
     <Compile Include="View\ClientDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +121,13 @@
     <Compile Include="View\IClientInformation.cs" />
     <Compile Include="View\ICourseDescription.cs" />
     <Compile Include="View\IEnrolNewCourse.cs" />
+    <Compile Include="View\INewBooking.cs" />
+    <Compile Include="View\NewBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewBooking.Designer.cs">
+      <DependentUpon>NewBooking.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\ClientDashboard.resx">
       <DependentUpon>ClientDashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,6 +148,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\EnrolNewCourse.resx">
       <DependentUpon>EnrolNewCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NewBooking.resx">
+      <DependentUpon>NewBooking.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />

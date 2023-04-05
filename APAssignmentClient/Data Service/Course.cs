@@ -11,6 +11,10 @@ namespace APAssignmentClient
 {
     public class Course
     {
+        public Course()
+        {
+            Managements = new List<Management>();
+        }
         [Key]
         public int CourseId { get; set; }
 
@@ -27,5 +31,6 @@ namespace APAssignmentClient
         public double CoursePrice { get; set; }
 
         public virtual ICollection<CourseClients> CourseClients { get; set; }
+        public virtual ICollection<Management> Managements { get; set; }
     }
 }

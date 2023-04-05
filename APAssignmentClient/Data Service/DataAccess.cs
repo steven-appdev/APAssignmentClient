@@ -114,5 +114,21 @@ namespace APAssignmentClient
                 return context.Clients.First(cli => cli.ClientId == clientID);
             }
         }
+
+        public List<Management> RetrieveAllManagement()
+        {
+            using (var context = new Context())
+            {
+                return context.Managements.ToList();
+            }
+        }
+
+        public Management RetrieveOneManagement(int managementID)
+        {
+            using (var context = new Context())
+            {
+                return context.Managements.First(m => m.ManagementID == managementID);
+            }
+        }
     }
 }

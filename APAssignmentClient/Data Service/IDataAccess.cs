@@ -17,5 +17,7 @@ namespace APAssignmentClient
         List<Course> RetrieveEnrolledCourses(int clientID);
         CourseClients RetrieveCourseStatus(int clientID, int courseID);
         Client RetrieveClientInformation(int clientID);
+        List<Management> RetrieveAllManagement();
+        Management RetrieveOneManagement(int managementID);
     }
 }

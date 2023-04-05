@@ -82,5 +82,15 @@ namespace APAssignmentClient
         {
             presenter.btnClientInformation_Click();
         }
+
+        private void btnNewBooking_Click(object sender, EventArgs e)
+        {
+            presenter.btnNewBooking_Click();
+        }
+
+        private void btnDropBooking_Click(object sender, EventArgs e)
+        {
+            //presenter.btnDropBooking_Click();
+        }
     }
 }
