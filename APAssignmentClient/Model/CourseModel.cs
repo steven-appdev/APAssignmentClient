@@ -126,5 +126,7 @@ namespace APAssignmentClient
             CourseClients course = access.RetrieveCourseStatus(ClientID, _courseID);
             return course.Status.ToString();
         }
+
+
     }
 }
