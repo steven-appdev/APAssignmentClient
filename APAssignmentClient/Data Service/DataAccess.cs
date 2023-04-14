@@ -131,7 +131,7 @@ namespace APAssignmentClient
                     PendingListID = pendingListID,
                     StartDate = startDate
                 });
-                UpdateCourseStatus(clientID, courseID, "Added into pending list");
+                UpdateCourseStatus(clientID, courseID, "Course will started on "+startDate.ToString());
                 context.SaveChanges();
             }
         }
@@ -206,7 +206,7 @@ namespace APAssignmentClient
                     {
                         AddToPendingList(wl.ClientId, wl.CourseId, managementID, pendingID, GetNextMondayDate());
                         context.WaitingLists.Remove(wl);
-                        UpdateCourseStatus(wl.ClientId, wl.CourseId, "Added into pending list");
+                        UpdateCourseStatus(wl.ClientId, wl.CourseId, "Course will started on "+ GetNextMondayDate().ToString());
                         context.SaveChanges();
                     }
                 }
