@@ -40,8 +40,8 @@ namespace APAssignmentClient
 
         public int ManagementID
         {
-            set { management.ManagementID = value; }
-            get { return management.ManagementID; }
+            set { management.ManagementId = value; }
+            get { return management.ManagementId; }
         }
 
         public int BookingID

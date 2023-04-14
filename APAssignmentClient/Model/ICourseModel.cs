@@ -10,7 +10,7 @@ namespace APAssignmentClient
     {
         int CourseID { get; set; }
         List<Course> RetrieveAllCourses(int id);
-        void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice);
+        void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice, String _courseType, int _courseDuration);
         String ConvertPrice(double price);
         String ConvertDuration(int duration);
         Course RetrieveCourseInformation();

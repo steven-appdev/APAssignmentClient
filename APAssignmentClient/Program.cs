@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,7 +24,7 @@ namespace APAssignmentClient
 
             //Simulate user has login (DEV MODE ONLY) (REMOVE IN FINAL PRODUCT)
             IDataAccess data = new DataAccess();
-            clientModel.SetClient(data.RetrieveClientInformation(1));
+            clientModel.SetClient(data.RetrieveClientInformation(4));
 
             ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, clientModel, courseModel, bookingModel);
             Application.Run(screen);

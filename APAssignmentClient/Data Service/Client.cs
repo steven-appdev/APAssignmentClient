@@ -30,5 +30,7 @@ namespace APAssignmentClient
 
         public virtual ICollection<CourseClients> CourseClients { get; set; }
         public virtual ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<WaitingList> WaitingLists { get; set; }
+        public virtual ICollection<PendingList> PendingLists { get; set; }
     }
 }

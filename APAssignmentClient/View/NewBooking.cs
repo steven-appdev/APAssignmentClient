@@ -28,6 +28,11 @@ namespace APAssignmentClient
             get { return dtSessionDate.Value; }
         }
 
+        public DateTimePicker DateTimePicker
+        {
+            get { return dtSessionDate; }
+        }
+
         public String SupportSession
         {
             get { return txtbSupportSession.Text; }

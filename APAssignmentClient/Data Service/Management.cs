@@ -9,13 +9,8 @@ namespace APAssignmentClient
 {
     public class Management
     {
-        public Management()
-        {
-            Courses = new List<Course>();
-        }
-
         [Key]
-        public int ManagementID { get; set; }
+        public int ManagementId { get; set; }
 
         [Required]
         public String ManagementName { get; set; }
@@ -23,7 +18,8 @@ namespace APAssignmentClient
         [Required]
         public String ManagementSupportSession { get; set; }
 
-        public virtual ICollection<Course> Courses { get; set; }
+        public virtual ICollection<ManagementCourses> ManagementCourses { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual ICollection<PendingList> PendingLists { get; set; }
     }
 }

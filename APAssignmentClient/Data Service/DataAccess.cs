@@ -65,9 +65,164 @@ namespace APAssignmentClient
                     Course = course,
                     Status = SetEnrolmentStatus(course)
                 };
+
                 context.CourseClients.Add(newEnrolment);
                 client.ClientBill += course.CoursePrice;
                 context.SaveChanges();
+
+                if (course.CourseType == "Practical Course")
+                {
+                    if (CheckExistPendingList(courseID))
+                    {
+                        int latestPendingID = RetrieveLastPendingListID(courseID);
+                        Console.WriteLine(latestPendingID);
+                        if (!IsExistPendingListFull(latestPendingID))
+                        {
+                            PendingList retrievedPendingInformation = RetrieveLastPendingListInformation(latestPendingID);
+                            AddToPendingList(clientID, courseID, retrievedPendingInformation.ManagementId, latestPendingID, retrievedPendingInformation.StartDate);
+                        }
+                        else
+                        {
+                            AddToWaitingList(clientID, courseID);
+                        }
+                    }
+                    else
+                    {
+                        AddToWaitingList(clientID, courseID);
+                    }
+                }
+            }
+        }
+
+        private void AddToWaitingList(int clientID, int courseID)
+        {
+            using (var context = new Context())
+            {
+                Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                Course course = context.Courses.First(crs => crs.CourseId == courseID);
+
+                WaitingList waitList = new WaitingList
+                {
+                    Client = client,
+                    Course = course,
+                };
+
+                context.WaitingLists.Add(waitList);
+                context.SaveChanges();
+
+                StartPendingListAutomation(courseID);
+            }
+        }
+
+        private void AddToPendingList(int clientID, int courseID, int managementID, int pendingListID, DateTime startDate)
+        {
+            using (var context = new Context())
+            {
+                Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                Course course = context.Courses.First(crs => crs.CourseId == courseID);
+                Management management = context.Managements.Where(m => m.ManagementId == managementID).First();
+
+                context.PendingLists.Add(new PendingList
+                {
+                    Client = client,
+                    Course = course,
+                    Management = management,
+                    PendingListID = pendingListID,
+                    StartDate = startDate
+                });
+                UpdateCourseStatus(clientID, courseID, "Added into pending list");
+                context.SaveChanges();
+            }
+        }
+
+        private bool IsExistPendingListFull(int pendingListID)
+        {
+            using (var context = new Context())
+            {
+                List<PendingList> pendingList = context.PendingLists.Where(pl => pl.PendingListID == pendingListID).ToList();
+                int pendingListCount = pendingList.Count();
+                if (pendingListCount < 2)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        private bool CheckExistPendingList(int courseID)
+        {
+            using (var context = new Context())
+            {
+                return context.PendingLists.Where(pl => pl.CourseId == courseID).Any();
+            }
+        }
+
+        private int RetrieveLastPendingListID()
+        {
+            using (var context = new Context())
+            {
+                return context.PendingLists.ToList().Last().PendingListID;
+            }
+        }
+
+        private int RetrieveLastPendingListID(int courseID)
+        {
+            using (var context = new Context())
+            {
+                return context.PendingLists.Where(pl => pl.CourseId == courseID).ToList().Last().PendingListID;
+            }
+        }
+
+        private PendingList RetrieveLastPendingListInformation(int pendingListID)
+        {
+            using (var context = new Context())
+            {
+                return context.PendingLists.Where(pl => pl.PendingListID == pendingListID).First();
+            }
+        }
+
+        private void StartPendingListAutomation(int courseID)
+        {
+            using (var context = new Context())
+            {
+                List<WaitingList> waitingList = context.WaitingLists.Where(wl => wl.CourseId == courseID).ToList();
+
+                int managementID = FindAvailableManagement(courseID);
+                int pendingID = RetrieveLastPendingListID() + 1;
+                
+
+                if (waitingList.Count() >= 2)
+                {
+                    foreach (WaitingList wl in waitingList)
+                    {
+                        AddToPendingList(wl.ClientId, wl.CourseId, managementID, pendingID, DateTime.Now);
+                        context.WaitingLists.Remove(wl);
+                        UpdateCourseStatus(wl.ClientId, wl.CourseId, "Added into pending list");
+                        context.SaveChanges();
+                    }
+                }
+            }
+        }
+
+        private void UpdateCourseStatus(int clientID, int courseID, String message)
+        {
+            using (var context = new Context())
+            {
+                CourseClients courseClient = context.CourseClients.Where(cc => cc.ClientId == clientID && cc.CourseId == courseID).First();
+                courseClient.Status = message;
+                context.SaveChanges();
+            }
+        }
+
+        private int FindAvailableManagement(int courseID)
+        {
+            using (var context = new Context())
+            {
+                Random rnd = new Random();
+
+                List<int> managements = context.MangementCourses.Where(mc => mc.CourseID == courseID).Select(mc => mc.ManagementID).ToList();
+                int random = rnd.Next(1, managements.Count);
+                return managements[random - 1];
             }
         }
 
@@ -128,7 +283,7 @@ namespace APAssignmentClient
         {
             using (var context = new Context())
             {
-                return context.Managements.First(m => m.ManagementID == managementID);
+                return context.Managements.First(m => m.ManagementId == managementID);
             }
         }
 
@@ -137,7 +292,7 @@ namespace APAssignmentClient
             using (var context = new Context())
             {
                 Client client = context.Clients.First(cli => cli.ClientId == clientID);
-                Management management = context.Managements.First(m => m.ManagementID == managementID);
+                Management management = context.Managements.First(m => m.ManagementId == managementID);
 
                 Booking newBooking = new Booking
                 {
@@ -179,7 +334,7 @@ namespace APAssignmentClient
         {
             using (var context = new Context())
             {
-                return context.Managements.First(m => m.ManagementID == managementID).ManagementName.ToString();
+                return context.Managements.First(m => m.ManagementId == managementID).ManagementName.ToString();
             }
         }
     }

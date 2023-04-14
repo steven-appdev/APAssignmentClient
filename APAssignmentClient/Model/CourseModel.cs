@@ -38,11 +38,11 @@ namespace APAssignmentClient
         {
             if (access.IsCourseEmpty() == true)
             {
-                AddNewCourse("Introduction to the Architectural and Build Option", "Example Description 1", 300.00);
-                AddNewCourse("Choosing a plot of lang", "Example Description 2", 250.00);
-                AddNewCourse("Building regulations and inspections", "Example Description 3", 500.00);
-                AddNewCourse("Groundwork and Foundations", "Example Description 4", 200.00);
-                AddNewCourse("Insulation", "Example Description 5", 150.00);
+                AddNewCourse("Introduction to the Architectural and Build Option", "Example Description 1", 300.00, "Video Course", 0);
+                AddNewCourse("Choosing a plot of lang", "Example Description 2", 250.00, "Video Course", 0);
+                AddNewCourse("Building regulations and inspections", "Example Description 3", 500.00, "Video Course", 0);
+                AddNewCourse("Groundwork and Foundations", "Example Description 4", 200.00, "Video Course", 0);
+                AddNewCourse("Drylining and Plastering", "Example Description 5", 1100.00, "Practical Course", 4);
             }
 
             List<Course> retrievedCourses = access.RetrieveAllCourses();
@@ -60,13 +60,15 @@ namespace APAssignmentClient
             return currentAvailableCourses;
         }
 
-        public void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice)
+        public void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice, String _courseType, int _courseDuration)
         {
             Course newCourse = new Course
             {
                 CourseName = _courseName,
                 CoursePrice = _coursePrice,
-                CourseDescription = _courseDescription
+                CourseDescription = _courseDescription,
+                CourseType = _courseType,
+                CourseDuration = _courseDuration
             };      
             access.AddNewCourse(newCourse);
         }
