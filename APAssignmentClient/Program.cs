@@ -24,7 +24,7 @@ namespace APAssignmentClient
 
             //Simulate user has login (DEV MODE ONLY) (REMOVE IN FINAL PRODUCT)
             IDataAccess data = new DataAccess();
-            clientModel.SetClient(data.RetrieveClientInformation(4));
+            clientModel.SetClient(data.RetrieveClientInformation(1));
 
             ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, clientModel, courseModel, bookingModel);
             Application.Run(screen);

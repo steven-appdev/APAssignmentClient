@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Runtime.Remoting.Contexts;
@@ -187,21 +188,37 @@ namespace APAssignmentClient
             {
                 List<WaitingList> waitingList = context.WaitingLists.Where(wl => wl.CourseId == courseID).ToList();
 
-                int managementID = FindAvailableManagement(courseID);
-                int pendingID = RetrieveLastPendingListID() + 1;
-                
-
                 if (waitingList.Count() >= 2)
                 {
+                    int managementID = FindAvailableManagement(courseID);
+                    int pendingID = 0;
+                    if (CheckExistPendingList(courseID))
+                    {
+                        pendingID = RetrieveLastPendingListID() + 1;
+                    }
+                    else
+                    {
+                        pendingID = 1;
+                    }
+                    
+
                     foreach (WaitingList wl in waitingList)
                     {
-                        AddToPendingList(wl.ClientId, wl.CourseId, managementID, pendingID, DateTime.Now);
+                        AddToPendingList(wl.ClientId, wl.CourseId, managementID, pendingID, GetNextMondayDate());
                         context.WaitingLists.Remove(wl);
                         UpdateCourseStatus(wl.ClientId, wl.CourseId, "Added into pending list");
                         context.SaveChanges();
                     }
                 }
             }
+        }
+
+        private DateTime GetNextMondayDate()
+        {
+            DateTime time = DateTime.Now.AddDays(42);
+
+            int daysToAdd = ((int)DayOfWeek.Monday - (int)time.DayOfWeek + 7) % 7;
+            return time.AddDays(daysToAdd);
         }
 
         private void UpdateCourseStatus(int clientID, int courseID, String message)
