@@ -42,8 +42,7 @@ namespace APAssignmentClient
             courseModel.CourseID = RetrieveSelectedID();
 
             CourseDescription screen = new CourseDescription();
-            CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, courseModel);
-
+            CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, clientModel, courseModel, false);
             screen.ShowDialog();
         }
 

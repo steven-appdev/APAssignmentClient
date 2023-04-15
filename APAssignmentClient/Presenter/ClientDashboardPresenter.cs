@@ -28,6 +28,7 @@ namespace APAssignmentClient
         public void ClientDashboard_Load()
         {
             screen.username = clientModel.ClientName;
+            PopulateDataTable();
         }
 
         public void ClientDashboard_Activated()
@@ -84,18 +85,26 @@ namespace APAssignmentClient
 
         public void dgvEnrolledCourses_RowsAdded()
         {
-            if(screen.dropCourse == false)
-            {
-                screen.dropCourse = true;
-            }
+            screen.dropCourse = true;
+            screen.ViewCourse = true;
         }
 
         public void dgvEnrolledCourses_RowsRemoved()
         {
-            if (screen.dropCourse == true)
+            if (screen.enrolledCourses.Rows.Count <= 0) 
             {
                 screen.dropCourse = false;
+                screen.ViewCourse = false;
             }
+        }
+
+        public void btnViewCourse_Click()
+        {
+            courseModel.CourseID = RetrieveSelectedID();
+
+            CourseDescription screen = new CourseDescription();
+            CourseDescriptionPresenter presenter = new CourseDescriptionPresenter(screen, clientModel, courseModel, true);
+            screen.ShowDialog();
         }
 
         private void PopulateDataTable()

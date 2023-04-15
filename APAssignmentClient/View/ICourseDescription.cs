@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,16 @@ namespace APAssignmentClient
     {
         String CourseID { get; set; }
         String CourseTitle { get; set; }
+        String CourseType { get; set; }
         String Description { get; set; }
+        Size DescriptionSize { get; set; }
+        String Status { get; set; }
+        bool StatusVisible { get; set; }
+        bool StatusLabelVisible { get; set; }
+        bool DateVisible { get; set; }
+        bool DateLabelVisible { get; set; }
+        String Date { get; set; }
+        bool WaitingListButton { get; set; }
         void Register(CourseDescriptionPresenter presenter);
     }
 }

@@ -16,7 +16,10 @@ namespace APAssignmentClient
         Course RetrieveCourseInformation();
         void EnrolSelectedCourse(int clientID, int courseID);
         void DropSelectedCourse(int clientID, int courseID);
+        void ReturnToCourseWaitingList(int ClientID, int CourseID);
         List<String> RetrieveEnrolledCourses(int id);
+        String RetrieveCourseStatus(int ClientID, int _courseID);
         String[] SplitCourseInformation(String s);
+        String RetrieveCourseStartDate(int ClientID, int CourseID);
     }
 }

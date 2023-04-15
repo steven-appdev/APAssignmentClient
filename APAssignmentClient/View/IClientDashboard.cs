@@ -14,6 +14,7 @@ namespace APAssignmentClient
         DataGridView BookedSession { get; }
         Object GetSelectedValue { get; }
         Object GetSelectedBookingID { get; }
+        bool ViewCourse { get; set; }
         bool dropCourse { get; set; }
         void Register(ClientDashboardPresenter presenter);
     }

@@ -109,6 +109,7 @@ namespace APAssignmentClient
                 };
 
                 context.WaitingLists.Add(waitList);
+                UpdateCourseStatus(clientID, courseID, "Placed into waiting list");
                 context.SaveChanges();
 
                 StartPendingListAutomation(courseID);
@@ -234,6 +235,18 @@ namespace APAssignmentClient
                         context.SaveChanges();
                     }
                 }
+            }
+        }
+
+        public String RetrieveCourseStartDate(int clientID, int courseID)
+        {
+            using (var context = new Context())
+            {
+                if(context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).Any())
+                {
+                    return context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).First().StartDate.ToString();
+                }
+                return "-";
             }
         }
 

@@ -47,6 +47,12 @@ namespace APAssignmentClient
             get { return dgvBooking.SelectedRows[0].Cells[0].Value; }
         }
 
+        public bool ViewCourse
+        {
+            get { return btnViewCourse.Enabled; }
+            set { btnViewCourse.Enabled = value; }
+        }
+
         public bool dropCourse
         {
             get { return btnDropCourse.Enabled; }
@@ -101,6 +107,11 @@ namespace APAssignmentClient
         private void btnDropBooking_Click(object sender, EventArgs e)
         {
             presenter.btnDropBooking_Click();
+        }
+
+        private void btnViewCourse_Click(object sender, EventArgs e)
+        {
+            presenter.btnViewCourse_Click();
         }
     }
 }

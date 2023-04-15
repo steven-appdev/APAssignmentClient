@@ -120,17 +120,26 @@ namespace APAssignmentClient
             return enrolledCourses;
         }
 
+        public void ReturnToCourseWaitingList(int ClientID, int CourseID)
+        {
+            access.DropPendingList(ClientID, CourseID);
+            access.AddToWaitingList(ClientID, CourseID);
+        }
+
         public String[] SplitCourseInformation(String s)
         {
             return s.Split(';');
         }
 
-        private String RetrieveCourseStatus(int ClientID, int _courseID)
+        public String RetrieveCourseStatus(int ClientID, int _courseID)
         {
             CourseClients course = access.RetrieveCourseStatus(ClientID, _courseID);
             return course.Status.ToString();
         }
 
-
+        public String RetrieveCourseStartDate(int ClientID, int CourseID)
+        {
+            return access.RetrieveCourseStartDate(ClientID, CourseID);
+        }
     }
 }

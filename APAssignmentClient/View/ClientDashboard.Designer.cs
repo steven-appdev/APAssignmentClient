@@ -47,7 +47,7 @@
             this.clmDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDropBooking = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnViewCourse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEnrolledCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
             this.SuspendLayout();
@@ -243,22 +243,23 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Booked Session";
             // 
-            // button1
+            // btnViewCourse
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(281, 268);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 33);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Drop Course";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnViewCourse.Enabled = false;
+            this.btnViewCourse.Location = new System.Drawing.Point(281, 268);
+            this.btnViewCourse.Name = "btnViewCourse";
+            this.btnViewCourse.Size = new System.Drawing.Size(165, 33);
+            this.btnViewCourse.TabIndex = 12;
+            this.btnViewCourse.Text = "View Course";
+            this.btnViewCourse.UseVisualStyleBackColor = true;
+            this.btnViewCourse.Click += new System.EventHandler(this.btnViewCourse_Click);
             // 
             // ClientDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 576);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnViewCourse);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDropBooking);
             this.Controls.Add(this.dgvBooking);
@@ -303,7 +304,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDuration;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnViewCourse;
     }
 }
 
