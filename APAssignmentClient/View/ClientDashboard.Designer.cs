@@ -41,12 +41,13 @@
             this.btnClientInformation = new System.Windows.Forms.Button();
             this.btnNewBooking = new System.Windows.Forms.Button();
             this.dgvBooking = new System.Windows.Forms.DataGridView();
-            this.btnDropBooking = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMngmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDropBooking = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEnrolledCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
             this.SuspendLayout();
@@ -194,26 +195,6 @@
             this.dgvBooking.Size = new System.Drawing.Size(774, 173);
             this.dgvBooking.TabIndex = 9;
             // 
-            // btnDropBooking
-            // 
-            this.btnDropBooking.Location = new System.Drawing.Point(452, 536);
-            this.btnDropBooking.Name = "btnDropBooking";
-            this.btnDropBooking.Size = new System.Drawing.Size(165, 33);
-            this.btnDropBooking.TabIndex = 10;
-            this.btnDropBooking.Text = "Drop Booking";
-            this.btnDropBooking.UseVisualStyleBackColor = true;
-            this.btnDropBooking.Click += new System.EventHandler(this.btnDropBooking_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 321);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 33);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Booked Session";
-            // 
             // clmID
             // 
             this.clmID.HeaderText = "ID";
@@ -242,11 +223,42 @@
             this.clmDuration.ReadOnly = true;
             this.clmDuration.Width = 75;
             // 
+            // btnDropBooking
+            // 
+            this.btnDropBooking.Location = new System.Drawing.Point(452, 536);
+            this.btnDropBooking.Name = "btnDropBooking";
+            this.btnDropBooking.Size = new System.Drawing.Size(165, 33);
+            this.btnDropBooking.TabIndex = 10;
+            this.btnDropBooking.Text = "Drop Booking";
+            this.btnDropBooking.UseVisualStyleBackColor = true;
+            this.btnDropBooking.Click += new System.EventHandler(this.btnDropBooking_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(8, 321);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(183, 33);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Booked Session";
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(281, 268);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(165, 33);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Drop Course";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ClientDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 576);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnDropBooking);
             this.Controls.Add(this.dgvBooking);
@@ -291,6 +303,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDuration;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }
 

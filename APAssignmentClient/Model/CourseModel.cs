@@ -105,6 +105,8 @@ namespace APAssignmentClient
         public void DropSelectedCourse(int ClientID, int CourseID)
         {
             access.DropCourse(ClientID, CourseID);
+            access.DropWaitingList(ClientID, CourseID);
+            access.DropPendingList(ClientID, CourseID);
         }
 
         public List<String> RetrieveEnrolledCourses(int ClientID)

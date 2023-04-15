@@ -95,7 +95,7 @@ namespace APAssignmentClient
             }
         }
 
-        private void AddToWaitingList(int clientID, int courseID)
+        public void AddToWaitingList(int clientID, int courseID)
         {
             using (var context = new Context())
             {
@@ -133,6 +133,30 @@ namespace APAssignmentClient
                 });
                 UpdateCourseStatus(clientID, courseID, "Course will started on "+startDate.ToString());
                 context.SaveChanges();
+            }
+        }
+
+        public void DropWaitingList(int clientID, int courseID)
+        {
+            using (var context = new Context())
+            {
+                if(context.WaitingLists.Where(wl => wl.ClientId == clientID && wl.CourseId == courseID).Any())
+                {
+                    context.WaitingLists.Remove(context.WaitingLists.Where(wl => wl.ClientId == clientID && wl.CourseId == courseID).First());
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public void DropPendingList(int clientID, int courseID)
+        {
+            using (var context = new Context())
+            {
+                if (context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).Any())
+                {
+                    context.PendingLists.Remove(context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).First());
+                    context.SaveChanges();
+                }
             }
         }
 

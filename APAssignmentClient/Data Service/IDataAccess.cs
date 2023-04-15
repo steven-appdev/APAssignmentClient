@@ -23,5 +23,8 @@ namespace APAssignmentClient
         void DropBooking(int clientID, int bookingID);
         List<Booking> RetrieveAllBooking(int clientID);
         String RetrieveManagementName(int managementID);
+        void AddToWaitingList(int clientID, int courseID);
+        void DropWaitingList(int clientID, int courseID);
+        void DropPendingList(int clientID, int courseID);
     }
 }
