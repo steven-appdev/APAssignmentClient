@@ -1,11 +1,6 @@
-﻿using APAssignmentClient.Presenter;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace APAssignmentClient
 {
@@ -62,8 +57,8 @@ namespace APAssignmentClient
         public void btnDropCourse_Click()
         {
             int dropID = RetrieveSelectedID();
-            DialogResult result = MessageBox.Show("Do you want to drop the course?", "Are you sure?", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            bool result = screen.DisplayConfirmationMessage("Do you want to drop this course?", "Are you sure?");
+            if (result == true)
             {
                 courseModel.DropSelectedCourse(clientModel.ClientID, dropID);
                 clientModel.UpdateClientBill();
@@ -74,8 +69,8 @@ namespace APAssignmentClient
         public void btnDropBooking_Click()
         {
             bookingModel.BookingID = RetrieveSelectedBookingID();
-            DialogResult result = MessageBox.Show("Do you want to drop the booking?", "Are you sure?", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            bool result = screen.DisplayConfirmationMessage("Do you want to drop this booking?", "Are you sure?");
+            if (result == true)
             {
                 bookingModel.DropBooking(clientModel.ClientID);
                 clientModel.UpdateClientBill();

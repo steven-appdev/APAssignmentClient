@@ -113,5 +113,15 @@ namespace APAssignmentClient
         {
             presenter.btnViewCourse_Click();
         }
+
+        public bool DisplayConfirmationMessage(String msg, String title)
+        {
+            DialogResult result = MessageBox.Show(msg, title, MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

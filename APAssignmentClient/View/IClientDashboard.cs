@@ -17,5 +17,6 @@ namespace APAssignmentClient
         bool ViewCourse { get; set; }
         bool dropCourse { get; set; }
         void Register(ClientDashboardPresenter presenter);
+        bool DisplayConfirmationMessage(String msg, String title);
     }
 }

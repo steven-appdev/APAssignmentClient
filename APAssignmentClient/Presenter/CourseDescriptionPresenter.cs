@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace APAssignmentClient
 {
@@ -51,8 +50,8 @@ namespace APAssignmentClient
         public void btnPlaceBackToWaiting_Click()
         {
             int ID = Int32.Parse(screen.CourseID);
-            DialogResult result = MessageBox.Show("Do you want to place back to the waiting list?", "Are you sure?", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            bool result = screen.DisplayConfirmationMessage("Do you want to place back to the waiting list?", "Are you sure?");
+            if (result == true)
             {
                 courseModel.ReturnToCourseWaitingList(clientModel.ClientID, ID);
                 PopulateFullDetail(clientModel.ClientID, ID);

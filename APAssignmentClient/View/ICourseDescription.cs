@@ -22,5 +22,6 @@ namespace APAssignmentClient
         String Date { get; set; }
         bool WaitingListButton { get; set; }
         void Register(CourseDescriptionPresenter presenter);
+        bool DisplayConfirmationMessage(String msg, String title);
     }
 }
