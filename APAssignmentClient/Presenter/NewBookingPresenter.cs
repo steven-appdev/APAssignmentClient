@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using APAssignmentClient.View;
 using APAssignmentClient.Model;
 using System.Data;
@@ -41,8 +36,8 @@ namespace APAssignmentClient.Presenter
 
         public bool btnConfirmBooking_Click()
         {
-            DialogResult result = MessageBox.Show("Do you want to create this booking?", "Booking Confirmation", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            bool result = screen.DisplayConfirmationMessage("Do you want to create this booking?", "Booking Confirmation");
+            if (result == true)
             {
                 UpdateManagementID();
                 bookingModel.AddNewBooking(clientModel.ClientID, Int32.Parse(screen.Duration.SelectedItem.ToString()), screen.DateTime);

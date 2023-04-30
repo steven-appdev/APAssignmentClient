@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using APAssignmentClient.View;
 using APAssignmentClient.Model;
-using System.Windows.Forms;
 using System.Data;
 
 namespace APAssignmentClient.Presenter

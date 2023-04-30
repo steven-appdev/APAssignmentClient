@@ -17,5 +17,6 @@ namespace APAssignmentClient.View
         ComboBox Duration { get; }
         void Register(NewBookingPresenter _presenter);
         void AddName(String name);
+        bool DisplayConfirmationMessage(String msg, String title);
     }
 }
