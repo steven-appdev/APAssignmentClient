@@ -5,8 +5,9 @@
     using System.Data.Entity.Migrations;
     using System.IO;
     using System.Linq;
+    using APAssignmentClient.DataService;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<APAssignmentClient.Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<Context>
     {
         public Configuration()
         {
@@ -17,7 +18,7 @@
             AppDomain.CurrentDomain.SetData("DataDirectory", absolute);
         }
 
-        protected override void Seed(APAssignmentClient.Context context)
+        protected override void Seed(Context context)
         {
             //  This method will be called after migrating to the latest version.
 

@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APAssignmentClient.View;
+using APAssignmentClient.Model;
+using System.Windows.Forms.VisualStyles;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Presenter
 {
     public class ClientInformationPresenter
     {
@@ -21,13 +24,13 @@ namespace APAssignmentClient
 
         private void PopulateClientInformation()
         {
-            Client client = clientModel.GetClient();
-            screen.ClientID = client.ClientId.ToString();
-            screen.ClientName = client.ClientName;
-            screen.ClientAddress = client.ClientAddress;
-            screen.ClientEmailAddress = client.ClientEmail;
-            screen.ClientContactNumber = client.ClientContact;
-            screen.ClientBill = clientModel.ConvertBill(client.ClientBill);
+            String[] client = clientModel.GetClient();
+            screen.ClientID = client[0];
+            screen.ClientName = client[1];
+            screen.ClientAddress = client[2];
+            screen.ClientEmailAddress = client[3];
+            screen.ClientContactNumber = client[4];
+            screen.ClientBill = client[5];
         }
     }
 }

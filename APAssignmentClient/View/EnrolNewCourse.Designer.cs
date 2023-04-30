@@ -1,4 +1,4 @@
-﻿namespace APAssignmentClient
+﻿namespace APAssignmentClient.View
 {
     partial class EnrolNewCourse
     {
@@ -84,6 +84,7 @@
             // 
             // clmID
             // 
+            this.clmID.DataPropertyName = "id";
             this.clmID.HeaderText = "ID";
             this.clmID.Name = "clmID";
             this.clmID.ReadOnly = true;
@@ -92,12 +93,14 @@
             // clmName
             // 
             this.clmName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.clmName.DataPropertyName = "name";
             this.clmName.HeaderText = "Course Name";
             this.clmName.Name = "clmName";
             this.clmName.ReadOnly = true;
             // 
             // clmType
             // 
+            this.clmType.DataPropertyName = "type";
             this.clmType.HeaderText = "Course Type";
             this.clmType.Name = "clmType";
             this.clmType.ReadOnly = true;
@@ -105,6 +108,7 @@
             // 
             // clmDuration
             // 
+            this.clmDuration.DataPropertyName = "duration";
             this.clmDuration.HeaderText = "Duration";
             this.clmDuration.Name = "clmDuration";
             this.clmDuration.ReadOnly = true;
@@ -112,6 +116,7 @@
             // 
             // clmPrice
             // 
+            this.clmPrice.DataPropertyName = "price";
             this.clmPrice.HeaderText = "Price";
             this.clmPrice.Name = "clmPrice";
             this.clmPrice.ReadOnly = true;

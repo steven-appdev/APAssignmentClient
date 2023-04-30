@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
+using APAssignmentClient.DataService;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Model
 {
     public interface IClientModel
     {
         void SetClient(Client client);
-        Client GetClient();
+        String[] GetClient();
         int ClientID { get; }
         String ClientName { get; }
         String ClientAddress { get; }
         String ClientEmailAddress { get; }
         String ClientContactNumber { get; }
         double ClientBill { get; }
-        String ConvertBill(double bill);
         void UpdateClientBill();
     }
 }

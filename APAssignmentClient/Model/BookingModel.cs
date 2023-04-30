@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APAssignmentClient.DataService;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Model
 {
     public class BookingModel : IBookingModel
     {
@@ -28,14 +30,33 @@ namespace APAssignmentClient
             return _instance;
         }
 
-        public List<Management> RetrieveAllManagement()
+        public DataTable RetrieveAllManagement()
         {
-            return access.RetrieveAllManagement();
+            List<Management> management = access.RetrieveAllManagement();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            foreach(Management m in management)
+            {
+                dt.Rows.Add(m.ManagementId, m.ManagementName);
+            }
+            return dt;
         }
 
-        public List<Booking> RetrieveAllBooking(int clientID)
+        public DataTable RetrieveAllBooking(int clientID)
         {
-            return access.RetrieveAllBooking(clientID);
+            List<Booking> booking = access.RetrieveAllBooking(clientID);
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            dt.Columns.Add("date");
+            dt.Columns.Add("duration");
+            foreach(Booking bk in booking)
+            {
+                dt.Rows.Add(bk.BookingID, RetrieveManagementName(bk.ManagementId), bk.BookingDate, bk.BookingDuration);
+            }
+
+            return dt;
         }
 
         public int ManagementID

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using APAssignmentClient.Presenter;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.View
 {
     public interface IClientDashboard
     {

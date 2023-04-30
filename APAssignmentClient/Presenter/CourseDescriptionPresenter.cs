@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APAssignmentClient.View;
+using APAssignmentClient.Model;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Presenter
 {
     public class CourseDescriptionPresenter
     {
@@ -12,6 +14,7 @@ namespace APAssignmentClient
         private ICourseDescription screen;
         private ICourseModel courseModel;
         private bool displayFullDetail;
+
         public CourseDescriptionPresenter(ICourseDescription _screen, IClientModel _clientModel, ICourseModel _courseModel, bool _displayFullDetail)
         {
             screen = _screen;
@@ -23,11 +26,11 @@ namespace APAssignmentClient
 
         public void CourseDescription_Load()
         {
-            Course course = courseModel.RetrieveCourseInformation();
-            screen.CourseID = course.CourseId.ToString();
-            screen.CourseTitle = course.CourseName.ToString();
-            screen.CourseType = course.CourseType.ToString();
-            screen.Description = course.CourseDescription.ToString();
+            String[] course = courseModel.RetrieveCourseInformation();
+            screen.CourseID = course[0];
+            screen.CourseTitle = course[1];
+            screen.CourseType = course[2];
+            screen.Description = course[3];
             screen.DescriptionSize = new System.Drawing.Size(357, 191);
 
             if (displayFullDetail)
@@ -38,7 +41,7 @@ namespace APAssignmentClient
                 screen.StatusLabelVisible = true;
                 screen.StatusVisible = true;
 
-                PopulateFullDetail(clientModel.ClientID, course.CourseId);
+                PopulateFullDetail(clientModel.ClientID, Int32.Parse(course[0]));
 
                 if (screen.Status.Contains("Course will started on"))
                 {

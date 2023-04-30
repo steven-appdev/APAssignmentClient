@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using APAssignmentClient.View;
+using APAssignmentClient.Model;
+using System.Data;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Presenter
 {
     public class NewBookingPresenter
     {
@@ -23,16 +26,16 @@ namespace APAssignmentClient
 
         public void NewBooking_Load()
         {
-            List<Management> managements = bookingModel.RetrieveAllManagement();
-            screen.ManagementName.ValueMember = "ManagementID";
-            screen.ManagementName.DisplayMember = "ManagementName";
+            DataTable managements = bookingModel.RetrieveAllManagement();
+            screen.ManagementName.ValueMember = "id";
+            screen.ManagementName.DisplayMember = "name";
             screen.ManagementName.DataSource = managements;
             screen.Duration.SelectedIndex = 0;
         }
 
         public void cmbManagementName_SelectedIndexChanged()
         {
-            bookingModel.ManagementID = (int)(screen.ManagementName.SelectedValue);
+            UpdateManagementID();
             screen.SupportSession = bookingModel.RetrieveSupportSession();
         }
 
@@ -41,11 +44,16 @@ namespace APAssignmentClient
             DialogResult result = MessageBox.Show("Do you want to create this booking?", "Booking Confirmation", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                bookingModel.ManagementID = (int)(screen.ManagementName.SelectedValue);
+                UpdateManagementID();
                 bookingModel.AddNewBooking(clientModel.ClientID, Int32.Parse(screen.Duration.SelectedItem.ToString()), screen.DateTime);
                 return true;
             }
             return false;
+        }
+
+        private void UpdateManagementID()
+        {
+            bookingModel.ManagementID = Int32.Parse(screen.ManagementName.SelectedValue.ToString());
         }
     }
 }

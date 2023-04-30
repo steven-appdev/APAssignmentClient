@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using APAssignmentClient.Presenter;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.View
 {
     //Client Dashboard (View)
 
@@ -66,6 +67,8 @@ namespace APAssignmentClient
 
         private void ClientDashboard_Load(object sender, EventArgs e)
         {
+            dgvEnrolledCourses.AutoGenerateColumns = false;
+            dgvBooking.AutoGenerateColumns = false;
             presenter.ClientDashboard_Load();
         }
 

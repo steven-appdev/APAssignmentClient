@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using APAssignmentClient.View;
+using APAssignmentClient.Model;
+using System.Windows.Forms;
+using System.Data;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Presenter
 {
     public class ClientDashboardPresenter
     {
@@ -28,7 +32,6 @@ namespace APAssignmentClient
 
         public void ClientDashboard_Activated()
         {
-            screen.enrolledCourses.Rows.Clear();
             clientModel.UpdateClientBill();
             PopulateDataTable();
         }
@@ -104,28 +107,11 @@ namespace APAssignmentClient
 
         private void PopulateDataTable()
         {
-            List<String> courses = courseModel.RetrieveEnrolledCourses(clientModel.ClientID);
-            screen.enrolledCourses.Rows.Clear();
-            if (courses != null)
-            {
-                foreach (String s in courses)
-                {
-                    String[] course = courseModel.SplitCourseInformation(s);
-                    screen.enrolledCourses.Rows.Add(course[0], course[1], course[2], course[3]);
-                }
-                screen.enrolledCourses.Sort(screen.enrolledCourses.Columns["id"], ListSortDirection.Ascending);
-            }
+            DataTable enrolledDT = courseModel.RetrieveEnrolledCourses(clientModel.ClientID);
+            screen.enrolledCourses.DataSource = enrolledDT;
 
-            List<Booking> booking = bookingModel.RetrieveAllBooking(clientModel.ClientID);
-            screen.BookedSession.Rows.Clear();
-            if(booking != null)
-            {
-                foreach (Booking bk in booking)
-                {
-                    screen.BookedSession.Rows.Add(bk.BookingID, bookingModel.RetrieveManagementName(bk.ManagementId), bk.BookingDate, bk.BookingDuration);
-                }
-                screen.BookedSession.Sort(screen.BookedSession.Columns["clmID"], ListSortDirection.Ascending);
-            }
+            DataTable bookingDT = bookingModel.RetrieveAllBooking(clientModel.ClientID);
+            screen.BookedSession.DataSource = bookingDT;
         }
 
         private int RetrieveSelectedID()

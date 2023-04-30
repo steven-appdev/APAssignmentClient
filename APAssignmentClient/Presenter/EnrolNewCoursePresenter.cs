@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using APAssignmentClient.View;
+using APAssignmentClient.Model;
+using System.Data;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Presenter
 {
     public class EnrolNewCoursePresenter
     {
@@ -23,18 +26,8 @@ namespace APAssignmentClient
 
         public void EnrolNewCourse_Load()
         {
-            List<Course> courses = courseModel.RetrieveAllCourses(clientModel.ClientID);
-            if(courses == null)
-            {
-                MessageBox.Show("No data retrieved!");
-            }
-            else
-            {
-                foreach(Course c in courses)
-                {
-                    screen.availableCourses.Rows.Add(c.CourseId.ToString(), c.CourseName, c.CourseType, courseModel.ConvertDuration(c.CourseDuration), courseModel.ConvertPrice(c.CoursePrice));
-                }
-            }
+            DataTable courses = courseModel.RetrieveAllCourses(clientModel.ClientID);
+            screen.availableCourses.DataSource = courses;
         }
 
         public void btnViewCourseDescription_Click()
@@ -49,8 +42,8 @@ namespace APAssignmentClient
         public bool btnEnrol_Click()
         {
             int enrolID = RetrieveSelectedID();
-            DialogResult result = MessageBox.Show("Do you want to enrol the course?", "Enrolment Confirmation", MessageBoxButtons.YesNo);
-            if(result == DialogResult.Yes)
+            bool result = screen.DisplayConfirmationMessage("Do you want to enrol the course?", "Enrolment Confirmation");
+            if(result == true)
             {
                 courseModel.EnrolSelectedCourse(clientModel.ClientID, enrolID);
                 return true;

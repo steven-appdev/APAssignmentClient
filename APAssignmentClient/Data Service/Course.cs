@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.DataService
 {
     public class Course
     {
@@ -25,6 +25,12 @@ namespace APAssignmentClient
 
         [DefaultValue(0.00)]
         public double CoursePrice { get; set; }
+
+        public String[] ToStringArray()
+        {
+            String[] array = { CourseId.ToString(), CourseName, CourseDescription, CourseType, CourseDuration.ToString() };
+            return array;
+        }
 
         public virtual ICollection<CourseClients> CourseClients { get; set; }
         public virtual ICollection<ManagementCourses> ManagementCourses { get; set; }

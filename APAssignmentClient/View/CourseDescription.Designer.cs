@@ -1,4 +1,4 @@
-﻿namespace APAssignmentClient
+﻿namespace APAssignmentClient.View
 {
     partial class CourseDescription
     {

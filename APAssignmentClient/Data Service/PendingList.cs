@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.DataService
 {
     public class PendingList
     {

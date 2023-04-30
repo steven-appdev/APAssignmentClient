@@ -1,4 +1,4 @@
-﻿namespace APAssignmentClient
+﻿namespace APAssignmentClient.View
 {
     partial class ClientDashboard
     {
@@ -33,21 +33,21 @@
             this.btnEnrolNew = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
             this.dgvEnrolledCourses = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.courseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnDropCourse = new System.Windows.Forms.Button();
             this.btnClientInformation = new System.Windows.Forms.Button();
             this.btnNewBooking = new System.Windows.Forms.Button();
             this.dgvBooking = new System.Windows.Forms.DataGridView();
+            this.btnDropBooking = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnViewCourse = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.courseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMngmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDropBooking = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnViewCourse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEnrolledCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
             this.SuspendLayout();
@@ -115,34 +115,6 @@
             this.dgvEnrolledCourses.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvEnrolledCourses_RowsAdded);
             this.dgvEnrolledCourses.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvEnrolledCourses_RowsRemoved);
             // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 50;
-            // 
-            // title
-            // 
-            this.title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.title.HeaderText = "Course Title";
-            this.title.Name = "title";
-            this.title.ReadOnly = true;
-            // 
-            // courseType
-            // 
-            this.courseType.HeaderText = "Course Type";
-            this.courseType.Name = "courseType";
-            this.courseType.ReadOnly = true;
-            this.courseType.Width = 200;
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Status";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            this.status.Width = 200;
-            // 
             // btnDropCourse
             // 
             this.btnDropCourse.Enabled = false;
@@ -195,34 +167,6 @@
             this.dgvBooking.Size = new System.Drawing.Size(774, 173);
             this.dgvBooking.TabIndex = 9;
             // 
-            // clmID
-            // 
-            this.clmID.HeaderText = "ID";
-            this.clmID.Name = "clmID";
-            this.clmID.ReadOnly = true;
-            this.clmID.Width = 50;
-            // 
-            // clmMngmName
-            // 
-            this.clmMngmName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.clmMngmName.HeaderText = "Management Name";
-            this.clmMngmName.Name = "clmMngmName";
-            this.clmMngmName.ReadOnly = true;
-            // 
-            // clmDate
-            // 
-            this.clmDate.HeaderText = "Date";
-            this.clmDate.Name = "clmDate";
-            this.clmDate.ReadOnly = true;
-            this.clmDate.Width = 200;
-            // 
-            // clmDuration
-            // 
-            this.clmDuration.HeaderText = "Duration";
-            this.clmDuration.Name = "clmDuration";
-            this.clmDuration.ReadOnly = true;
-            this.clmDuration.Width = 75;
-            // 
             // btnDropBooking
             // 
             this.btnDropBooking.Location = new System.Drawing.Point(452, 536);
@@ -253,6 +197,70 @@
             this.btnViewCourse.Text = "View Course";
             this.btnViewCourse.UseVisualStyleBackColor = true;
             this.btnViewCourse.Click += new System.EventHandler(this.btnViewCourse_Click);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "id";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 50;
+            // 
+            // title
+            // 
+            this.title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.title.DataPropertyName = "title";
+            this.title.HeaderText = "Course Title";
+            this.title.Name = "title";
+            this.title.ReadOnly = true;
+            // 
+            // courseType
+            // 
+            this.courseType.DataPropertyName = "type";
+            this.courseType.HeaderText = "Course Type";
+            this.courseType.Name = "courseType";
+            this.courseType.ReadOnly = true;
+            this.courseType.Width = 200;
+            // 
+            // status
+            // 
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Width = 200;
+            // 
+            // clmID
+            // 
+            this.clmID.DataPropertyName = "id";
+            this.clmID.HeaderText = "ID";
+            this.clmID.Name = "clmID";
+            this.clmID.ReadOnly = true;
+            this.clmID.Width = 50;
+            // 
+            // clmMngmName
+            // 
+            this.clmMngmName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.clmMngmName.DataPropertyName = "name";
+            this.clmMngmName.HeaderText = "Management Name";
+            this.clmMngmName.Name = "clmMngmName";
+            this.clmMngmName.ReadOnly = true;
+            // 
+            // clmDate
+            // 
+            this.clmDate.DataPropertyName = "date";
+            this.clmDate.HeaderText = "Date";
+            this.clmDate.Name = "clmDate";
+            this.clmDate.ReadOnly = true;
+            this.clmDate.Width = 200;
+            // 
+            // clmDuration
+            // 
+            this.clmDuration.DataPropertyName = "duration";
+            this.clmDuration.HeaderText = "Duration";
+            this.clmDuration.Name = "clmDuration";
+            this.clmDuration.ReadOnly = true;
+            this.clmDuration.Width = 75;
             // 
             // ClientDashboard
             // 
@@ -291,20 +299,20 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.DataGridView dgvEnrolledCourses;
         private System.Windows.Forms.Button btnDropCourse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn courseType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.Button btnClientInformation;
         private System.Windows.Forms.Button btnNewBooking;
         private System.Windows.Forms.DataGridView dgvBooking;
         private System.Windows.Forms.Button btnDropBooking;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnViewCourse;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn courseType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmID;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmMngmName;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDuration;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnViewCourse;
     }
 }
 

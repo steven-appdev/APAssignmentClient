@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using APAssignmentClient.Presenter;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.View
 {
     public partial class ClientInformation : Form, IClientInformation
     {

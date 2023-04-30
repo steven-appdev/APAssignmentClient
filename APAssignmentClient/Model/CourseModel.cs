@@ -4,8 +4,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APAssignmentClient.DataService;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Model
 {
     public class CourseModel : ICourseModel
     {
@@ -34,7 +35,7 @@ namespace APAssignmentClient
             get { return course.CourseId; }
         }
 
-        public List<Course> RetrieveAllCourses(int ClientID)
+        public DataTable RetrieveAllCourses(int ClientID)
         {
             if (access.IsCourseEmpty() == true)
             {
@@ -49,15 +50,20 @@ namespace APAssignmentClient
             List<Course> retrievedEnrolledCourses = access.RetrieveEnrolledCourses(ClientID);
             List<Course> currentAvailableCourses = new List<Course>();
 
-            foreach(Course c in retrievedCourses)
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            dt.Columns.Add("type");
+            dt.Columns.Add("duration");
+            dt.Columns.Add("price");
+            foreach (Course c in retrievedCourses)
             {
                 if (!retrievedEnrolledCourses.Any(crs => crs.CourseId == c.CourseId))
                 {
-                    currentAvailableCourses.Add(c);
+                    dt.Rows.Add(c.CourseId.ToString(), c.CourseName, c.CourseType, ConvertDuration(c.CourseDuration), ConvertPrice(c.CoursePrice));
                 }
             }
-
-            return currentAvailableCourses;
+            return dt;
         }
 
         public void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice, String _courseType, int _courseDuration)
@@ -73,7 +79,7 @@ namespace APAssignmentClient
             access.AddNewCourse(newCourse);
         }
 
-        public String ConvertPrice(double price)
+        private String ConvertPrice(double price)
         {
             if (price % 1 != 0)
             {
@@ -83,7 +89,7 @@ namespace APAssignmentClient
             return price.ToString() + ".00";
         }
 
-        public String ConvertDuration(int duration)
+        private String ConvertDuration(int duration)
         {
             if (duration == 0)
             {
@@ -92,9 +98,10 @@ namespace APAssignmentClient
             return duration.ToString();
         }
 
-        public Course RetrieveCourseInformation()
+        public String[] RetrieveCourseInformation()
         {
-            return access.RetrieveOneCourse(CourseID);
+            Course course = access.RetrieveOneCourse(CourseID);
+            return course.ToStringArray();
         }
 
         public void EnrolSelectedCourse(int ClientID, int CourseID)
@@ -109,26 +116,25 @@ namespace APAssignmentClient
             access.DropPendingList(ClientID, CourseID);
         }
 
-        public List<String> RetrieveEnrolledCourses(int ClientID)
+        public DataTable RetrieveEnrolledCourses(int ClientID)
         {
             List<Course> course = access.RetrieveEnrolledCourses(ClientID);
-            List<String> enrolledCourses = new List<String>();
-            foreach(Course c in course)
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("title");
+            dt.Columns.Add("type");
+            dt.Columns.Add("status");
+            foreach (Course c in course)
             {
-                enrolledCourses.Add(c.CourseId.ToString()+";"+c.CourseName+";"+c.CourseType+";"+ RetrieveCourseStatus(ClientID, Int32.Parse(c.CourseId.ToString())));
+                dt.Rows.Add(c.CourseId.ToString(), c.CourseName, c.CourseType, RetrieveCourseStatus(ClientID, Int32.Parse(c.CourseId.ToString())));
             }
-            return enrolledCourses;
+            return dt;
         }
 
         public void ReturnToCourseWaitingList(int ClientID, int CourseID)
         {
             access.DropPendingList(ClientID, CourseID);
             access.AddToWaitingList(ClientID, CourseID);
-        }
-
-        public String[] SplitCourseInformation(String s)
-        {
-            return s.Split(';');
         }
 
         public String RetrieveCourseStatus(int ClientID, int _courseID)

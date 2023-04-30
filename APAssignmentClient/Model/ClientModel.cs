@@ -4,8 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using APAssignmentClient.DataService;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.Model
 {
     public class ClientModel : IClientModel
     {
@@ -32,9 +33,9 @@ namespace APAssignmentClient
             client = _client;
         }
 
-        public Client GetClient()
+        public String[] GetClient()
         {
-            return client;
+            return client.ToStringArray();
         }
 
         public int ClientID
@@ -65,16 +66,6 @@ namespace APAssignmentClient
         public double ClientBill
         {
             get { return client.ClientBill; }
-        }
-
-        public String ConvertBill(double bill)
-        {
-            if (bill % 1 != 0)
-            {
-                return bill.ToString() + "0";
-            }
-
-            return bill.ToString() + ".00";
         }
 
         public void UpdateClientBill()

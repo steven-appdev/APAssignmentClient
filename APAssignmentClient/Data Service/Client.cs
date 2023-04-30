@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.DataService
 {
     public class Client
     {
@@ -27,6 +27,22 @@ namespace APAssignmentClient
 
         [Required]
         public double ClientBill { get; set; }
+
+        public String[] ToStringArray()
+        {
+            String[] client = { ClientId.ToString(), ClientName, ClientAddress, ClientEmail, ClientContact, ConvertBill(ClientBill) };
+            return client;
+        }
+
+        private String ConvertBill(double bill)
+        {
+            if (bill % 1 != 0)
+            {
+                return bill.ToString() + "0";
+            }
+
+            return bill.ToString() + ".00";
+        }
 
         public virtual ICollection<CourseClients> CourseClients { get; set; }
         public virtual ICollection<Booking> Booking { get; set; }

@@ -7,7 +7,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APAssignmentClient
+namespace APAssignmentClient.DataService
 {
     public class DataAccess : IDataAccess
     {
