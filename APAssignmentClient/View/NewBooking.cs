@@ -67,10 +67,7 @@ namespace APAssignmentClient.View
 
         private void btnConfirmBooking_Click(object sender, EventArgs e)
         {
-            if (presenter.btnConfirmBooking_Click())
-            {
-                this.Close();
-            }
+            presenter.btnConfirmBooking_Click();
         }
 
         private void cmbManagementName_SelectedIndexChanged(object sender, EventArgs e)

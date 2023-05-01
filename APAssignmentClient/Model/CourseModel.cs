@@ -188,7 +188,14 @@ namespace APAssignmentClient.Model
 
         public String RetrieveCourseStartDate(int ClientID, int CourseID)
         {
-            return access.RetrieveCourseStartDate(ClientID, CourseID);  
+            try
+            {
+                return access.RetrieveCourseStartDate(ClientID, CourseID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         private String ConvertPrice(double price)

@@ -32,31 +32,44 @@ namespace APAssignmentClient.Model
 
         public DataTable RetrieveAllManagement()
         {
-            List<Management> management = access.RetrieveAllManagement();
-            DataTable dt = new DataTable();
-            dt.Columns.Add("id");
-            dt.Columns.Add("name");
-            foreach(Management m in management)
+            try
             {
-                dt.Rows.Add(m.ManagementId, m.ManagementName);
+                List<Management> management = access.RetrieveAllManagement();
+                DataTable dt = new DataTable();
+                dt.Columns.Add("id");
+                dt.Columns.Add("name");
+                foreach (Management m in management)
+                {
+                    dt.Rows.Add(m.ManagementId, m.ManagementName);
+                }
+                return dt;
             }
-            return dt;
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public DataTable RetrieveAllBooking(int clientID)
         {
-            List<Booking> booking = access.RetrieveAllBooking(clientID);
-            DataTable dt = new DataTable();
-            dt.Columns.Add("id");
-            dt.Columns.Add("name");
-            dt.Columns.Add("date");
-            dt.Columns.Add("duration");
-            foreach(Booking bk in booking)
+            try
             {
-                dt.Rows.Add(bk.BookingID, RetrieveManagementName(bk.ManagementId), bk.BookingDate, bk.BookingDuration);
+                List<Booking> booking = access.RetrieveAllBooking(clientID);
+                DataTable dt = new DataTable();
+                dt.Columns.Add("id");
+                dt.Columns.Add("name");
+                dt.Columns.Add("date");
+                dt.Columns.Add("duration");
+                foreach (Booking bk in booking)
+                {
+                    dt.Rows.Add(bk.BookingID, RetrieveManagementName(bk.ManagementId), bk.BookingDate, bk.BookingDuration);
+                }
+                return dt;
             }
-
-            return dt;
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public int ManagementID
@@ -71,24 +84,52 @@ namespace APAssignmentClient.Model
             get { return bookingID; }
         }
 
-        public String RetrieveManagementName(int managementID)
+        private String RetrieveManagementName(int managementID)
         {
-            return access.RetrieveManagementName(managementID);
+            try
+            {
+                return access.RetrieveManagementName(managementID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
         
         public String RetrieveSupportSession()
         {
-            return access.RetrieveOneManagement(ManagementID).ManagementSupportSession;
+            try
+            {
+                return access.RetrieveOneManagement(ManagementID).ManagementSupportSession;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public void AddNewBooking(int clientID, int duration, DateTime date)
         {
-            access.AddNewBooking(clientID, ManagementID, duration, date);
+            try
+            {
+                access.AddNewBooking(clientID, ManagementID, duration, date);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public void DropBooking(int clientID)
         {
-            access.DropBooking(clientID, BookingID);
+            try
+            {
+                access.DropBooking(clientID, BookingID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

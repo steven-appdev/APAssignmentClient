@@ -60,8 +60,15 @@ namespace APAssignmentClient.Presenter
             bool result = screen.DisplayConfirmationMessage("Do you want to drop this course?", "Are you sure?");
             if (result == true)
             {
-                courseModel.DropSelectedCourse(clientModel.ClientID, dropID);
-                clientModel.UpdateClientBill();
+                try
+                {
+                    courseModel.DropSelectedCourse(clientModel.ClientID, dropID);
+                }
+                catch(Exception e)
+                {
+                    screen.DisplayErrorMessage(e.Message, "Opps!");
+                }
+                UpdateClientBill();
                 PopulateDataTable();
             }
         }
@@ -72,8 +79,16 @@ namespace APAssignmentClient.Presenter
             bool result = screen.DisplayConfirmationMessage("Do you want to drop this booking?", "Are you sure?");
             if (result == true)
             {
-                bookingModel.DropBooking(clientModel.ClientID);
+                try
+                {
+                    bookingModel.DropBooking(clientModel.ClientID);
+                }
+                catch (Exception e)
+                {
+                    screen.DisplayErrorMessage(e.Message, "Opps!");
+                }
                 UpdateClientBill();
+                PopulateDataTable();
             }
         }
 

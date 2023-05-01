@@ -2,6 +2,7 @@
 using APAssignmentClient.View;
 using APAssignmentClient.Model;
 using System.Data;
+using System.Windows.Forms;
 
 namespace APAssignmentClient.Presenter
 {
@@ -21,26 +22,47 @@ namespace APAssignmentClient.Presenter
 
         public void NewBooking_Load()
         {
-            DataTable managements = bookingModel.RetrieveAllManagement();
-            screen.SetManagementNameData("id", "name", managements);
+            try
+            {
+                DataTable managements = bookingModel.RetrieveAllManagement();
+                screen.SetManagementNameData("id", "name", managements);
+            }
+            catch (Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
+                screen.CloseForm();
+            }
         }
 
         public void cmbManagementName_SelectedIndexChanged()
         {
             UpdateManagementID();
-            screen.SupportSession = bookingModel.RetrieveSupportSession();
+            try
+            {
+                screen.SupportSession = bookingModel.RetrieveSupportSession();
+            }
+            catch(Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
+            }
         }
 
-        public bool btnConfirmBooking_Click()
+        public void btnConfirmBooking_Click()
         {
             bool result = screen.DisplayConfirmationMessage("Do you want to create this booking?", "Booking Confirmation");
             if (result == true)
             {
                 UpdateManagementID();
-                bookingModel.AddNewBooking(clientModel.ClientID, Int32.Parse(screen.Duration.SelectedItem.ToString()), screen.DateTime);
-                return true;
+                try
+                {
+                    bookingModel.AddNewBooking(clientModel.ClientID, Int32.Parse(screen.Duration.SelectedItem.ToString()), screen.DateTime);
+                    screen.CloseForm();
+                }
+                catch (Exception e)
+                {
+                    screen.DisplayErrorMessage(e.Message, "Opps!");
+                }
             }
-            return false;
         }
 
         private void UpdateManagementID()

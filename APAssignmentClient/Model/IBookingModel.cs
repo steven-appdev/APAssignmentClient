@@ -17,6 +17,5 @@ namespace APAssignmentClient.Model
         void AddNewBooking(int clientID, int duration, DateTime date);
         void DropBooking(int clientID);
         DataTable RetrieveAllBooking(int clientID);
-        String RetrieveManagementName(int managementID);
     }
 }
