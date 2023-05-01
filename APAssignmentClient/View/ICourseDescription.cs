@@ -24,5 +24,7 @@ namespace APAssignmentClient.View
         bool WaitingListButton { get; set; }
         void Register(CourseDescriptionPresenter presenter);
         bool DisplayConfirmationMessage(String msg, String title);
+        void DisplayErrorMessage(String msg, String title);
+        void CloseForm();
     }
 }

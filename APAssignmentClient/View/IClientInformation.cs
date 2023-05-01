@@ -16,5 +16,7 @@ namespace APAssignmentClient.View
         String ClientEmailAddress { get; set; }
         String ClientContactNumber { get; set; }
         String ClientBill { get; set; }
+        void DisplayErrorMessage(String msg, String title);
+        void CloseForm();
     }
 }

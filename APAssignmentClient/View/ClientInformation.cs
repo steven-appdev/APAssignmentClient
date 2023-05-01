@@ -59,5 +59,15 @@ namespace APAssignmentClient.View
             set { txtbBill.Text = value; }
             get { return txtbBill.Text; }
         }
+
+        public void DisplayErrorMessage(String msg, String title)
+        {
+            MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void CloseForm()
+        {
+            this.Close();
+        }
     }
 }

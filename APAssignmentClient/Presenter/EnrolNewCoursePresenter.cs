@@ -21,8 +21,16 @@ namespace APAssignmentClient.Presenter
 
         public void EnrolNewCourse_Load()
         {
-            DataTable courses = courseModel.RetrieveAllCourses(clientModel.ClientID);
-            screen.SetNewCourseListDataSource(courses);
+            try
+            {
+                DataTable courses = courseModel.RetrieveAllCourses(clientModel.ClientID);
+                screen.SetNewCourseListDataSource(courses);
+            }
+            catch(Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps");
+                screen.CloseForm();
+            }
         }
 
         public void btnViewCourseDescription_Click()
@@ -34,16 +42,22 @@ namespace APAssignmentClient.Presenter
             screen.ShowDialog();
         }
 
-        public bool btnEnrol_Click()
+        public void btnEnrol_Click()
         {
             int enrolID = RetrieveSelectedID();
             bool result = screen.DisplayConfirmationMessage("Do you want to enrol the course?", "Enrolment Confirmation");
             if(result == true)
             {
-                courseModel.EnrolSelectedCourse(clientModel.ClientID, enrolID);
-                return true;
+                try
+                {
+                    courseModel.EnrolSelectedCourse(clientModel.ClientID, enrolID);
+                }
+                catch (Exception e)
+                {
+                    screen.DisplayErrorMessage(e.Message, "Opps!");
+                }
+                screen.CloseForm();
             }
-            return false;
         }
 
         private int RetrieveSelectedID()

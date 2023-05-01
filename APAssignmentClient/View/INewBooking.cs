@@ -19,6 +19,8 @@ namespace APAssignmentClient.View
         void Register(NewBookingPresenter _presenter);
         void AddName(String name);
         bool DisplayConfirmationMessage(String msg, String title);
+        void DisplayErrorMessage(String msg, String title);
         void SetManagementNameData(String value, String display, DataTable dt);
+        void CloseForm();
     }
 }

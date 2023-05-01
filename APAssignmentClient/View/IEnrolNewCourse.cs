@@ -15,6 +15,8 @@ namespace APAssignmentClient.View
         Object GetSelectedNewCourse { get; }
         void Register(EnrolNewCoursePresenter presenter);
         bool DisplayConfirmationMessage(String msg, String title);
+        void DisplayErrorMessage(String msg, String title);
         void SetNewCourseListDataSource(DataTable dt);
+        void CloseForm();
     }
 }

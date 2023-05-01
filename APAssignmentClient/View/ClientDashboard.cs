@@ -115,6 +115,11 @@ namespace APAssignmentClient.View
             return false;
         }
 
+        public void DisplayErrorMessage(String msg, String title)
+        {
+            MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         public void SetCourseListDataSource(DataTable dt)
         {
             dgvEnrolledCourses.DataSource = dt;
@@ -143,6 +148,11 @@ namespace APAssignmentClient.View
         private void dgvEnrolledCourses_DataSourceChanged(object sender, EventArgs e)
         {
             presenter.dgvEnrolledCourses_DataSourceChanged();
+        }
+
+        public void CloseForm()
+        {
+            this.Close();
         }
     }
 }

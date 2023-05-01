@@ -22,27 +22,34 @@ namespace APAssignmentClient.Presenter
 
         public void CourseDescription_Load()
         {
-            String[] course = courseModel.RetrieveCourseInformation();
-            screen.CourseID = course[0];
-            screen.CourseTitle = course[1];
-            screen.CourseType = course[2];
-            screen.Description = course[3];
-            screen.DescriptionSize = new System.Drawing.Size(357, 191);
-
-            if (displayFullDetail)
+            try
             {
-                screen.DescriptionSize = new System.Drawing.Size(357, 132);
-                screen.DateLabelVisible = true;
-                screen.DateVisible = true;
-                screen.StatusLabelVisible = true;
-                screen.StatusVisible = true;
+                String[] course = courseModel.RetrieveCourseInformation();
+                screen.CourseID = course[0];
+                screen.CourseTitle = course[1];
+                screen.CourseType = course[2];
+                screen.Description = course[3];
+                screen.DescriptionSize = new System.Drawing.Size(357, 191);
 
-                PopulateFullDetail(clientModel.ClientID, Int32.Parse(course[0]));
-
-                if (screen.Status.Contains("Course will started on"))
+                if (displayFullDetail)
                 {
-                    screen.WaitingListButton = true;
+                    screen.DescriptionSize = new System.Drawing.Size(357, 132);
+                    screen.DateLabelVisible = true;
+                    screen.DateVisible = true;
+                    screen.StatusLabelVisible = true;
+                    screen.StatusVisible = true;
+
+                    PopulateFullDetail(clientModel.ClientID, Int32.Parse(course[0]));
+
+                    if (screen.Status.Contains("Course will started on"))
+                    {
+                        screen.WaitingListButton = true;
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
             }
         }
 
@@ -52,16 +59,31 @@ namespace APAssignmentClient.Presenter
             bool result = screen.DisplayConfirmationMessage("Do you want to place back to the waiting list?", "Are you sure?");
             if (result == true)
             {
-                courseModel.ReturnToCourseWaitingList(clientModel.ClientID, ID);
-                PopulateFullDetail(clientModel.ClientID, ID);
-                screen.WaitingListButton = false;
+                try
+                {
+                    courseModel.ReturnToCourseWaitingList(clientModel.ClientID, ID);
+                    PopulateFullDetail(clientModel.ClientID, ID);
+                    screen.WaitingListButton = false;
+                }
+                catch (Exception e)
+                {
+                    screen.DisplayErrorMessage(e.Message, "Opps!");
+                }
             }
         }
 
         private void PopulateFullDetail(int ClientID, int CourseID)
         {
-            screen.Date = courseModel.RetrieveCourseStartDate(ClientID, CourseID);
-            screen.Status = courseModel.RetrieveCourseStatus(ClientID, CourseID);
+            try
+            {
+                screen.Date = courseModel.RetrieveCourseStartDate(ClientID, CourseID);
+                screen.Status = courseModel.RetrieveCourseStatus(ClientID, CourseID);
+            }
+            catch (Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
+            }
+            
         }
     }
 }

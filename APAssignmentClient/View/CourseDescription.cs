@@ -121,5 +121,15 @@ namespace APAssignmentClient.View
             }
             return false;
         }
+
+        public void DisplayErrorMessage(String msg, String title)
+        {
+            MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public void CloseForm()
+        {
+            this.Close();
+        }
     }
 }

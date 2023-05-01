@@ -20,9 +20,11 @@ namespace APAssignmentClient.View
         int GetBookingListCount { get; }
         void Register(ClientDashboardPresenter presenter);
         bool DisplayConfirmationMessage(String msg, String title);
+        void DisplayErrorMessage(String msg, String title);
         void SetCourseListDataSource(DataTable dt);
         void SetBookingListDataSource(DataTable dt);
         void SetCourseButtonsEnabled(bool enabled);
         void SetBookingButtonsEnabled(bool enabled);
+        void CloseForm();
     }
 }

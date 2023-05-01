@@ -37,10 +37,7 @@ namespace APAssignmentClient.View
 
         private void btnEnrol_Click(object sender, EventArgs e)
         {
-            if(presenter.btnEnrol_Click() == true)
-            {
-                this.Close();
-            }
+            presenter.btnEnrol_Click();
         }
 
         private void EnrolNewCourse_Load(object sender, EventArgs e)
@@ -64,9 +61,19 @@ namespace APAssignmentClient.View
             return false;
         }
 
+        public void DisplayErrorMessage(String msg, String title)
+        {
+            MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         public void SetNewCourseListDataSource(DataTable dt)
         {
             dgvAvailableCourses.DataSource = dt;
+        }
+
+        public void CloseForm()
+        {
+            this.Close();
         }
     }
 }

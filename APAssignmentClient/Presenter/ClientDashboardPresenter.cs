@@ -99,11 +99,18 @@ namespace APAssignmentClient.Presenter
 
         private void PopulateDataTable()
         {
-            DataTable enrolledDT = courseModel.RetrieveEnrolledCourses(clientModel.ClientID);
-            screen.SetCourseListDataSource(enrolledDT);
+            try
+            {
+                DataTable enrolledDT = courseModel.RetrieveEnrolledCourses(clientModel.ClientID);
+                screen.SetCourseListDataSource(enrolledDT);
 
-            DataTable bookingDT = bookingModel.RetrieveAllBooking(clientModel.ClientID);
-            screen.SetBookingListDataSource(bookingDT);
+                DataTable bookingDT = bookingModel.RetrieveAllBooking(clientModel.ClientID);
+                screen.SetBookingListDataSource(bookingDT);
+            }
+            catch (Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
+            }
         }
 
         private void CheckCourseListRowCount()

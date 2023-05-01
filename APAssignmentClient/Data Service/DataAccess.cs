@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Runtime.ExceptionServices;
 using System.Runtime.Remoting.Contexts;
@@ -32,7 +33,12 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                return context.Courses.ToList();
+                List<Course> courses = context.Courses.ToList();
+                if (courses.Any())
+                {
+                    return courses;
+                }
+                throw new Exception("No courses are available at the moment! Please check back later or contact administrator!");
             }
         }
 
@@ -40,7 +46,12 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                return context.Courses.First(crs => crs.CourseId == courseID);
+                Course course = context.Courses.First(crs => crs.CourseId == courseID);
+                if (course != null)
+                {
+                    return course;
+                }
+                throw new Exception("Course does not exist! Please contact administrator!");
             }
         }
 
@@ -48,8 +59,15 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                context.Courses.Add(course);
-                context.SaveChanges();
+                try
+                {
+                    context.Courses.Add(course);
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
+                }
             }
         }
 
@@ -57,41 +75,49 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                Client client = context.Clients.First(cli => cli.ClientId == clientID);
-                Course course = context.Courses.First(crs => crs.CourseId == courseID);
-
-                CourseClients newEnrolment = new CourseClients
+                try
                 {
-                    Client = client,
-                    Course = course,
-                    Status = SetEnrolmentStatus(course)
-                };
+                    Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                    Course course = context.Courses.First(crs => crs.CourseId == courseID);
 
-                context.CourseClients.Add(newEnrolment);
-                client.ClientBill += course.CoursePrice;
-                context.SaveChanges();
-
-                if (course.CourseType == "Practical Course")
-                {
-                    if (CheckExistPendingList(courseID))
+                    CourseClients newEnrolment = new CourseClients
                     {
-                        int latestPendingID = RetrieveLastPendingListID(courseID);
-                        Console.WriteLine(latestPendingID);
-                        if (!IsExistPendingListFull(latestPendingID))
+                        Client = client,
+                        Course = course,
+                        Status = SetEnrolmentStatus(course)
+                    };
+
+                    context.CourseClients.Add(newEnrolment);
+                    client.ClientBill += course.CoursePrice;
+                    context.SaveChanges();
+
+                    if (course.CourseType == "Practical Course")
+                    {
+                        if (CheckExistPendingList(courseID))
                         {
-                            PendingList retrievedPendingInformation = RetrieveLastPendingListInformation(latestPendingID);
-                            AddToPendingList(clientID, courseID, retrievedPendingInformation.ManagementId, latestPendingID, retrievedPendingInformation.StartDate);
+                            int latestPendingID = RetrieveLastPendingListID(courseID);
+                            Console.WriteLine(latestPendingID);
+                            if (!IsExistPendingListFull(latestPendingID))
+                            {
+                                PendingList retrievedPendingInformation = RetrieveLastPendingListInformation(latestPendingID);
+                                AddToPendingList(clientID, courseID, retrievedPendingInformation.ManagementId, latestPendingID, retrievedPendingInformation.StartDate);
+                            }
+                            else
+                            {
+                                AddToWaitingList(clientID, courseID);
+                            }
                         }
                         else
                         {
                             AddToWaitingList(clientID, courseID);
                         }
                     }
-                    else
-                    {
-                        AddToWaitingList(clientID, courseID);
-                    }
                 }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
+                }
+                
             }
         }
 
@@ -141,10 +167,17 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                if(context.WaitingLists.Where(wl => wl.ClientId == clientID && wl.CourseId == courseID).Any())
+                try
                 {
-                    context.WaitingLists.Remove(context.WaitingLists.Where(wl => wl.ClientId == clientID && wl.CourseId == courseID).First());
-                    context.SaveChanges();
+                    if (context.WaitingLists.Where(wl => wl.ClientId == clientID && wl.CourseId == courseID).Any())
+                    {
+                        context.WaitingLists.Remove(context.WaitingLists.Where(wl => wl.ClientId == clientID && wl.CourseId == courseID).First());
+                        context.SaveChanges();
+                    }
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
                 }
             }
         }
@@ -153,10 +186,17 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                if (context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).Any())
+                try
                 {
-                    context.PendingLists.Remove(context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).First());
-                    context.SaveChanges();
+                    if (context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).Any())
+                    {
+                        context.PendingLists.Remove(context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).First());
+                        context.SaveChanges();
+                    }
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
                 }
             }
         }
@@ -242,7 +282,7 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                if(context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).Any())
+                if (context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).Any())
                 {
                     return context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).First().StartDate.ToString();
                 }
@@ -296,7 +336,15 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                return context.Clients.Where(cli => cli.ClientId == clientID).SelectMany(cli => cli.CourseClients.Select(cc => cc.Course)).ToList();
+                try
+                {
+                    //Return could be null
+                    return context.Clients.Where(cli => cli.ClientId == clientID).SelectMany(cli => cli.CourseClients.Select(cc => cc.Course)).ToList();
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
+                }
             }
         }
 
@@ -304,7 +352,12 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                return context.CourseClients.First(cc => cc.ClientId == clientID && cc.CourseId == courseID);
+                CourseClients courseClient = context.CourseClients.First(cc => cc.ClientId == clientID && cc.CourseId == courseID);
+                if(courseClient != null)
+                {
+                    return courseClient;
+                }
+                throw new Exception("Course status does not exist! Please try again or contact administrator!");
             }
         }
 
