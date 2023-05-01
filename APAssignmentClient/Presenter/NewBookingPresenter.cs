@@ -22,10 +22,7 @@ namespace APAssignmentClient.Presenter
         public void NewBooking_Load()
         {
             DataTable managements = bookingModel.RetrieveAllManagement();
-            screen.ManagementName.ValueMember = "id";
-            screen.ManagementName.DisplayMember = "name";
-            screen.ManagementName.DataSource = managements;
-            screen.Duration.SelectedIndex = 0;
+            screen.SetManagementNameData("id", "name", managements);
         }
 
         public void cmbManagementName_SelectedIndexChanged()

@@ -23,7 +23,7 @@ namespace APAssignmentClient.Presenter
 
         public void ClientDashboard_Load()
         {
-            screen.username = clientModel.ClientName;
+            screen.Username = clientModel.ClientName;
             PopulateDataTable();
         }
 
@@ -78,19 +78,14 @@ namespace APAssignmentClient.Presenter
             }
         }
 
-        public void dgvEnrolledCourses_RowsAdded()
+        public void dgvEnrolledCourses_DataSourceChanged()
         {
-            screen.dropCourse = true;
-            screen.ViewCourse = true;
+            CheckCourseListRowCount();
         }
 
-        public void dgvEnrolledCourses_RowsRemoved()
+        public void dgvBooking_DataSourceChanged()
         {
-            if (screen.enrolledCourses.Rows.Count <= 0) 
-            {
-                screen.dropCourse = false;
-                screen.ViewCourse = false;
-            }
+            CheckBookingListRowCount();
         }
 
         public void btnViewCourse_Click()
@@ -105,10 +100,34 @@ namespace APAssignmentClient.Presenter
         private void PopulateDataTable()
         {
             DataTable enrolledDT = courseModel.RetrieveEnrolledCourses(clientModel.ClientID);
-            screen.enrolledCourses.DataSource = enrolledDT;
+            screen.SetCourseListDataSource(enrolledDT);
 
             DataTable bookingDT = bookingModel.RetrieveAllBooking(clientModel.ClientID);
-            screen.BookedSession.DataSource = bookingDT;
+            screen.SetBookingListDataSource(bookingDT);
+        }
+
+        private void CheckCourseListRowCount()
+        {
+            if(screen.GetCourseListCount > 0)
+            {
+                screen.SetCourseButtonsEnabled(true);
+            }
+            else
+            {
+                screen.SetCourseButtonsEnabled(false);
+            }
+        }
+
+        private void CheckBookingListRowCount()
+        {
+            if (screen.GetBookingListCount > 0)
+            {
+                screen.SetBookingButtonsEnabled(true);
+            }
+            else
+            {
+                screen.SetBookingButtonsEnabled(false);
+            }
         }
 
         private int RetrieveSelectedID()

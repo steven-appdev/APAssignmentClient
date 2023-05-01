@@ -63,5 +63,10 @@ namespace APAssignmentClient.View
             }
             return false;
         }
+
+        public void SetNewCourseListDataSource(DataTable dt)
+        {
+            dgvAvailableCourses.DataSource = dt;
+        }
     }
 }

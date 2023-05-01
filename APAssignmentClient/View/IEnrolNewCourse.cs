@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,6 @@ namespace APAssignmentClient.View
         Object GetSelectedNewCourse { get; }
         void Register(EnrolNewCoursePresenter presenter);
         bool DisplayConfirmationMessage(String msg, String title);
+        void SetNewCourseListDataSource(DataTable dt);
     }
 }

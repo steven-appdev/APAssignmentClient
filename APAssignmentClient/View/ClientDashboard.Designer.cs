@@ -33,21 +33,21 @@
             this.btnEnrolNew = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
             this.dgvEnrolledCourses = new System.Windows.Forms.DataGridView();
-            this.btnDropCourse = new System.Windows.Forms.Button();
-            this.btnClientInformation = new System.Windows.Forms.Button();
-            this.btnNewBooking = new System.Windows.Forms.Button();
-            this.dgvBooking = new System.Windows.Forms.DataGridView();
-            this.btnDropBooking = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnViewCourse = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.courseType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDropCourse = new System.Windows.Forms.Button();
+            this.btnClientInformation = new System.Windows.Forms.Button();
+            this.btnNewBooking = new System.Windows.Forms.Button();
+            this.dgvBooking = new System.Windows.Forms.DataGridView();
             this.clmID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmMngmName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDuration = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDropBooking = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnViewCourse = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEnrolledCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
             this.SuspendLayout();
@@ -112,8 +112,39 @@
             this.dgvEnrolledCourses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEnrolledCourses.Size = new System.Drawing.Size(774, 173);
             this.dgvEnrolledCourses.TabIndex = 5;
-            this.dgvEnrolledCourses.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvEnrolledCourses_RowsAdded);
-            this.dgvEnrolledCourses.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvEnrolledCourses_RowsRemoved);
+            this.dgvEnrolledCourses.DataSourceChanged += new System.EventHandler(this.dgvEnrolledCourses_DataSourceChanged);
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "id";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 50;
+            // 
+            // title
+            // 
+            this.title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.title.DataPropertyName = "title";
+            this.title.HeaderText = "Course Title";
+            this.title.Name = "title";
+            this.title.ReadOnly = true;
+            // 
+            // courseType
+            // 
+            this.courseType.DataPropertyName = "type";
+            this.courseType.HeaderText = "Course Type";
+            this.courseType.Name = "courseType";
+            this.courseType.ReadOnly = true;
+            this.courseType.Width = 200;
+            // 
+            // status
+            // 
+            this.status.DataPropertyName = "status";
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            this.status.Width = 200;
             // 
             // btnDropCourse
             // 
@@ -166,69 +197,7 @@
             this.dgvBooking.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvBooking.Size = new System.Drawing.Size(774, 173);
             this.dgvBooking.TabIndex = 9;
-            // 
-            // btnDropBooking
-            // 
-            this.btnDropBooking.Location = new System.Drawing.Point(452, 536);
-            this.btnDropBooking.Name = "btnDropBooking";
-            this.btnDropBooking.Size = new System.Drawing.Size(165, 33);
-            this.btnDropBooking.TabIndex = 10;
-            this.btnDropBooking.Text = "Drop Booking";
-            this.btnDropBooking.UseVisualStyleBackColor = true;
-            this.btnDropBooking.Click += new System.EventHandler(this.btnDropBooking_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(8, 321);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(183, 33);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Booked Session";
-            // 
-            // btnViewCourse
-            // 
-            this.btnViewCourse.Enabled = false;
-            this.btnViewCourse.Location = new System.Drawing.Point(281, 268);
-            this.btnViewCourse.Name = "btnViewCourse";
-            this.btnViewCourse.Size = new System.Drawing.Size(165, 33);
-            this.btnViewCourse.TabIndex = 12;
-            this.btnViewCourse.Text = "View Course";
-            this.btnViewCourse.UseVisualStyleBackColor = true;
-            this.btnViewCourse.Click += new System.EventHandler(this.btnViewCourse_Click);
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "id";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Width = 50;
-            // 
-            // title
-            // 
-            this.title.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.title.DataPropertyName = "title";
-            this.title.HeaderText = "Course Title";
-            this.title.Name = "title";
-            this.title.ReadOnly = true;
-            // 
-            // courseType
-            // 
-            this.courseType.DataPropertyName = "type";
-            this.courseType.HeaderText = "Course Type";
-            this.courseType.Name = "courseType";
-            this.courseType.ReadOnly = true;
-            this.courseType.Width = 200;
-            // 
-            // status
-            // 
-            this.status.DataPropertyName = "status";
-            this.status.HeaderText = "Status";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            this.status.Width = 200;
+            this.dgvBooking.DataSourceChanged += new System.EventHandler(this.dgvBooking_DataSourceChanged);
             // 
             // clmID
             // 
@@ -261,6 +230,38 @@
             this.clmDuration.Name = "clmDuration";
             this.clmDuration.ReadOnly = true;
             this.clmDuration.Width = 75;
+            // 
+            // btnDropBooking
+            // 
+            this.btnDropBooking.Enabled = false;
+            this.btnDropBooking.Location = new System.Drawing.Point(452, 536);
+            this.btnDropBooking.Name = "btnDropBooking";
+            this.btnDropBooking.Size = new System.Drawing.Size(165, 33);
+            this.btnDropBooking.TabIndex = 10;
+            this.btnDropBooking.Text = "Drop Booking";
+            this.btnDropBooking.UseVisualStyleBackColor = true;
+            this.btnDropBooking.Click += new System.EventHandler(this.btnDropBooking_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Calibri", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(8, 321);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(183, 33);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Booked Session";
+            // 
+            // btnViewCourse
+            // 
+            this.btnViewCourse.Enabled = false;
+            this.btnViewCourse.Location = new System.Drawing.Point(281, 268);
+            this.btnViewCourse.Name = "btnViewCourse";
+            this.btnViewCourse.Size = new System.Drawing.Size(165, 33);
+            this.btnViewCourse.TabIndex = 12;
+            this.btnViewCourse.Text = "View Course";
+            this.btnViewCourse.UseVisualStyleBackColor = true;
+            this.btnViewCourse.Click += new System.EventHandler(this.btnViewCourse_Click);
             // 
             // ClientDashboard
             // 

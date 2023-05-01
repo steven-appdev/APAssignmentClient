@@ -22,7 +22,7 @@ namespace APAssignmentClient.Presenter
         public void EnrolNewCourse_Load()
         {
             DataTable courses = courseModel.RetrieveAllCourses(clientModel.ClientID);
-            screen.availableCourses.DataSource = courses;
+            screen.SetNewCourseListDataSource(courses);
         }
 
         public void btnViewCourseDescription_Click()

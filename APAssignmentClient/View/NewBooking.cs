@@ -87,5 +87,12 @@ namespace APAssignmentClient.View
             }
             return false;
         }
+
+        public void SetManagementNameData(String value, String display, DataTable dt)
+        {
+            cmbManagementName.ValueMember = value;
+            cmbManagementName.DisplayMember = display;
+            cmbManagementName.DataSource = dt;
+        }
     }
 }

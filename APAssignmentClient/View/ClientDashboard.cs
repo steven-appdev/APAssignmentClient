@@ -22,13 +22,13 @@ namespace APAssignmentClient.View
             InitializeComponent();
         }
 
-        public String username
+        public String Username
         {
             set { lblUsername.Text = value; }
             get { return lblUsername.Text; }
         }
 
-        public DataGridView enrolledCourses
+        public DataGridView EnrolledCourses
         {
             get { return dgvEnrolledCourses; }
         }
@@ -48,16 +48,14 @@ namespace APAssignmentClient.View
             get { return dgvBooking.SelectedRows[0].Cells[0].Value; }
         }
 
-        public bool ViewCourse
+        public int GetCourseListCount
         {
-            get { return btnViewCourse.Enabled; }
-            set { btnViewCourse.Enabled = value; }
+            get { return dgvEnrolledCourses.Rows.Count; }
         }
 
-        public bool dropCourse
+        public int GetBookingListCount
         {
-            get { return btnDropCourse.Enabled; }
-            set { btnDropCourse.Enabled = value; }
+            get { return dgvBooking.Rows.Count; }
         }
 
         public void Register(ClientDashboardPresenter _presenter)
@@ -85,16 +83,6 @@ namespace APAssignmentClient.View
         private void btnDropCourse_Click(object sender, EventArgs e)
         {
             presenter.btnDropCourse_Click();
-        }
-
-        private void dgvEnrolledCourses_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            presenter.dgvEnrolledCourses_RowsAdded();
-        }
-
-        private void dgvEnrolledCourses_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
-        {
-            presenter.dgvEnrolledCourses_RowsRemoved();
         }
 
         private void btnClientInformation_Click(object sender, EventArgs e)
@@ -125,6 +113,36 @@ namespace APAssignmentClient.View
                 return true;
             }
             return false;
+        }
+
+        public void SetCourseListDataSource(DataTable dt)
+        {
+            dgvEnrolledCourses.DataSource = dt;
+        }
+        public void SetBookingListDataSource(DataTable dt)
+        {
+            dgvBooking.DataSource = dt;
+        }
+
+        public void SetCourseButtonsEnabled(bool enabled)
+        {
+            btnDropCourse.Enabled = enabled;
+            btnViewCourse.Enabled = enabled;
+        }
+
+        public void SetBookingButtonsEnabled(bool enabled)
+        {
+            btnDropBooking.Enabled = enabled;
+        }
+
+        private void dgvBooking_DataSourceChanged(object sender, EventArgs e)
+        {
+            presenter.dgvBooking_DataSourceChanged();
+        }
+
+        private void dgvEnrolledCourses_DataSourceChanged(object sender, EventArgs e)
+        {
+            presenter.dgvEnrolledCourses_DataSourceChanged();
         }
     }
 }
