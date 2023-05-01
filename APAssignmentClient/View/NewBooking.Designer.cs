@@ -50,6 +50,7 @@
             // 
             // cmbManagementName
             // 
+            this.cmbManagementName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbManagementName.FormattingEnabled = true;
             this.cmbManagementName.Location = new System.Drawing.Point(131, 17);
             this.cmbManagementName.Name = "cmbManagementName";
@@ -68,6 +69,7 @@
             // 
             // cmbSessionDuration
             // 
+            this.cmbSessionDuration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSessionDuration.FormattingEnabled = true;
             this.cmbSessionDuration.Items.AddRange(new object[] {
             "15",
@@ -103,6 +105,7 @@
             this.dtSessionDate.CustomFormat = "MM/dd/yyyy";
             this.dtSessionDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtSessionDate.Location = new System.Drawing.Point(131, 97);
+            this.dtSessionDate.MinDate = new System.DateTime(2023, 5, 1, 0, 0, 0, 0);
             this.dtSessionDate.Name = "dtSessionDate";
             this.dtSessionDate.Size = new System.Drawing.Size(227, 20);
             this.dtSessionDate.TabIndex = 6;

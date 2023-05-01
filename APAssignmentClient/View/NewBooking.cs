@@ -63,6 +63,8 @@ namespace APAssignmentClient.View
         private void NewBooking_Load(object sender, EventArgs e)
         {
             presenter.NewBooking_Load();
+            cmbSessionDuration.SelectedIndex = 0;
+            dtSessionDate.MinDate = DateTime.Now;
         }
 
         private void btnConfirmBooking_Click(object sender, EventArgs e)
