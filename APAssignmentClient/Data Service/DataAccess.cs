@@ -374,7 +374,12 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                return context.Clients.First(cli => cli.ClientId == clientID);
+                Client client = context.Clients.First(cli => cli.ClientId == clientID);
+                if(client != null)
+                {
+                    return client;
+                }
+                throw new Exception("Client does not exist! Please try again or contact administrator!");
             }
         }
 

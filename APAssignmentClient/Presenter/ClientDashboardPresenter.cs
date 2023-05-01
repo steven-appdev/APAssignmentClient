@@ -29,7 +29,7 @@ namespace APAssignmentClient.Presenter
 
         public void ClientDashboard_Activated()
         {
-            clientModel.UpdateClientBill();
+            UpdateClientBill();
             PopulateDataTable();
         }
 
@@ -73,8 +73,7 @@ namespace APAssignmentClient.Presenter
             if (result == true)
             {
                 bookingModel.DropBooking(clientModel.ClientID);
-                clientModel.UpdateClientBill();
-                PopulateDataTable();
+                UpdateClientBill();
             }
         }
 
@@ -145,6 +144,18 @@ namespace APAssignmentClient.Presenter
         private int RetrieveSelectedBookingID()
         {
             return Int32.Parse(screen.GetSelectedBookingID.ToString());
+        }
+
+        private void UpdateClientBill()
+        {
+            try
+            {
+                clientModel.UpdateClientBill();
+            }
+            catch (Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using APAssignmentClient.DataService;
 
 namespace APAssignmentClient.Model
@@ -70,7 +71,14 @@ namespace APAssignmentClient.Model
 
         public void UpdateClientBill()
         {
-            client.ClientBill = access.RetrieveClientInformation(ClientID).ClientBill;
+            try
+            {
+                client.ClientBill = access.RetrieveClientInformation(ClientID).ClientBill;
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }
