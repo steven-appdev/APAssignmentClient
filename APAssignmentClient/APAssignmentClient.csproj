@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data Service\Admin.cs" />
     <Compile Include="Data Service\Booking.cs" />
     <Compile Include="Data Service\Client.cs" />
     <Compile Include="Data Service\Context.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Data Service\Management.cs" />
     <Compile Include="Data Service\ManagementCourses.cs" />
     <Compile Include="Data Service\PendingList.cs" />
+    <Compile Include="Data Service\User.cs" />
     <Compile Include="Data Service\WaitingList.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BookingModel.cs" />

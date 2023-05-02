@@ -1,7 +1,9 @@
-﻿using System;
+﻿using APAssignmentClient.Data_Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,10 @@ namespace APAssignmentClient.DataService
     {
         [Key]
         public int ClientId { get; set; }
+
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public virtual User User { get; set; }
 
         [Required]
         public String ClientName { get; set; }

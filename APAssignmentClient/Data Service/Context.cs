@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APAssignmentClient.Data_Service;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
@@ -18,8 +19,10 @@ namespace APAssignmentClient.DataService
             AppDomain.CurrentDomain.SetData("DataDirectory", absolute);
         }
 
+        public DbSet<User> Users { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<CourseClients> CourseClients { get; set; }
         public DbSet<ManagementCourses> MangementCourses { get; set; }
         public DbSet<Management> Managements { get; set; }
