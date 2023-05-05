@@ -9,11 +9,18 @@ namespace APAssignmentClient.Model
     {
         private static StaffModel _instance = null;
         IDataAccess access;
-        private StaffModel staff;
+        private Management management;
 
         private StaffModel()
         {
+            management = new Management();
             access = new DataAccess();
+        }
+
+        public int StaffID
+        {
+            set { management.ManagementId = value; }
+            get { return management.ManagementId; }
         }
 
         public static StaffModel GetInstance()
@@ -49,6 +56,88 @@ namespace APAssignmentClient.Model
             }
         }
 
+        public String[] RetrieveStaffInformation()
+        {
+            try
+            {
+                return access.RetrieveOneManagement(management.ManagementId).ToStringArray();
+            }
+            catch (Exception e)
+            {
+                throw new Exception (e.Message);
+            }
+        }
+
+        public String RetrieveStaffCourseTaught()
+        {
+            try
+            {
+                return access.RetrieveManagementCourse(management.ManagementId);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public int RetrieveStaffCourseTaughtID()
+        {
+            try
+            {
+                return access.RetrieveManagementCourseID(management.ManagementId);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void AddNewStaff(String name, String supportSession, int courseID)
+        {
+            try
+            {
+                Management management = new Management
+                {
+                    ManagementName = name,
+                    ManagementSupportSession = supportSession
+                };
+                access.AddNewManagement(management, courseID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void EditNewStaff(String name, String supportSession, int courseID)
+        {
+            try
+            {
+                Management management = new Management
+                {
+                    ManagementId = StaffID,
+                    ManagementName = name,
+                    ManagementSupportSession = supportSession
+                };
+                access.EditManagement(management, courseID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void DeleteStaff()
+        {
+            try
+            {
+                access.DeleteManagement(StaffID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
     }
 
 }

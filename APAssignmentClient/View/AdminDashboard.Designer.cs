@@ -48,7 +48,6 @@
             this.btnDeleteClient = new System.Windows.Forms.Button();
             this.btnViewClient = new System.Windows.Forms.Button();
             this.btnDeleteStaff = new System.Windows.Forms.Button();
-            this.btnViewStaff = new System.Windows.Forms.Button();
             this.dgvAllStaffs = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +55,7 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.btnAddStaff = new System.Windows.Forms.Button();
+            this.btnEditStaff = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllCourses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllClients)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllStaffs)).BeginInit();
@@ -299,17 +299,7 @@
             this.btnDeleteStaff.TabIndex = 24;
             this.btnDeleteStaff.Text = "Delete Staff";
             this.btnDeleteStaff.UseVisualStyleBackColor = true;
-            // 
-            // btnViewStaff
-            // 
-            this.btnViewStaff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnViewStaff.Enabled = false;
-            this.btnViewStaff.Location = new System.Drawing.Point(500, 753);
-            this.btnViewStaff.Name = "btnViewStaff";
-            this.btnViewStaff.Size = new System.Drawing.Size(165, 33);
-            this.btnViewStaff.TabIndex = 23;
-            this.btnViewStaff.Text = "View Staff";
-            this.btnViewStaff.UseVisualStyleBackColor = true;
+            this.btnDeleteStaff.Click += new System.EventHandler(this.btnDeleteStaff_Click);
             // 
             // dgvAllStaffs
             // 
@@ -394,6 +384,18 @@
             this.btnAddStaff.TabIndex = 25;
             this.btnAddStaff.Text = "Add Staff";
             this.btnAddStaff.UseVisualStyleBackColor = true;
+            this.btnAddStaff.Click += new System.EventHandler(this.btnAddStaff_Click);
+            // 
+            // btnEditStaff
+            // 
+            this.btnEditStaff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEditStaff.Location = new System.Drawing.Point(500, 753);
+            this.btnEditStaff.Name = "btnEditStaff";
+            this.btnEditStaff.Size = new System.Drawing.Size(165, 33);
+            this.btnEditStaff.TabIndex = 26;
+            this.btnEditStaff.Text = "Edit Staff";
+            this.btnEditStaff.UseVisualStyleBackColor = true;
+            this.btnEditStaff.Click += new System.EventHandler(this.btnEditStaff_Click);
             // 
             // AdminDashboard
             // 
@@ -402,9 +404,9 @@
             this.AutoScroll = true;
             this.AutoScrollMargin = new System.Drawing.Size(0, 10);
             this.ClientSize = new System.Drawing.Size(856, 810);
+            this.Controls.Add(this.btnEditStaff);
             this.Controls.Add(this.btnAddStaff);
             this.Controls.Add(this.btnDeleteStaff);
-            this.Controls.Add(this.btnViewStaff);
             this.Controls.Add(this.dgvAllStaffs);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnDeleteClient);
@@ -448,7 +450,6 @@
         private System.Windows.Forms.Button btnDeleteClient;
         private System.Windows.Forms.Button btnViewClient;
         private System.Windows.Forms.Button btnDeleteStaff;
-        private System.Windows.Forms.Button btnViewStaff;
         private System.Windows.Forms.DataGridView dgvAllStaffs;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnAddStaff;
@@ -464,6 +465,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.Button btnEditStaff;
     }
 }
 

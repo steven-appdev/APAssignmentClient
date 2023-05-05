@@ -57,13 +57,20 @@ namespace APAssignmentClient.Presenter
 
         public void btnDeleteCourse_Click()
         {
-            course.CourseID = RetrieveSelectedCourseID();
-
-            bool result = screen.DisplayConfirmationMessage("Do you want to delete this course?", "Warning! Are you sure?");
-            if (result)
+            try
             {
-                course.DeleteCourse();
-                PopulateDataTable();
+                course.CourseID = RetrieveSelectedCourseID();
+
+                bool result = screen.DisplayConfirmationMessage("Do you want to delete this course?", "Warning! Are you sure?");
+                if (result)
+                {
+                    course.DeleteCourse();
+                    PopulateDataTable();
+                }
+            }
+            catch (Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
             }
         }
 
@@ -79,14 +86,61 @@ namespace APAssignmentClient.Presenter
 
         public void btnDeleteClient_Click()
         {
-            client.SetClient(client.RetrieveOneClient(RetrieveSelectedClientID()));
-
-            bool result = screen.DisplayConfirmationMessage("Do you want to delete this client?", "Warning! Are you sure?");
-            if (result)
+            try
             {
-                client.DeleteClient();
-                PopulateDataTable();
+                client.SetClient(client.RetrieveOneClient(RetrieveSelectedClientID()));
+
+                bool result = screen.DisplayConfirmationMessage("Do you want to delete this client?", "Warning! Are you sure?");
+                if (result)
+                {
+                    client.DeleteClient();
+                    PopulateDataTable();
+                }
             }
+            catch (Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
+            }
+        }
+
+        public void btnAddStaff_Click()
+        {
+            AddNewStaff screen = new AddNewStaff();
+            CourseModel courseModel = CourseModel.GetInstance();
+            StaffModel staffModel = StaffModel.GetInstance();
+            AddNewStaffPresenter presenter = new AddNewStaffPresenter(screen, courseModel, staffModel, false);
+            screen.ShowDialog();
+        }
+
+        public void btnEditStaff_Click()
+        {
+            staff.StaffID = RetrieveSelectedStaffID();
+
+            AddNewStaff screen = new AddNewStaff();
+            CourseModel courseModel = CourseModel.GetInstance();
+            StaffModel staffModel = StaffModel.GetInstance();
+            AddNewStaffPresenter presenter = new AddNewStaffPresenter(screen, courseModel, staffModel, true);
+            screen.ShowDialog();
+        }
+
+        public void btnDeleteStaff_Click()
+        {
+            try
+            {
+                staff.StaffID = RetrieveSelectedStaffID();
+
+                bool result = screen.DisplayConfirmationMessage("Do you want to delete this staff?", "Warning! Are you sure?");
+                if (result)
+                {
+                    staff.DeleteStaff();
+                    PopulateDataTable();
+                }
+            }
+            catch(Exception e)
+            {
+                screen.DisplayErrorMessage(e.Message, "Opps!");
+            }
+            
         }
 
         public void Admin_Dashboard_Activated() 
@@ -172,6 +226,11 @@ namespace APAssignmentClient.Presenter
         private int RetrieveSelectedClientID()
         {
             return Int32.Parse(screen.GetSelectedClient.ToString());
+        }
+
+        private int RetrieveSelectedStaffID()
+        {
+            return Int32.Parse(screen.GetSelectedStaff.ToString());
         }
     }
 

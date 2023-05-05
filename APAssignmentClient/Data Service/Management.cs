@@ -18,6 +18,12 @@ namespace APAssignmentClient.DataService
         [Required]
         public String ManagementSupportSession { get; set; }
 
+        public String[] ToStringArray()
+        {
+            String[] management = { ManagementId.ToString(), ManagementName, ManagementSupportSession};
+            return management;
+        }
+
         public virtual ICollection<ManagementCourses> ManagementCourses { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<PendingList> PendingLists { get; set; }

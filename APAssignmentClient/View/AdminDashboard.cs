@@ -173,6 +173,21 @@ namespace APAssignmentClient.View
         {
             presenter.btnDeleteClient_Click();
         }
+
+        private void btnAddStaff_Click(object sender, EventArgs e)
+        {
+            presenter.btnAddStaff_Click();
+        }
+
+        private void btnEditStaff_Click(object sender, EventArgs e)
+        {
+            presenter.btnEditStaff_Click();
+        }
+
+        private void btnDeleteStaff_Click(object sender, EventArgs e)
+        {
+            presenter.btnDeleteStaff_Click();
+        }
     }
-    }
+}
 

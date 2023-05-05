@@ -31,7 +31,6 @@
             this.lblCoursePrice = new System.Windows.Forms.Label();
             this.txtbCoursePrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.txtbCourseTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtbCourseID = new System.Windows.Forms.TextBox();
@@ -41,6 +40,7 @@
             this.lblCourseDuration = new System.Windows.Forms.Label();
             this.txtbCourseDuration = new System.Windows.Forms.TextBox();
             this.cmbCourseType = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblCoursePrice
@@ -67,15 +67,6 @@
             this.label4.Size = new System.Drawing.Size(67, 13);
             this.label4.TabIndex = 21;
             this.label4.Text = "Course Type";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 95);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 13);
-            this.label3.TabIndex = 19;
-            this.label3.Text = "Description";
             // 
             // txtbCourseTitle
             // 
@@ -157,6 +148,15 @@
             this.cmbCourseType.Size = new System.Drawing.Size(357, 21);
             this.cmbCourseType.TabIndex = 28;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Description";
+            // 
             // AddNewCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -189,7 +189,6 @@
         private System.Windows.Forms.Label lblCoursePrice;
         private System.Windows.Forms.TextBox txtbCoursePrice;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtbCourseTitle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtbCourseID;
@@ -199,5 +198,6 @@
         private System.Windows.Forms.Label lblCourseDuration;
         private System.Windows.Forms.TextBox txtbCourseDuration;
         private System.Windows.Forms.ComboBox cmbCourseType;
+        private System.Windows.Forms.Label label3;
     }
 }

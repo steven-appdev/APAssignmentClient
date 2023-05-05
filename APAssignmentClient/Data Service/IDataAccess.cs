@@ -23,12 +23,16 @@ namespace APAssignmentClient.DataService
         Client RetrieveClientInformation(int clientID);
         List<Management> RetrieveAllManagement();
         Management RetrieveOneManagement(int managementID);
+        void AddNewManagement(Management management, int courseID);
+        void EditManagement(Management management, int courseID);
+        void DeleteManagement(int managementID);
         void AddNewBooking(int clientID, int managementID, int duration, DateTime date);
         void DropBooking(int clientID, int bookingID);
         List<Booking> RetrieveAllBooking(int clientID);
         String RetrieveCourseStartDate(int clientID, int courseID);
         String RetrieveManagementName(int managementID);
         String RetrieveManagementCourse(int managementID);
+        int RetrieveManagementCourseID(int managementID);
         void AddToWaitingList(int clientID, int courseID);
         void DropWaitingList(int clientID, int courseID);
         void DropPendingList(int clientID, int courseID);

@@ -93,6 +93,7 @@
     <Compile Include="Model\IStaffModel.cs" />
     <Compile Include="Model\StaffModel.cs" />
     <Compile Include="Presenter\AddNewCoursePresenter.cs" />
+    <Compile Include="Presenter\AddNewStaffPresenter.cs" />
     <Compile Include="Presenter\AdminDashboardPresenter.cs" />
     <Compile Include="Presenter\ClientInformationPresenter.cs" />
     <Compile Include="Presenter\CourseDescriptionPresenter.cs" />
@@ -103,6 +104,12 @@
     </Compile>
     <Compile Include="View\AddNewCourse.Designer.cs">
       <DependentUpon>AddNewCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AddNewStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddNewStaff.Designer.cs">
+      <DependentUpon>AddNewStaff.cs</DependentUpon>
     </Compile>
     <Compile Include="View\AdminDashboard.cs">
       <SubType>Form</SubType>
@@ -138,6 +145,7 @@
       <DependentUpon>EnrolNewCourse.cs</DependentUpon>
     </Compile>
     <Compile Include="View\IAddNewCourse.cs" />
+    <Compile Include="View\IAddNewStaff.cs" />
     <Compile Include="View\IAdminDashboard.cs" />
     <Compile Include="View\IClientDashboard.cs" />
     <Compile Include="Program.cs" />
@@ -154,6 +162,9 @@
     </Compile>
     <EmbeddedResource Include="View\AddNewCourse.resx">
       <DependentUpon>AddNewCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AddNewStaff.resx">
+      <DependentUpon>AddNewStaff.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>

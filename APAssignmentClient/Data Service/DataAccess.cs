@@ -1,14 +1,7 @@
 ﻿using APAssignmentClient.Data_Service;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Runtime.ExceptionServices;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace APAssignmentClient.DataService
 {
@@ -590,6 +583,79 @@ namespace APAssignmentClient.DataService
             }
         }
 
+        public void AddNewManagement(Management management, int courseID)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    context.Managements.Add(management);
+                    context.SaveChanges();
+
+                    Management mngmt = context.Managements.First(m => m.ManagementName == management.ManagementName && m.ManagementSupportSession == management.ManagementSupportSession);
+                    Course course = context.Courses.First(c => c.CourseId == courseID);
+                    context.MangementCourses.Add(new ManagementCourses
+                    {
+                        Management = mngmt,
+                        Course = course
+                    });
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
+                }
+            }
+        }
+
+        public void EditManagement(Management management, int courseID)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    Management mngmt = context.Managements.First(m => m.ManagementId == management.ManagementId);
+                    mngmt.ManagementName = management.ManagementName;
+                    mngmt.ManagementSupportSession = management.ManagementSupportSession;
+
+                    ManagementCourses managementCourses = context.MangementCourses.FirstOrDefault(mc => mc.ManagementID == management.ManagementId);
+                    if(managementCourses != null)
+                    {
+                        context.MangementCourses.Remove(managementCourses);
+                    }
+
+                    ManagementCourses newManagementCourses = new ManagementCourses
+                    {
+                        Management = context.Managements.First(m => m.ManagementId == management.ManagementId),
+                        Course = context.Courses.First(c => c.CourseId == courseID)
+                    };
+                    context.MangementCourses.Add(newManagementCourses);
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
+                }
+        }
+        }
+
+        public void DeleteManagement(int managementID)
+        {
+            using(var context = new Context())
+            {
+                try
+                {
+                    Management management = context.Managements.First(m => m.ManagementId == managementID);
+                    context.Managements.Remove(management);
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
+                }
+            }
+        }
+
         public void AddNewBooking(int clientID, int managementID, int duration, DateTime date)
         {
             using (var context = new Context())
@@ -683,6 +749,26 @@ namespace APAssignmentClient.DataService
                         return managementCourse.Course.CourseName.ToString();
                     }
                     return "-";
+                }
+                catch
+                {
+                    throw new Exception("Management course could not be retrieved. Please try again or contact administrator!");
+                }
+            }
+        }
+
+        public int RetrieveManagementCourseID(int managementID)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    ManagementCourses managementCourse = context.MangementCourses.First(mc => mc.ManagementID == managementID);
+                    if (managementCourse != null)
+                    {
+                        return managementCourse.Course.CourseId;
+                    }
+                    throw new Exception("Something went wrong. Please try again or contact administrator!");
                 }
                 catch
                 {
