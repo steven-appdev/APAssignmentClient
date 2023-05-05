@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,5 +20,6 @@ namespace APAssignmentClient.Model
         String ClientContactNumber { get; }
         double ClientBill { get; }
         void UpdateClientBill();
+        DataTable RetrieveAllClients();
     }
 }

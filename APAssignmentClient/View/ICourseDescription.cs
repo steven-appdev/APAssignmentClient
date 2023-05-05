@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,10 @@ namespace APAssignmentClient.View
         String CourseTitle { get; set; }
         String CourseType { get; set; }
         String Description { get; set; }
-        Size DescriptionSize { get; set; }
+        String CoursePrice { get; set; }
+        String CourseDuration { get; set; }
+        Size FormSize { get; set; }
+        Point CloseButtonLocation { get; set; }
         String Status { get; set; }
         bool StatusVisible { get; set; }
         bool StatusLabelVisible { get; set; }

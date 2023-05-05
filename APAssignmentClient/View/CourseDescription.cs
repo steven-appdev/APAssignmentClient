@@ -44,10 +44,16 @@ namespace APAssignmentClient.View
             set { rtxtbDescription.Text = value; }
         }
 
-        public Size DescriptionSize
+        public String CoursePrice
         {
-            get { return rtxtbDescription.Size; }
-            set { rtxtbDescription.Size = value; }
+            get { return txtbCoursePrice.Text; }
+            set { txtbCoursePrice.Text = value; }
+        }
+
+        public String CourseDuration
+        {
+            get { return txtbCourseDuration.Text; }
+            set { txtbCourseDuration.Text = value; }
         }
 
         public String Status
@@ -90,6 +96,18 @@ namespace APAssignmentClient.View
         {
             get { return btnPlaceBackToWaiting.Visible; }
             set { btnPlaceBackToWaiting.Visible = value; }
+        }
+
+        public Size FormSize 
+        { 
+            get { return Size; }
+            set { Size = value; }
+        }
+
+        public Point CloseButtonLocation
+        {
+            get { return btnClose.Location; }
+            set { btnClose.Location = value; }
         }
 
         public void Register(CourseDescriptionPresenter _presenter)

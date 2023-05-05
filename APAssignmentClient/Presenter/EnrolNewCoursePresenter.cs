@@ -23,7 +23,7 @@ namespace APAssignmentClient.Presenter
         {
             try
             {
-                DataTable courses = courseModel.RetrieveAllCourses(clientModel.ClientID);
+                DataTable courses = courseModel.RetrieveEnrollableCourses(clientModel.ClientID);
                 screen.SetNewCourseListDataSource(courses);
             }
             catch(Exception e)

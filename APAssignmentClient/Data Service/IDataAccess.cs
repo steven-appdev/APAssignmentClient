@@ -9,9 +9,13 @@ namespace APAssignmentClient.DataService
     public interface IDataAccess
     {
         bool IsCourseEmpty();
+        List<Client> RetrieveAllClients();
+        //void DeleteClient(int clientID);
         List<Course> RetrieveAllCourses();
         Course RetrieveOneCourse(int courseID);
         void AddNewCourse(Course course);
+        void EditCourse(Course course);
+        void DeleteCourse(int courseID);
         void EnrolCourse(int clientID, int courseID);
         void DropCourse(int clientID, int courseID);
         List<Course> RetrieveEnrolledCourses(int clientID);
@@ -24,6 +28,7 @@ namespace APAssignmentClient.DataService
         List<Booking> RetrieveAllBooking(int clientID);
         String RetrieveCourseStartDate(int clientID, int courseID);
         String RetrieveManagementName(int managementID);
+        String RetrieveManagementCourse(int managementID);
         void AddToWaitingList(int clientID, int courseID);
         void DropWaitingList(int clientID, int courseID);
         void DropPendingList(int clientID, int courseID);

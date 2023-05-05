@@ -18,16 +18,25 @@ namespace APAssignmentClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ClientDashboard screen = new ClientDashboard();
-            ClientModel clientModel = ClientModel.GetInstance();
+
+            ///Running Client side
+            //ClientDashboard screen = new ClientDashboard();
+            //ClientModel clientModel = ClientModel.GetInstance();
+            //CourseModel courseModel = CourseModel.GetInstance();
+            //BookingModel bookingModel = BookingModel.GetInstance();
+
+            ////Simulate user has login (DEV MODE ONLY) (REMOVE IN FINAL PRODUCT)
+            //IDataAccess data = new DataAccess();
+            //clientModel.SetClient(data.RetrieveClientInformation(1));
+            //ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, clientModel, courseModel, bookingModel);
+
+            ///Running Admin side
+            AdminDashboard screen = new AdminDashboard();
             CourseModel courseModel = CourseModel.GetInstance();
-            BookingModel bookingModel = BookingModel.GetInstance();
+            ClientModel clientModel = ClientModel.GetInstance();
+            StaffModel staffModel = StaffModel.GetInstance();
+            AdminDashboardPresenter presenter = new AdminDashboardPresenter(screen, courseModel, clientModel, staffModel);
 
-            //Simulate user has login (DEV MODE ONLY) (REMOVE IN FINAL PRODUCT)
-            IDataAccess data = new DataAccess();
-            clientModel.SetClient(data.RetrieveClientInformation(1));
-
-            ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, clientModel, courseModel, bookingModel);
             Application.Run(screen);
         }
     }

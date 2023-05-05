@@ -28,7 +28,7 @@ namespace APAssignmentClient.DataService
 
         public String[] ToStringArray()
         {
-            String[] array = { CourseId.ToString(), CourseName, CourseDescription, CourseType, CourseDuration.ToString() };
+            String[] array = { CourseId.ToString(), CourseName, CourseDescription, CourseType, CourseDuration.ToString(), CoursePrice.ToString() };
             return array;
         }
 

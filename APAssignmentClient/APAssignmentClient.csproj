@@ -90,10 +90,26 @@
     <Compile Include="Model\CourseModel.cs" />
     <Compile Include="Model\IBookingModel.cs" />
     <Compile Include="Model\ICourseModel.cs" />
+    <Compile Include="Model\IStaffModel.cs" />
+    <Compile Include="Model\StaffModel.cs" />
+    <Compile Include="Presenter\AddNewCoursePresenter.cs" />
+    <Compile Include="Presenter\AdminDashboardPresenter.cs" />
     <Compile Include="Presenter\ClientInformationPresenter.cs" />
     <Compile Include="Presenter\CourseDescriptionPresenter.cs" />
     <Compile Include="Presenter\EnrolNewCoursePresenter.cs" />
     <Compile Include="Presenter\NewBookingPresenter.cs" />
+    <Compile Include="View\AddNewCourse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AddNewCourse.Designer.cs">
+      <DependentUpon>AddNewCourse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AdminDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AdminDashboard.Designer.cs">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ClientDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -121,6 +137,8 @@
     <Compile Include="View\EnrolNewCourse.Designer.cs">
       <DependentUpon>EnrolNewCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\IAddNewCourse.cs" />
+    <Compile Include="View\IAdminDashboard.cs" />
     <Compile Include="View\IClientDashboard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,6 +152,12 @@
     <Compile Include="View\NewBooking.Designer.cs">
       <DependentUpon>NewBooking.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\AddNewCourse.resx">
+      <DependentUpon>AddNewCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AdminDashboard.resx">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ClientDashboard.resx">
       <DependentUpon>ClientDashboard.cs</DependentUpon>
     </EmbeddedResource>

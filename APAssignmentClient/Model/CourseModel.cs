@@ -33,42 +33,63 @@ namespace APAssignmentClient.Model
             get { return course.CourseId; }
         }
 
-        public DataTable RetrieveAllCourses(int ClientID)
+        public DataTable RetrieveAllCourses()
         {
-            //FOR DEVELOPMENT ONLY, REMOVE ONCE CODES WERE MERGE
-            //if (access.IsCourseEmpty() == true)
-            //{
-            //    AddNewCourse("Introduction to the Architectural and Build Option", "Example Description 1", 300.00, "Video Course", 0);
-            //    AddNewCourse("Choosing a plot of lang", "Example Description 2", 250.00, "Video Course", 0);
-            //    AddNewCourse("Building regulations and inspections", "Example Description 3", 500.00, "Video Course", 0);
-            //    AddNewCourse("Groundwork and Foundations", "Example Description 4", 200.00, "Video Course", 0);
-            //    AddNewCourse("Drylining and Plastering", "Example Description 5", 1100.00, "Practical Course", 4);
-            //}
-
             try
             {
-                List<Course> retrievedCourses = access.RetrieveAllCourses();
-                List<Course> retrievedEnrolledCourses = access.RetrieveEnrolledCourses(ClientID);
-
+                List<Course> course = access.RetrieveAllCourses();
                 DataTable dt = new DataTable();
                 dt.Columns.Add("id");
                 dt.Columns.Add("name");
                 dt.Columns.Add("type");
-                dt.Columns.Add("duration");
-                dt.Columns.Add("price");
-                foreach (Course c in retrievedCourses)
+                foreach (Course c in course)
                 {
-                    if (!retrievedEnrolledCourses.Any(crs => crs.CourseId == c.CourseId))
+                    dt.Rows.Add(c.CourseId, c.CourseName, c.CourseType);
+                }
+                return dt;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public DataTable RetrieveEnrollableCourses(int ClientID)
+        {
+            try
+            {
+                List<Course> retrievedCourses = access.RetrieveAllCourses();
+                if (retrievedCourses.Any())
+                {
+                    List<Course> retrievedEnrolledCourses = access.RetrieveEnrolledCourses(ClientID);
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("id");
+                    dt.Columns.Add("name");
+                    dt.Columns.Add("type");
+                    dt.Columns.Add("duration");
+                    dt.Columns.Add("price");
+                    foreach (Course c in retrievedCourses)
                     {
-                        dt.Rows.Add(c.CourseId.ToString(), c.CourseName, c.CourseType, ConvertDuration(c.CourseDuration), ConvertPrice(c.CoursePrice));
+                        if (!retrievedEnrolledCourses.Any(crs => crs.CourseId == c.CourseId))
+                        {
+                            dt.Rows.Add(c.CourseId.ToString(), c.CourseName, c.CourseType, ConvertDuration(c.CourseDuration), ConvertPrice(c.CoursePrice));
+                        }
+                    }
+
+                    if (dt.Rows.Count != 0)
+                    {
+                        return dt;
+                    }
+                    else
+                    {
+                        throw new Exception("No available courses available at the moment. Please check back later!");
                     }
                 }
-
-                if (dt.Rows.Count != 0)
+                else
                 {
-                    return dt;
+                    throw new Exception("No available courses available at the moment. Please check back later!");
                 }
-                throw new Exception("No available courses available at the moment. Please check back later!");
             }
             catch (Exception e)
             {
@@ -89,6 +110,42 @@ namespace APAssignmentClient.Model
                     CourseType = _courseType,
                     CourseDuration = _courseDuration
                 };
+
+                access.AddNewCourse(newCourse);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void EditCourse(int _courseID, String _courseName, String _courseDescription, double _coursePrice, String _courseType, int _courseDuration)
+        {
+            try
+            {
+                Course course = new Course
+                {
+                    CourseId = _courseID,
+                    CourseName = _courseName,
+                    CoursePrice = _coursePrice,
+                    CourseDescription = _courseDescription,
+                    CourseType = _courseType,
+                    CourseDuration = _courseDuration
+                };
+
+                access.EditCourse(course);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void DeleteCourse()
+        {
+            try
+            {
+                access.DeleteCourse(course.CourseId);
             }
             catch (Exception e)
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using APAssignmentClient.View;
 using APAssignmentClient.Model;
 
@@ -27,13 +28,17 @@ namespace APAssignmentClient.Presenter
                 String[] course = courseModel.RetrieveCourseInformation();
                 screen.CourseID = course[0];
                 screen.CourseTitle = course[1];
-                screen.CourseType = course[2];
-                screen.Description = course[3];
-                screen.DescriptionSize = new System.Drawing.Size(357, 191);
+                screen.Description = course[2];
+                screen.CourseType = course[3];
+                screen.CourseDuration = course[4];
+                screen.CoursePrice = course[5];
+                screen.CloseButtonLocation = new Point(347, 286);
+                screen.FormSize = new Size(515, 374);
 
                 if (displayFullDetail)
                 {
-                    screen.DescriptionSize = new System.Drawing.Size(357, 132);
+                    screen.CloseButtonLocation = new Point(347, 339);
+                    screen.FormSize = new Size(515, 421);
                     screen.DateLabelVisible = true;
                     screen.DateVisible = true;
                     screen.StatusLabelVisible = true;

@@ -42,6 +42,10 @@
             this.txtbCourseStatus = new System.Windows.Forms.TextBox();
             this.lblCourseDate = new System.Windows.Forms.Label();
             this.txtbCourseDate = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtbCoursePrice = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtbCourseDuration = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -119,7 +123,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(347, 290);
+            this.btnClose.Location = new System.Drawing.Point(347, 339);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(118, 31);
             this.btnClose.TabIndex = 8;
@@ -129,7 +133,7 @@
             // 
             // btnPlaceBackToWaiting
             // 
-            this.btnPlaceBackToWaiting.Location = new System.Drawing.Point(188, 290);
+            this.btnPlaceBackToWaiting.Location = new System.Drawing.Point(188, 339);
             this.btnPlaceBackToWaiting.Name = "btnPlaceBackToWaiting";
             this.btnPlaceBackToWaiting.Size = new System.Drawing.Size(153, 31);
             this.btnPlaceBackToWaiting.TabIndex = 9;
@@ -141,7 +145,7 @@
             // lblCourseStatus
             // 
             this.lblCourseStatus.AutoSize = true;
-            this.lblCourseStatus.Location = new System.Drawing.Point(23, 234);
+            this.lblCourseStatus.Location = new System.Drawing.Point(23, 286);
             this.lblCourseStatus.Name = "lblCourseStatus";
             this.lblCourseStatus.Size = new System.Drawing.Size(73, 13);
             this.lblCourseStatus.TabIndex = 11;
@@ -151,7 +155,7 @@
             // txtbCourseStatus
             // 
             this.txtbCourseStatus.Enabled = false;
-            this.txtbCourseStatus.Location = new System.Drawing.Point(108, 231);
+            this.txtbCourseStatus.Location = new System.Drawing.Point(108, 283);
             this.txtbCourseStatus.Name = "txtbCourseStatus";
             this.txtbCourseStatus.ReadOnly = true;
             this.txtbCourseStatus.Size = new System.Drawing.Size(357, 20);
@@ -161,7 +165,7 @@
             // lblCourseDate
             // 
             this.lblCourseDate.AutoSize = true;
-            this.lblCourseDate.Location = new System.Drawing.Point(23, 260);
+            this.lblCourseDate.Location = new System.Drawing.Point(23, 312);
             this.lblCourseDate.Name = "lblCourseDate";
             this.lblCourseDate.Size = new System.Drawing.Size(66, 13);
             this.lblCourseDate.TabIndex = 13;
@@ -171,18 +175,58 @@
             // txtbCourseDate
             // 
             this.txtbCourseDate.Enabled = false;
-            this.txtbCourseDate.Location = new System.Drawing.Point(108, 257);
+            this.txtbCourseDate.Location = new System.Drawing.Point(108, 309);
             this.txtbCourseDate.Name = "txtbCourseDate";
             this.txtbCourseDate.ReadOnly = true;
             this.txtbCourseDate.Size = new System.Drawing.Size(357, 20);
             this.txtbCourseDate.TabIndex = 12;
             this.txtbCourseDate.Visible = false;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 260);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(67, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Course Price";
+            // 
+            // txtbCoursePrice
+            // 
+            this.txtbCoursePrice.Enabled = false;
+            this.txtbCoursePrice.Location = new System.Drawing.Point(108, 257);
+            this.txtbCoursePrice.Name = "txtbCoursePrice";
+            this.txtbCoursePrice.ReadOnly = true;
+            this.txtbCoursePrice.Size = new System.Drawing.Size(357, 20);
+            this.txtbCoursePrice.TabIndex = 14;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(23, 234);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 13);
+            this.label6.TabIndex = 17;
+            this.label6.Text = "Course Duration";
+            // 
+            // txtbCourseDuration
+            // 
+            this.txtbCourseDuration.Enabled = false;
+            this.txtbCourseDuration.Location = new System.Drawing.Point(108, 231);
+            this.txtbCourseDuration.Name = "txtbCourseDuration";
+            this.txtbCourseDuration.ReadOnly = true;
+            this.txtbCourseDuration.Size = new System.Drawing.Size(357, 20);
+            this.txtbCourseDuration.TabIndex = 16;
+            // 
             // CourseDescription
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(499, 333);
+            this.ClientSize = new System.Drawing.Size(499, 382);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtbCourseDuration);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtbCoursePrice);
             this.Controls.Add(this.lblCourseDate);
             this.Controls.Add(this.txtbCourseDate);
             this.Controls.Add(this.lblCourseStatus);
@@ -222,5 +266,9 @@
         private System.Windows.Forms.TextBox txtbCourseStatus;
         private System.Windows.Forms.Label lblCourseDate;
         private System.Windows.Forms.TextBox txtbCourseDate;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtbCoursePrice;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox txtbCourseDuration;
     }
 }

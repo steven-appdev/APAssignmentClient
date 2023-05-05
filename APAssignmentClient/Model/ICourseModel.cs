@@ -11,8 +11,11 @@ namespace APAssignmentClient.Model
     public interface ICourseModel
     {
         int CourseID { get; set; }
-        DataTable RetrieveAllCourses(int id);
+        DataTable RetrieveAllCourses();
+        DataTable RetrieveEnrollableCourses(int id);
         void AddNewCourse(String _courseName, String _courseDescription, double _coursePrice, String _courseType, int _courseDuration);
+        void EditCourse(int _courseID, String _courseName, String _courseDescription, double _coursePrice, String _courseType, int _courseDuration);
+        void DeleteCourse();
         String[] RetrieveCourseInformation();
         void EnrolSelectedCourse(int clientID, int courseID);
         void DropSelectedCourse(int clientID, int courseID);

@@ -30,16 +30,33 @@ namespace APAssignmentClient.DataService
             }
         }
 
+        public List<Client> RetrieveAllClients()
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    return context.Clients.ToList();
+                }
+                catch
+                {
+                    throw new Exception("Client list could not be retrieved. Please try again later or contact administrator!");
+                }
+            }
+        }
+
         public List<Course> RetrieveAllCourses()
         {
             using (var context = new Context())
             {
-                List<Course> courses = context.Courses.ToList();
-                if (courses.Any())
+                try
                 {
-                    return courses;
+                    return context.Courses.ToList();
                 }
-                throw new Exception("No courses are available at the moment! Please check back later or contact administrator!");
+                catch
+                {
+                    throw new Exception("Course list could not be retrieved. Please try again later or contact administrator!");
+                }
             }
         }
 
@@ -47,12 +64,14 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                Course course = context.Courses.First(crs => crs.CourseId == courseID);
-                if (course != null)
+                try
                 {
-                    return course;
+                    return context.Courses.First(crs => crs.CourseId == courseID);
                 }
-                throw new Exception("Course does not exist! Please contact administrator!");
+                catch
+                {
+                    throw new Exception("Course does not exist! Please contact administrator!");
+                }
             }
         }
 
@@ -63,6 +82,57 @@ namespace APAssignmentClient.DataService
                 try
                 {
                     context.Courses.Add(course);
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
+                }
+            }
+        }
+
+        public void EditCourse(Course course)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    Course _course = context.Courses.First(c => c.CourseId == course.CourseId);
+
+                    _course.CourseName = course.CourseName;
+                    _course.CourseDescription = course.CourseDescription;
+                    _course.CourseType = course.CourseType;
+                    _course.CourseDuration = course.CourseDuration;
+                    _course.CoursePrice = course.CoursePrice;
+
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
+                }
+            }
+        }
+
+        public void DeleteCourse(int courseID)
+        {
+            using (var context = new Context())
+            {
+                try
+                {  
+                    Course course = context.Courses.First(c => c.CourseId == courseID);
+                    List<CourseClients> courseClient = context.CourseClients.Where(cc => cc.CourseId == courseID).ToList();
+
+                    if (courseClient.Any())
+                    {
+                        foreach(CourseClients cc in courseClient)
+                        {
+                            //Refund client
+                            Client client = context.Clients.First(c => c.ClientId == cc.ClientId);
+                            client.ClientBill -= course.CoursePrice;
+                        }
+                    }
+                    context.Courses.Remove(context.Courses.First(c => c.CourseId == courseID));
                     context.SaveChanges();
                 }
                 catch
@@ -184,9 +254,10 @@ namespace APAssignmentClient.DataService
             {
                 try
                 {
-                    if (context.WaitingLists.Where(wl => wl.ClientId == clientID && wl.CourseId == courseID).Any())
+                    WaitingList waiting = context.WaitingLists.FirstOrDefault(wl => wl.ClientId == clientID && wl.CourseId == courseID);
+                    if (waiting != null)
                     {
-                        context.WaitingLists.Remove(context.WaitingLists.Where(wl => wl.ClientId == clientID && wl.CourseId == courseID).First());
+                        context.WaitingLists.Remove(waiting);
                         context.SaveChanges();
                     }
                 }
@@ -203,9 +274,10 @@ namespace APAssignmentClient.DataService
             {
                 try
                 {
-                    if (context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).Any())
+                    PendingList pending = context.PendingLists.FirstOrDefault(pl => pl.ClientId == clientID && pl.CourseId == courseID);
+                    if (pending != null)
                     {
-                        context.PendingLists.Remove(context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).First());
+                        context.PendingLists.Remove(pending);
                         context.SaveChanges();
                     }
                 }
@@ -256,12 +328,19 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                PendingList pending = context.PendingLists.ToList().Last();
-                if (pending != null)
+                try
                 {
-                    return pending.PendingListID;
+                    List<PendingList> pendingList = context.PendingLists.ToList();
+                    if (pendingList.Any())
+                    {
+                        return pendingList.Last().PendingListID;
+                    }
+                    throw new Exception("Pending List ID could not be retrieved. Please try again later or contact administrator!");
                 }
-                throw new Exception("Pending List ID could not be retrieved. Please try again later or contact administrator!");
+                catch
+                {
+                    throw new Exception("Something went wrong. Please contact administrator!");
+                }
             }
         }
 
@@ -269,12 +348,19 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                PendingList pending = context.PendingLists.Where(pl => pl.CourseId == courseID).ToList().Last();
-                if (pending != null)
+                try
                 {
-                    return pending.PendingListID;
+                    List<PendingList> pendingList = context.PendingLists.Where(pl => pl.CourseId == courseID).ToList();
+                    if (pendingList.Any())
+                    {
+                        return pendingList.Last().PendingListID;
+                    }
+                    throw new Exception("Pending List ID could not be retrieved. Please try again later or contact administrator!");
                 }
-                throw new Exception("Pending List ID could not be retrieved. Please try again later or contact administrator!");
+                catch
+                {
+                    throw new Exception("Something went wrong. Please contact administrator!");
+                }
             }
         }
 
@@ -282,12 +368,14 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                PendingList pending = context.PendingLists.Where(pl => pl.PendingListID == pendingListID).First();
-                if(pending != null)
+                try
                 {
-                    return pending;
+                    return context.PendingLists.First(pl => pl.PendingListID == pendingListID);
                 }
-                throw new Exception("Pending List could not be retrieved. Please try again later or contact administrator!");
+                catch
+                {
+                    throw new Exception("Pending List could not be retrieved. Please try again later or contact administrator!");
+                }
             }
         }
 
@@ -337,7 +425,7 @@ namespace APAssignmentClient.DataService
                 {
                     if (context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).Any())
                     {
-                        return context.PendingLists.Where(pl => pl.ClientId == clientID && pl.CourseId == courseID).First().StartDate.ToString();
+                        return context.PendingLists.First(pl => pl.ClientId == clientID && pl.CourseId == courseID).StartDate.ToString();
                     }
                     return "-";
                 }
@@ -354,7 +442,7 @@ namespace APAssignmentClient.DataService
             {
                 try
                 {
-                    CourseClients courseClient = context.CourseClients.Where(cc => cc.ClientId == clientID && cc.CourseId == courseID).First();
+                    CourseClients courseClient = context.CourseClients.First(cc => cc.ClientId == clientID && cc.CourseId == courseID);
                     courseClient.Status = message;
                     context.SaveChanges();
                 }
@@ -369,14 +457,21 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                Random rnd = new Random();
-                List<int> managements = context.MangementCourses.Where(mc => mc.CourseID == courseID).Select(mc => mc.ManagementID).ToList();
-                if (managements.Any())
+                try
                 {
-                    int random = rnd.Next(1, managements.Count);
-                    return managements[random - 1];
+                    Random rnd = new Random();
+                    List<int> managements = context.MangementCourses.Where(mc => mc.CourseID == courseID).Select(mc => mc.ManagementID).ToList();
+                    if (managements.Any())
+                    {
+                        int random = rnd.Next(1, managements.Count);
+                        return managements[random - 1];
+                    }
+                    throw new Exception("Management not available. Please try again later or contact administrator!");
                 }
-                throw new Exception("Management not available. Please try again later or contact administrator!");
+                catch
+                {
+                    throw new Exception("Something went wrong. Please contact administrator!");
+                }
             }
         }
 
@@ -419,12 +514,14 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                CourseClients courseClient = context.CourseClients.First(cc => cc.ClientId == clientID && cc.CourseId == courseID);
-                if(courseClient != null)
+                try
                 {
-                    return courseClient;
+                    return context.CourseClients.First(cc => cc.ClientId == clientID && cc.CourseId == courseID);
                 }
-                throw new Exception("Course status does not exist! Please try again or contact administrator!");
+                catch
+                {
+                    throw new Exception("Course status does not exist! Please try again or contact administrator!");
+                }
             }
         }
 
@@ -432,12 +529,14 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                Client client = context.Clients.First(cli => cli.ClientId == clientID);
-                if(client != null)
+                try
                 {
-                    return client;
+                    return context.Clients.First(cli => cli.ClientId == clientID);
                 }
-                throw new Exception("Client does not exist! Please try again or contact administrator!");
+                catch
+                {
+                    throw new Exception("Client does not exist! Please try again or contact administrator!");
+                }
             }
         }
 
@@ -445,12 +544,14 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                List<Management> mngmt = context.Managements.ToList();
-                if (mngmt.Any())
+                try
                 {
-                    return mngmt;
+                    return context.Managements.ToList();
                 }
-                throw new Exception("No management available at the moment. Please check back later!");
+                catch
+                {
+                    throw new Exception("Management could not be retrieved. Please try again or contact administrator!");
+                }
             }
         }
 
@@ -458,12 +559,14 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                Management management = context.Managements.First(m => m.ManagementId == managementID);
-                if(management != null)
+                try
                 {
-                    return management;
+                    return context.Managements.First(m => m.ManagementId == managementID);
                 }
-                throw new Exception("Management could not be retrieved. Please try again or contact administrator!");
+                catch
+                {
+                    throw new Exception("Management could not be retrieved. Please try again or contact administrator!");
+                }
             }
         }
 
@@ -506,6 +609,7 @@ namespace APAssignmentClient.DataService
                 {
                     Client client = context.Clients.First(cli => cli.ClientId == clientID);
                     int duration = context.Bookings.First(bk => bk.BookingID == bookingID).BookingDuration;
+
                     context.Bookings.Remove(context.Bookings.First(bk => bk.BookingID == bookingID));
                     client.ClientBill -= (duration / 15) * 40;
                     context.SaveChanges();
@@ -523,7 +627,6 @@ namespace APAssignmentClient.DataService
             {
                 try
                 {
-                    //Can be null
                     return context.Bookings.Where(bk => bk.ClientId == clientID).ToList();
                 }
                 catch
@@ -537,12 +640,34 @@ namespace APAssignmentClient.DataService
         {
             using (var context = new Context())
             {
-                String name = context.Managements.First(m => m.ManagementId == managementID).ManagementName.ToString();
-                if(name != null)
+                try
                 {
-                    return name;
+                    return context.Managements.First(m => m.ManagementId == managementID).ManagementName.ToString();
                 }
-                throw new Exception("Management name could not be retrieved. Please try again or contact administrator!");
+                catch
+                {
+                    throw new Exception("Management name could not be retrieved. Please try again or contact administrator!");
+                }
+            }
+        }
+
+        public String RetrieveManagementCourse(int managementID)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    ManagementCourses managementCourse = context.MangementCourses.FirstOrDefault(mc => mc.ManagementID == managementID);
+                    if (managementCourse != null)
+                    {
+                        return managementCourse.Course.CourseName.ToString();
+                    }
+                    return "-";
+                }
+                catch
+                {
+                    throw new Exception("Management course could not be retrieved. Please try again or contact administrator!");
+                }
             }
         }
 
