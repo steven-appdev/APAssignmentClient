@@ -115,7 +115,6 @@ namespace APAssignmentClient.View
 
         public void SetStaffButtonsEnabled(bool enabled)
         {
-            btnViewStaff.Enabled = enabled;
             btnDeleteStaff.Enabled = enabled;
         }
 
