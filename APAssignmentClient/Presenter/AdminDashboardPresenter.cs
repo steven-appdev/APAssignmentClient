@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Windows.Forms;
 using APAssignmentClient.Model;
 using APAssignmentClient.View;
 
@@ -62,6 +63,28 @@ namespace APAssignmentClient.Presenter
             if (result)
             {
                 course.DeleteCourse();
+                PopulateDataTable();
+            }
+        }
+
+        public void btnViewClient_Click()
+        {
+            client.SetClient(client.RetrieveOneClient(RetrieveSelectedClientID()));
+
+            ClientInformation screen = new ClientInformation();
+            ClientModel clientModel = ClientModel.GetInstance();
+            ClientInformationPresenter presenter = new ClientInformationPresenter(screen, clientModel);
+            screen.ShowDialog();
+        }
+
+        public void btnDeleteClient_Click()
+        {
+            client.SetClient(client.RetrieveOneClient(RetrieveSelectedClientID()));
+
+            bool result = screen.DisplayConfirmationMessage("Do you want to delete this client?", "Warning! Are you sure?");
+            if (result)
+            {
+                client.DeleteClient();
                 PopulateDataTable();
             }
         }
@@ -144,6 +167,11 @@ namespace APAssignmentClient.Presenter
         private int RetrieveSelectedCourseID()
         {
             return Int32.Parse(screen.GetSelectedCourse.ToString());
+        }
+
+        private int RetrieveSelectedClientID()
+        {
+            return Int32.Parse(screen.GetSelectedClient.ToString());
         }
     }
 

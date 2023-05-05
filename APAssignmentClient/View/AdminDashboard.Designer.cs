@@ -275,6 +275,7 @@
             this.btnDeleteClient.TabIndex = 20;
             this.btnDeleteClient.Text = "Delete Client";
             this.btnDeleteClient.UseVisualStyleBackColor = true;
+            this.btnDeleteClient.Click += new System.EventHandler(this.btnDeleteClient_Click);
             // 
             // btnViewClient
             // 
@@ -286,6 +287,7 @@
             this.btnViewClient.TabIndex = 19;
             this.btnViewClient.Text = "View Client";
             this.btnViewClient.UseVisualStyleBackColor = true;
+            this.btnViewClient.Click += new System.EventHandler(this.btnViewClient_Click);
             // 
             // btnDeleteStaff
             // 

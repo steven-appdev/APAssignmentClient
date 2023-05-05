@@ -16,12 +16,11 @@ namespace APAssignmentClient.Presenter
             editMode = _editMode;
             screen = _screen;
             screen.Register(this);
-            Console.WriteLine(_editMode);
         }
 
         public void AddNewCourse_Load()
         {
-            if(editMode == true)
+            if (editMode == true)
             {
                 String[] course = courseModel.RetrieveCourseInformation();
                 screen.CourseID = course[0];

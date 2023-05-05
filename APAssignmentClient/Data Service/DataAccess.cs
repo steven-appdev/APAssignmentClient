@@ -1,4 +1,5 @@
-﻿using System;
+﻿using APAssignmentClient.Data_Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -41,6 +42,25 @@ namespace APAssignmentClient.DataService
                 catch
                 {
                     throw new Exception("Client list could not be retrieved. Please try again later or contact administrator!");
+                }
+            }
+        }
+
+        public void DeleteClient(int clientID)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    Client client = context.Clients.First(c => c.ClientId == clientID);
+                    User user = context.Users.First(u => u.UserID == client.UserId);
+                    context.Clients.Remove(client);
+                    context.Users.Remove(user);
+                    context.SaveChanges();
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please contact administrator!");
                 }
             }
         }

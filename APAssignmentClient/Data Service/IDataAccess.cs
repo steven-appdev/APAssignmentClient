@@ -10,7 +10,7 @@ namespace APAssignmentClient.DataService
     {
         bool IsCourseEmpty();
         List<Client> RetrieveAllClients();
-        //void DeleteClient(int clientID);
+        void DeleteClient(int clientID);
         List<Course> RetrieveAllCourses();
         Course RetrieveOneCourse(int courseID);
         void AddNewCourse(Course course);

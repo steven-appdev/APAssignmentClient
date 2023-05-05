@@ -31,7 +31,6 @@
             this.lblCoursePrice = new System.Windows.Forms.Label();
             this.txtbCoursePrice = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtbCourseType = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtbCourseTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,6 +40,7 @@
             this.rtxtbDescription = new System.Windows.Forms.RichTextBox();
             this.lblCourseDuration = new System.Windows.Forms.Label();
             this.txtbCourseDuration = new System.Windows.Forms.TextBox();
+            this.cmbCourseType = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblCoursePrice
@@ -67,13 +67,6 @@
             this.label4.Size = new System.Drawing.Size(67, 13);
             this.label4.TabIndex = 21;
             this.label4.Text = "Course Type";
-            // 
-            // txtbCourseType
-            // 
-            this.txtbCourseType.Location = new System.Drawing.Point(99, 66);
-            this.txtbCourseType.Name = "txtbCourseType";
-            this.txtbCourseType.Size = new System.Drawing.Size(357, 20);
-            this.txtbCourseType.TabIndex = 20;
             // 
             // label3
             // 
@@ -152,11 +145,24 @@
             this.txtbCourseDuration.Size = new System.Drawing.Size(357, 20);
             this.txtbCourseDuration.TabIndex = 26;
             // 
+            // cmbCourseType
+            // 
+            this.cmbCourseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCourseType.FormattingEnabled = true;
+            this.cmbCourseType.Items.AddRange(new object[] {
+            "Video Course",
+            "Practical Course"});
+            this.cmbCourseType.Location = new System.Drawing.Point(99, 66);
+            this.cmbCourseType.Name = "cmbCourseType";
+            this.cmbCourseType.Size = new System.Drawing.Size(357, 21);
+            this.cmbCourseType.TabIndex = 28;
+            // 
             // AddNewCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 332);
+            this.Controls.Add(this.cmbCourseType);
             this.Controls.Add(this.lblCourseDuration);
             this.Controls.Add(this.txtbCourseDuration);
             this.Controls.Add(this.rtxtbDescription);
@@ -164,7 +170,6 @@
             this.Controls.Add(this.lblCoursePrice);
             this.Controls.Add(this.txtbCoursePrice);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtbCourseType);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtbCourseTitle);
             this.Controls.Add(this.label2);
@@ -184,7 +189,6 @@
         private System.Windows.Forms.Label lblCoursePrice;
         private System.Windows.Forms.TextBox txtbCoursePrice;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtbCourseType;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtbCourseTitle;
         private System.Windows.Forms.Label label2;
@@ -194,5 +198,6 @@
         private System.Windows.Forms.RichTextBox rtxtbDescription;
         private System.Windows.Forms.Label lblCourseDuration;
         private System.Windows.Forms.TextBox txtbCourseDuration;
+        private System.Windows.Forms.ComboBox cmbCourseType;
     }
 }

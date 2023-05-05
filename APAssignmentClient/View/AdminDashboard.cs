@@ -163,6 +163,16 @@ namespace APAssignmentClient.View
         {
             presenter.btnDeleteCourse_Click();
         }
+
+        private void btnViewClient_Click(object sender, EventArgs e)
+        {
+            presenter.btnViewClient_Click();
+        }
+
+        private void btnDeleteClient_Click(object sender, EventArgs e)
+        {
+            presenter.btnDeleteClient_Click();
+        }
     }
     }
 

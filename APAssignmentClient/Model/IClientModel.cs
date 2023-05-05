@@ -20,6 +20,8 @@ namespace APAssignmentClient.Model
         String ClientContactNumber { get; }
         double ClientBill { get; }
         void UpdateClientBill();
+        Client RetrieveOneClient(int clientID);
         DataTable RetrieveAllClients();
+        void DeleteClient();
     }
 }

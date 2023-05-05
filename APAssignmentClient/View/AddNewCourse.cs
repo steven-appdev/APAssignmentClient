@@ -25,8 +25,8 @@ namespace APAssignmentClient.View
         }
         public String CourseType
         {
-            get { return txtbCourseType.Text; }
-            set { txtbCourseType.Text = value; }
+            get { return cmbCourseType.SelectedItem.ToString(); }
+            set { cmbCourseType.SelectedItem = value; }
         }
 
         public String CoursePrice
@@ -63,6 +63,7 @@ namespace APAssignmentClient.View
 
         private void AddNewCourse_Load(object sender, EventArgs e)
         {
+            cmbCourseType.SelectedIndex = 0;
             presenter.AddNewCourse_Load();
         }
     }

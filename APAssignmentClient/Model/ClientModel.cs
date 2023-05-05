@@ -82,6 +82,18 @@ namespace APAssignmentClient.Model
             }
         }
 
+        public Client RetrieveOneClient(int clientID)
+        {
+            try
+            {
+                return access.RetrieveClientInformation(clientID);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         public DataTable RetrieveAllClients()
         {
             try
@@ -99,6 +111,18 @@ namespace APAssignmentClient.Model
                 }
 
                 return dt;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public void DeleteClient()
+        {
+            try
+            {
+                access.DeleteClient(client.ClientId);
             }
             catch (Exception e)
             {
