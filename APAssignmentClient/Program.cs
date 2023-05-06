@@ -31,11 +31,17 @@ namespace APAssignmentClient
             //ClientDashboardPresenter presenter = new ClientDashboardPresenter(screen, clientModel, courseModel, bookingModel);
 
             ///Running Admin side
-            AdminDashboard screen = new AdminDashboard();
-            CourseModel courseModel = CourseModel.GetInstance();
+            //AdminDashboard screen = new AdminDashboard();
+            //CourseModel courseModel = CourseModel.GetInstance();
+            //ClientModel clientModel = ClientModel.GetInstance();
+            //StaffModel staffModel = StaffModel.GetInstance();
+            //AdminDashboardPresenter presenter = new AdminDashboardPresenter(screen, courseModel, clientModel, staffModel);
+
+            ///Running Login client
+            Login screen = new Login();
+            AccountModel accountModel = AccountModel.GetInstance();
             ClientModel clientModel = ClientModel.GetInstance();
-            StaffModel staffModel = StaffModel.GetInstance();
-            AdminDashboardPresenter presenter = new AdminDashboardPresenter(screen, courseModel, clientModel, staffModel);
+            LoginPresenter presenter = new LoginPresenter(screen, clientModel, accountModel);
 
             Application.Run(screen);
         }

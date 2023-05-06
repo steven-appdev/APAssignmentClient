@@ -16,7 +16,7 @@ namespace APAssignmentClient.Data_Service
         public String UserName { get; set; }
 
         [Required]
-        public String UserPassword { get; set; }
+        public byte[] UserPassword { get; set; }
 
         [Required]
         public int UserType { get; set; }

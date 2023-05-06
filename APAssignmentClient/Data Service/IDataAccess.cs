@@ -1,6 +1,8 @@
-﻿using System;
+﻿using APAssignmentClient.Data_Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,6 +10,10 @@ namespace APAssignmentClient.DataService
 {
     public interface IDataAccess
     {
+        bool CheckAccountExist(String username);
+        User RetrieveUserInformation(String username);
+        Client RetrieveClient(int userID);
+        void RegisterAccount(User user);
         bool IsCourseEmpty();
         List<Client> RetrieveAllClients();
         void DeleteClient(int clientID);

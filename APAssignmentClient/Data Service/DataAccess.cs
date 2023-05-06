@@ -2,11 +2,78 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace APAssignmentClient.DataService
 {
     public class DataAccess : IDataAccess
     {
+        public bool CheckAccountExist(String username)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    if (context.Users.FirstOrDefault(u => u.UserName == username) != null)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please try again later or contact administrator!");
+                }
+            }
+        }
+
+        public User RetrieveUserInformation(String username)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    return context.Users.First(u => u.UserName == username);
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please try again later or contact administrator!");
+                }
+            }
+        }
+
+        public Client RetrieveClient(int userID)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    return context.Clients.First(cli => cli.UserId == userID);
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please try again later or contact administrator!");
+                }
+            }
+        }
+
+        public void RegisterAccount(User user)
+        {
+            using (var context = new Context())
+            {
+                try
+                {
+                    context.Users.Add(user);
+                    context.SaveChanges();
+                    Console.WriteLine("User added");
+                }
+                catch
+                {
+                    throw new Exception("Something went wrong! Please try again later or contact administrator!");
+                }
+            }
+        }
+
         public bool IsCourseEmpty()
         {
             using (var context = new Context())
