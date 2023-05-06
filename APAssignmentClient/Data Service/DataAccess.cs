@@ -57,7 +57,7 @@ namespace APAssignmentClient.DataService
             }
         }
 
-        public void RegisterAccount(User user)
+        public void RegisterAccount(User user, Client client)
         {
             using (var context = new Context())
             {
@@ -65,7 +65,18 @@ namespace APAssignmentClient.DataService
                 {
                     context.Users.Add(user);
                     context.SaveChanges();
-                    Console.WriteLine("User added");
+
+                    User addedUser = context.Users.First(u => u.UserID == user.UserID);
+                    context.Clients.Add(new Client
+                    {
+                        User = addedUser,
+                        ClientName = client.ClientName,
+                        ClientAddress = client.ClientAddress,
+                        ClientEmail = client.ClientEmail,
+                        ClientContact = client.ClientContact,
+                        ClientBill = 0
+                    });
+                    context.SaveChanges();
                 }
                 catch
                 {

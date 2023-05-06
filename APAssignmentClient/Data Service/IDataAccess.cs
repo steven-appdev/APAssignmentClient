@@ -13,7 +13,7 @@ namespace APAssignmentClient.DataService
         bool CheckAccountExist(String username);
         User RetrieveUserInformation(String username);
         Client RetrieveClient(int userID);
-        void RegisterAccount(User user);
+        void RegisterAccount(User user, Client client);
         bool IsCourseEmpty();
         List<Client> RetrieveAllClients();
         void DeleteClient(int clientID);

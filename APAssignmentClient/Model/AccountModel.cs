@@ -60,16 +60,33 @@ namespace APAssignmentClient.Model
             return false;
         }
 
-        public void Register(String username, String password)
+        public void Register(String username, String password, String fullname, String address, String email, String contact)
         {
-            byte[] hash = HashPassword(password);
-            User user = new User
+            if (!access.CheckAccountExist(username))
             {
-                UserName = username,
-                UserPassword = hash,
-                UserType = 1
-            };
-            access.RegisterAccount(user);
+                byte[] hash = HashPassword(password);
+                User user = new User
+                {
+                    UserName = username,
+                    UserPassword = hash,
+                    UserType = 1
+                };
+
+                Client client = new Client
+                {
+                    ClientName = fullname,
+                    ClientAddress = address,
+                    ClientEmail = email,
+                    ClientContact = contact,
+                    ClientBill = 0
+                };
+
+                access.RegisterAccount(user, client);
+            }
+            else
+            {
+                throw new Exception("User exist! Please try another username!");
+            }
         }
 
         public Client RetrieveClient()

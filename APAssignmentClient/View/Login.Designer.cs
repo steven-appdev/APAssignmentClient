@@ -99,6 +99,7 @@
             this.btnRegister.TabIndex = 6;
             this.btnRegister.Text = "Does not have an account?";
             this.btnRegister.UseVisualStyleBackColor = true;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             // 
             // Login
             // 
@@ -113,6 +114,7 @@
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.label1);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();

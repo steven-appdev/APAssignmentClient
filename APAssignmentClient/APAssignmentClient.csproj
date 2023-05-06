@@ -102,6 +102,7 @@
     <Compile Include="Presenter\EnrolNewCoursePresenter.cs" />
     <Compile Include="Presenter\LoginPresenter.cs" />
     <Compile Include="Presenter\NewBookingPresenter.cs" />
+    <Compile Include="Presenter\NewRegisterPresenter.cs" />
     <Compile Include="View\AddNewCourse.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +159,7 @@
     <Compile Include="View\IEnrolNewCourse.cs" />
     <Compile Include="View\ILogin.cs" />
     <Compile Include="View\INewBooking.cs" />
+    <Compile Include="View\INewRegister.cs" />
     <Compile Include="View\Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +171,12 @@
     </Compile>
     <Compile Include="View\NewBooking.Designer.cs">
       <DependentUpon>NewBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\NewRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\NewRegister.Designer.cs">
+      <DependentUpon>NewRegister.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="View\AddNewCourse.resx">
       <DependentUpon>AddNewCourse.cs</DependentUpon>
@@ -205,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\NewBooking.resx">
       <DependentUpon>NewBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\NewRegister.resx">
+      <DependentUpon>NewRegister.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />

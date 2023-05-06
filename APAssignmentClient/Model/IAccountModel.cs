@@ -12,7 +12,7 @@ namespace APAssignmentClient.Model
         int UserID { get; set; }
         int UserType { get; set; }
         bool Login (String username, String password);
-        void Register (String username, String password);
+        void Register(String username, String password, String fullname, String address, String email, String contact);
         Client RetrieveClient();
     }
 }

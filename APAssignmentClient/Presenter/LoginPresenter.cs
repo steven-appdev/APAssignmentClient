@@ -61,7 +61,10 @@ namespace APAssignmentClient.Presenter
 
         public void btnRegister_Click()
         {
-            //Open register screen
+            NewRegister screen = new NewRegister();
+            AccountModel accountModel = AccountModel.GetInstance();
+            NewRegisterPresenter presenter = new NewRegisterPresenter(screen, accountModel);
+            screen.Show();
         }
     }
 }
