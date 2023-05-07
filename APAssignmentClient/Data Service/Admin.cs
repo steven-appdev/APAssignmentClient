@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace APAssignmentClient.Data_Service
+namespace APAssignmentClient.DataService
 {
     public class Admin
     {

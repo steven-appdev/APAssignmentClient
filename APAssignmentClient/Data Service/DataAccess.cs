@@ -1,8 +1,6 @@
-﻿using APAssignmentClient.Data_Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace APAssignmentClient.DataService
 {
@@ -63,41 +61,31 @@ namespace APAssignmentClient.DataService
             {
                 try
                 {
-                    context.Users.Add(user);
-                    context.SaveChanges();
-
-                    User addedUser = context.Users.First(u => u.UserID == user.UserID);
-                    context.Clients.Add(new Client
+                    if(user != null && client != null)
                     {
-                        User = addedUser,
-                        ClientName = client.ClientName,
-                        ClientAddress = client.ClientAddress,
-                        ClientEmail = client.ClientEmail,
-                        ClientContact = client.ClientContact,
-                        ClientBill = 0
-                    });
-                    context.SaveChanges();
+                        context.Users.Add(user);
+                        context.SaveChanges();
+
+                        User addedUser = context.Users.First(u => u.UserID == user.UserID);
+                        context.Clients.Add(new Client
+                        {
+                            User = addedUser,
+                            ClientName = client.ClientName,
+                            ClientAddress = client.ClientAddress,
+                            ClientEmail = client.ClientEmail,
+                            ClientContact = client.ClientContact,
+                            ClientBill = 0
+                        });
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                 }
                 catch
                 {
                     throw new Exception("Something went wrong! Please try again later or contact administrator!");
-                }
-            }
-        }
-
-        public bool IsCourseEmpty()
-        {
-            using (var context = new Context())
-            {
-                var courses = context.Courses.ToList();
-
-                if (courses == null || courses.Count == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
                 }
             }
         }

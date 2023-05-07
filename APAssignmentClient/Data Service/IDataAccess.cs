@@ -1,5 +1,4 @@
-﻿using APAssignmentClient.Data_Service;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -14,7 +13,6 @@ namespace APAssignmentClient.DataService
         User RetrieveUserInformation(String username);
         Client RetrieveClient(int userID);
         void RegisterAccount(User user, Client client);
-        bool IsCourseEmpty();
         List<Client> RetrieveAllClients();
         void DeleteClient(int clientID);
         List<Course> RetrieveAllCourses();
