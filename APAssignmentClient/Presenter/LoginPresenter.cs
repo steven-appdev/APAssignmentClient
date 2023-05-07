@@ -27,7 +27,6 @@ namespace APAssignmentClient.Presenter
             screen.SetAccountButtonsEnabled(false);
             if(accountModel.Login(screen.Username, screen.Password))
             {
-                Console.WriteLine("Account logged in!");
                 if(accountModel.UserType == 1)
                 {
                     ClientDashboard screen = new ClientDashboard();
