@@ -46,9 +46,13 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             throw new NotImplementedException();
         }
 
-        DataTable ICourseModel.RetrieveAllCourses()
+        public DataTable RetrieveAllCourses()
         {
-            throw new NotImplementedException();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            dt.Columns.Add("type");
+            return dt;
         }
 
         public String[] RetrieveCourseInformation()

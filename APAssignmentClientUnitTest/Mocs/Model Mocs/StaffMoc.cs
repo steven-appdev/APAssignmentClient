@@ -10,11 +10,16 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
 {
     public class StaffMoc : IStaffModel
     {
-        int IStaffModel.StaffID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int StaffID { get; set; }
+        public String StaffName { get; set; }
+        public String StaffSupportSession { get; set; }
+        public int StaffCourseTaughtID { get; set; }
 
-        void IStaffModel.AddNewStaff(string name, string supportSession, int courseID)
+        public void AddNewStaff(string name, string supportSession, int courseID)
         {
-            throw new NotImplementedException();
+            StaffName = name;
+            StaffSupportSession = supportSession;
+            StaffCourseTaughtID = courseID;
         }
 
         void IStaffModel.DeleteStaff()
@@ -32,14 +37,14 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             throw new NotImplementedException();
         }
 
-        int IStaffModel.RetrieveStaffCourseTaughtID()
+        public int RetrieveStaffCourseTaughtID()
         {
-            throw new NotImplementedException();
+            return 1;
         }
 
-        string[] IStaffModel.RetrieveStaffInformation()
+        public String[] RetrieveStaffInformation()
         {
-            throw new NotImplementedException();
+            return new string[] { "1", "Staff Name", "Support Session" };
         }
     }
 }

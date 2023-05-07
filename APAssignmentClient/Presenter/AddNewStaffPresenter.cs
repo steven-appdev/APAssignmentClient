@@ -23,7 +23,6 @@ namespace APAssignmentClient.Presenter
             staffModel = _staffModel;
             editMode = _editMode;
             screen.Register(this);
-            
         }
 
         public void AddNewStaff_Load()
