@@ -68,18 +68,6 @@ namespace APAssignmentClient.Model
             }
         }
 
-        public String RetrieveStaffCourseTaught()
-        {
-            try
-            {
-                return access.RetrieveManagementCourse(management.ManagementId);
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
         public int RetrieveStaffCourseTaughtID()
         {
             try
@@ -96,12 +84,19 @@ namespace APAssignmentClient.Model
         {
             try
             {
-                Management management = new Management
+                if(name != null && supportSession != null)
                 {
-                    ManagementName = name,
-                    ManagementSupportSession = supportSession
-                };
-                access.AddNewManagement(management, courseID);
+                    Management management = new Management
+                    {
+                        ManagementName = name,
+                        ManagementSupportSession = supportSession
+                    };
+                    access.AddNewManagement(management, courseID);
+                }
+                else
+                {
+                    throw new Exception("Text box cannot be empty!");
+                }
             }
             catch (Exception e)
             {
@@ -113,13 +108,20 @@ namespace APAssignmentClient.Model
         {
             try
             {
-                Management management = new Management
+                if (name != null && supportSession != null)
                 {
-                    ManagementId = StaffID,
-                    ManagementName = name,
-                    ManagementSupportSession = supportSession
-                };
-                access.EditManagement(management, courseID);
+                    Management management = new Management
+                    {
+                        ManagementId = StaffID,
+                        ManagementName = name,
+                        ManagementSupportSession = supportSession
+                    };
+                    access.EditManagement(management, courseID);
+                }
+                else
+                {
+                    throw new Exception("Text box cannot be empty!");
+                }
             }
             catch (Exception e)
             {
