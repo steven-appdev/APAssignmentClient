@@ -17,7 +17,8 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
         public Double CoursePrice { set; get; }
         public String CourseType { set; get; }
         public int CourseDuration { set; get; }
-        public bool Deleted { get; set; }
+        public bool Deleted { get; set; } = false;
+        public bool Dropped { get; set; } = false;
 
         public void AddNewCourse(string _courseName, string _courseDescription, double _coursePrice, string _courseType, int _courseDuration)
         {
@@ -33,9 +34,9 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             Deleted = true;
         }
 
-        void ICourseModel.DropSelectedCourse(int clientID, int courseID)
+        public void DropSelectedCourse(int clientID, int courseID)
         {
-            throw new NotImplementedException();
+            Dropped = true;
         }
 
         void ICourseModel.EditCourse(int _courseID, string _courseName, string _courseDescription, double _coursePrice, string _courseType, int _courseDuration)
@@ -43,9 +44,9 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             throw new NotImplementedException();
         }
 
-        void ICourseModel.EnrolSelectedCourse(int clientID, int courseID)
+        public void EnrolSelectedCourse(int clientID, int courseID)
         {
-            throw new NotImplementedException();
+            
         }
 
         public DataTable RetrieveAllCourses()
@@ -77,9 +78,15 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             throw new NotImplementedException();
         }
 
-        DataTable ICourseModel.RetrieveEnrolledCourses(int id)
+        public DataTable RetrieveEnrolledCourses(int id)
         {
-            throw new NotImplementedException();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            dt.Columns.Add("type");
+            dt.Columns.Add("duration");
+            dt.Columns.Add("price");
+            return dt;
         }
 
         void ICourseModel.ReturnToCourseWaitingList(int ClientID, int CourseID)

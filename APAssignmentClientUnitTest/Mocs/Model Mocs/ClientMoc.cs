@@ -11,20 +11,16 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
 {
     public class ClientMoc : IClientModel
     {
-        int IClientModel.ClientID => throw new NotImplementedException();
-
-        string IClientModel.ClientName => throw new NotImplementedException();
-
-        string IClientModel.ClientAddress => throw new NotImplementedException();
-
-        string IClientModel.ClientEmailAddress => throw new NotImplementedException();
-
-        string IClientModel.ClientContactNumber => throw new NotImplementedException();
-
-        double IClientModel.ClientBill => throw new NotImplementedException();
-        public bool Deleted {  get; set; }
+        public int ClientID { get; set; }
+        public String ClientName { get; set; }
+        public String ClientAddress { get; set; }
+        public String ClientEmailAddress { get; set; }
+        public String ClientContactNumber { get; set; }
+        public double ClientBill { get; set; }
+        public bool Deleted { get; set; }
         public Client Client { get; set; }
-
+        public bool Updated { get; set; }
+        
         public void DeleteClient()
         {
             Deleted = true;
@@ -59,14 +55,14 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             };
         }
 
-        void IClientModel.SetClient(Client client)
+        public void SetClient(Client client)
         {
             Client = client;
         }
 
-        void IClientModel.UpdateClientBill()
+        public void UpdateClientBill()
         {
-            throw new NotImplementedException();
+            Updated = true;
         }
     }
 }

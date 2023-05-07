@@ -10,22 +10,28 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
 {
     public class BookMoc : IBookingModel
     {
-        int IBookingModel.ManagementID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        int IBookingModel.BookingID { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int ManagementID { get; set; }
+        public int BookingID { get; set; }
+        public bool Dropped { get; set; } = false;
 
         void IBookingModel.AddNewBooking(int clientID, int duration, DateTime date)
         {
             throw new NotImplementedException();
         }
 
-        void IBookingModel.DropBooking(int clientID)
+        public void DropBooking(int clientID)
         {
-            throw new NotImplementedException();
+            Dropped = true;
         }
 
-        DataTable IBookingModel.RetrieveAllBooking(int clientID)
+        public DataTable RetrieveAllBooking(int clientID)
         {
-            throw new NotImplementedException();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            dt.Columns.Add("date");
+            dt.Columns.Add("duration");
+            return dt;
         }
 
         DataTable IBookingModel.RetrieveAllManagement()
