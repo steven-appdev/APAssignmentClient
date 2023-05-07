@@ -14,6 +14,7 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
         public String StaffName { get; set; }
         public String StaffSupportSession { get; set; }
         public int StaffCourseTaughtID { get; set; }
+        public bool Deleted { get; set; }
 
         public void AddNewStaff(string name, string supportSession, int courseID)
         {
@@ -22,9 +23,9 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             StaffCourseTaughtID = courseID;
         }
 
-        void IStaffModel.DeleteStaff()
+        public void DeleteStaff()
         {
-            throw new NotImplementedException();
+            Deleted = true;
         }
 
         void IStaffModel.EditNewStaff(string name, string supportSession, int courseID)
@@ -32,9 +33,14 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             throw new NotImplementedException();
         }
 
-        DataTable IStaffModel.RetrieveAllStaffs()
+        public DataTable RetrieveAllStaffs()
         {
-            throw new NotImplementedException();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            dt.Columns.Add("course");
+            dt.Columns.Add("support");
+            return dt;
         }
 
         public int RetrieveStaffCourseTaughtID()

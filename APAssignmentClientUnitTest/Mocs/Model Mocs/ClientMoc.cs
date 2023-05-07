@@ -22,10 +22,12 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
         string IClientModel.ClientContactNumber => throw new NotImplementedException();
 
         double IClientModel.ClientBill => throw new NotImplementedException();
+        public bool Deleted {  get; set; }
+        public Client Client { get; set; }
 
-        void IClientModel.DeleteClient()
+        public void DeleteClient()
         {
-            throw new NotImplementedException();
+            Deleted = true;
         }
 
         string[] IClientModel.GetClient()
@@ -33,19 +35,33 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             throw new NotImplementedException();
         }
 
-        DataTable IClientModel.RetrieveAllClients()
+        public DataTable RetrieveAllClients()
         {
-            throw new NotImplementedException();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            dt.Columns.Add("address");
+            dt.Columns.Add("email");
+            dt.Columns.Add("contact");
+            return dt;
         }
 
-        Client IClientModel.RetrieveOneClient(int clientID)
+        public Client RetrieveOneClient(int clientID)
         {
-            throw new NotImplementedException();
+            return new Client
+            {
+                ClientId = 1,
+                ClientName = "Test",
+                ClientAddress = "Test",
+                ClientEmail = "Test",
+                ClientContact = "07000000000",
+                ClientBill = 0.00
+            };
         }
 
         void IClientModel.SetClient(Client client)
         {
-            throw new NotImplementedException();
+            Client = client;
         }
 
         void IClientModel.UpdateClientBill()

@@ -67,6 +67,7 @@
     <Compile Include="Mocs\Model Mocs\StaffMoc.cs" />
     <Compile Include="Mocs\Screen Mocs\AddNewCourseMoc.cs" />
     <Compile Include="Mocs\Screen Mocs\AddNewStaffMoc.cs" />
+    <Compile Include="Mocs\Screen Mocs\AdminDashboardMoc.cs" />
     <Compile Include="Mocs\Screen Mocs\LoginMoc.cs" />
     <Compile Include="Model Test\AccountModelUnitTest.cs" />
     <Compile Include="Model Test\BookingModelUnitTest.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Model Test\StaffModelUnitTest.cs" />
     <Compile Include="Presenter Test\AddNewCoursePresenterUnitTest.cs" />
     <Compile Include="Presenter Test\AddNewStaffPresenterUnitTest.cs" />
+    <Compile Include="Presenter Test\AdminDashboardPresenterUnitTest.cs" />
     <Compile Include="Presenter Test\LoginPresenterUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
         public Double CoursePrice { set; get; }
         public String CourseType { set; get; }
         public int CourseDuration { set; get; }
+        public bool Deleted { get; set; }
 
         public void AddNewCourse(string _courseName, string _courseDescription, double _coursePrice, string _courseType, int _courseDuration)
         {
@@ -26,9 +28,9 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             CourseDuration = _courseDuration;
         }
 
-        void ICourseModel.DeleteCourse()
+        public void DeleteCourse()
         {
-            throw new NotImplementedException();
+            Deleted = true;
         }
 
         void ICourseModel.DropSelectedCourse(int clientID, int courseID)
