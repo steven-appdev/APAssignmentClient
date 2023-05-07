@@ -66,5 +66,10 @@ namespace APAssignmentClient.View
             cmbCourseType.SelectedIndex = 0;
             presenter.AddNewCourse_Load();
         }
+
+        public void DisplayErrorMessage(String msg, String title)
+        {
+            MessageBox.Show(msg, title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

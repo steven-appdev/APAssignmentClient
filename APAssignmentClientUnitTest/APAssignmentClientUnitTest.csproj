@@ -62,6 +62,7 @@
     <Compile Include="Model Test\AccountModelUnitTest.cs" />
     <Compile Include="Model Test\BookingModelUnitTest.cs" />
     <Compile Include="Model Test\ClientModelUnitTest.cs" />
+    <Compile Include="Model Test\CourseModelUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

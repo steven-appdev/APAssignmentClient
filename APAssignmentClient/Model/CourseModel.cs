@@ -102,16 +102,23 @@ namespace APAssignmentClient.Model
         {
             try
             {
-                Course newCourse = new Course
+                if(_courseName != null && _courseDescription != null && _courseType != null)
                 {
-                    CourseName = _courseName,
-                    CoursePrice = _coursePrice,
-                    CourseDescription = _courseDescription,
-                    CourseType = _courseType,
-                    CourseDuration = _courseDuration
-                };
+                    Course newCourse = new Course
+                    {
+                        CourseName = _courseName,
+                        CoursePrice = _coursePrice,
+                        CourseDescription = _courseDescription,
+                        CourseType = _courseType,
+                        CourseDuration = _courseDuration
+                    };
 
-                access.AddNewCourse(newCourse);
+                    access.AddNewCourse(newCourse);
+                }
+                else
+                {
+                    throw new Exception("Text box could not be empty!");
+                }
             }
             catch (Exception e)
             {
@@ -123,17 +130,24 @@ namespace APAssignmentClient.Model
         {
             try
             {
-                Course course = new Course
+                if (_courseName != null && _courseDescription != null && _courseType != null)
                 {
-                    CourseId = _courseID,
-                    CourseName = _courseName,
-                    CoursePrice = _coursePrice,
-                    CourseDescription = _courseDescription,
-                    CourseType = _courseType,
-                    CourseDuration = _courseDuration
-                };
+                    Course course = new Course
+                    {
+                        CourseId = _courseID,
+                        CourseName = _courseName,
+                        CoursePrice = _coursePrice,
+                        CourseDescription = _courseDescription,
+                        CourseType = _courseType,
+                        CourseDuration = _courseDuration
+                    };
 
-                access.EditCourse(course);
+                    access.EditCourse(course);
+                }
+                else
+                {
+                    throw new Exception("Text box could not be empty!");
+                }
             }
             catch (Exception e)
             {

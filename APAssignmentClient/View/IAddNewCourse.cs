@@ -12,6 +12,7 @@ namespace APAssignmentClient.View
         String CoursePrice { get; set; }
         String CourseDuration { get; set; }
         void Register(AddNewCoursePresenter _presenter);
+        void DisplayErrorMessage(String msg, String title);
         void CloseForm();
     }
 }

@@ -38,15 +38,22 @@ namespace APAssignmentClient.Presenter
 
         public void AddButton_Click()
         {
-            if (editMode == false)
+            try
             {
-                courseModel.AddNewCourse(screen.CourseTitle, screen.Description, double.Parse(screen.CoursePrice), screen.CourseType, Int32.Parse(screen.CourseDuration));
-                screen.CloseForm();
+                if (editMode == false)
+                {
+                    courseModel.AddNewCourse(screen.CourseTitle, screen.Description, double.Parse(screen.CoursePrice), screen.CourseType, Int32.Parse(screen.CourseDuration));
+                    screen.CloseForm();
+                }
+                else
+                {
+                    courseModel.EditCourse(Int32.Parse(screen.CourseID), screen.CourseTitle, screen.Description, double.Parse(screen.CoursePrice), screen.CourseType, Int32.Parse(screen.CourseDuration));
+                    screen.CloseForm();
+                }
             }
-            else
+            catch (Exception e)
             {
-                courseModel.EditCourse(Int32.Parse(screen.CourseID), screen.CourseTitle, screen.Description, double.Parse(screen.CoursePrice), screen.CourseType, Int32.Parse(screen.CourseDuration));
-                screen.CloseForm();
+                screen.DisplayErrorMessage(e.Message, "Opps!");
             }
         }
     }
