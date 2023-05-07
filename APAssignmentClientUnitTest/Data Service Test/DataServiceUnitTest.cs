@@ -598,6 +598,230 @@ namespace APAssignmentClientUnitTest.DataServiceTest
             catch (Exception) {/* Test Pass*/}
         }
 
+        [TestMethod]
+        public void TestMethod38()
+        {
+            try
+            {
+                access.DeleteManagement(9);
+
+                using (var context = new Context())
+                {
+                    Management dbManagement = context.Managements.FirstOrDefault(m => m.ManagementId == 9);
+                    Assert.IsNull(dbManagement);
+                }
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod39()
+        {
+            try
+            {
+                access.DeleteManagement(99);
+            }
+            catch (Exception) {/* Test Pass*/}
+        }
+
+        [TestMethod]
+        public void TestMethod40()
+        {
+            try
+            {
+                access.AddNewBooking(5, 1, 10, DateTime.Now);
+
+                using (var context = new Context())
+                {
+                    Booking booking = context.Bookings.FirstOrDefault(bk => bk.ClientId == 5 && bk.ManagementId == 1 && bk.BookingDuration == 10);
+                    Assert.IsNotNull(booking);
+                }
+            }
+            catch(Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod41()
+        {
+            try
+            {
+                access.AddNewBooking(99, 99, 0, DateTime.Now);
+            }
+            catch (Exception) {/* Test Pass*/}
+        }
+
+        [TestMethod]
+        public void TestMethod42()
+        {
+            try
+            {
+                access.DropBooking(5, 2);
+
+                using (var context = new Context())
+                {
+                    Booking booking = context.Bookings.FirstOrDefault(bk => bk.ClientId == 5 && bk.ManagementId == 2);
+                    Assert.IsNull(booking);
+                }
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod43()
+        {
+            try
+            {
+                access.DropBooking(99, 99);
+            }
+            catch (Exception) {/* Test Pass*/}
+        }
+
+        [TestMethod]
+        public void TestMethod44()
+        {
+            try
+            {
+                access.AddNewBooking(5, 1, 15, DateTime.Now);
+                access.AddNewBooking(5, 2, 15, DateTime.Now);
+
+                int funcBooking = access.RetrieveAllBooking(5).Count();
+
+                using (var context = new Context())
+                {
+                    int dbBooking = context.Bookings.Where(bk => bk.ClientId == 5).ToList().Count();
+                    Assert.AreEqual(funcBooking, dbBooking);
+                }
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod45()
+        {
+            try
+            {
+                int funcBooking = access.RetrieveAllBooking(99).Count();
+                Assert.AreEqual(funcBooking, 0);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod46()
+        {
+            try
+            {
+                String startDate = access.RetrieveCourseStartDate(5, 1);
+                Assert.AreEqual(startDate, "-");
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod47()
+        {
+            try
+            {
+                String funcManagementName = access.RetrieveManagementName(1);
+
+                using (var context = new Context())
+                {
+                    String dbManagementName = context.Managements.First(m => m.ManagementId == 1).ManagementName.ToString();
+                    Assert.AreEqual(funcManagementName, dbManagementName);
+                }
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod48()
+        {
+            try
+            {
+                access.RetrieveManagementName(99);
+            }
+            catch (Exception) {/* Test Pass*/}
+        }
+
+        [TestMethod]
+        public void TestMethod49()
+        {
+            try
+            {
+                String funcManagementCourse = access.RetrieveManagementCourse(1);
+
+                using (var context = new Context())
+                {
+                    String dbManagementCourse = context.MangementCourses.FirstOrDefault(mc => mc.ManagementID == 1).Course.CourseName.ToString();
+                    Assert.AreEqual(funcManagementCourse, dbManagementCourse);
+                }
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod50()
+        {
+            try
+            {
+                access.RetrieveManagementCourse(99);
+            }
+            catch (Exception) {/* Test Pass*/}
+        }
+
+        [TestMethod]
+        public void TestMethod51()
+        {
+            try
+            {
+                int funcManagementCourseID = access.RetrieveManagementCourseID(1);
+
+                using (var context = new Context())
+                {
+                    int dbManagementCourseID = context.MangementCourses.FirstOrDefault(mc => mc.ManagementID == 1).Course.CourseId;
+                    Assert.AreEqual(funcManagementCourseID, dbManagementCourseID);
+                }
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
+        }
+
+        [TestMethod]
+        public void TestMethod52()
+        {
+            try
+            {
+                access.RetrieveManagementCourseID(99);
+            }
+            catch (Exception) {/* Test Pass*/}
+        }
+
         private byte[] HashPassword(String password)
         {
             String salt = "kf7014ap";
