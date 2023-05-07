@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data Service Test\DataServiceUnitTest.cs" />
+    <Compile Include="Model Test\AccountModelUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -71,7 +72,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model Test\" />
     <Folder Include="Presenter Test\" />
     <Folder Include="View Test\" />
   </ItemGroup>
