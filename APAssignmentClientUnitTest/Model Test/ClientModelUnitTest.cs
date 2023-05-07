@@ -2,6 +2,7 @@
 using APAssignmentClient.DataService;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Data;
 
 namespace APAssignmentClientUnitTest.ModelTest
 {
@@ -150,6 +151,20 @@ namespace APAssignmentClientUnitTest.ModelTest
 
             int client = clientModel.GetClient().Length;
             Assert.AreEqual(client, 6);
+        }
+
+        [TestMethod]
+        public void TestMethod77()
+        {
+            try
+            {
+                DataTable dt = clientModel.RetrieveAllClients();
+                Assert.AreEqual(dt.Columns.Count, 5);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+            }
         }
     }
 }
