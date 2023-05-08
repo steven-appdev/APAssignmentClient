@@ -13,7 +13,6 @@ namespace APAssignmentClient.View
         String StaffID { get; set; }
         String StaffName { get; set; }
         int StaffCourseTaughtID { get; set; }
-        String StaffCourseTaught { get; }
         String StaffSupportSession { get; set; }
         void SetCourseTaughtData(String value, String display, DataTable dt);
         bool DisplayConfirmationMessage(String msg, String title);

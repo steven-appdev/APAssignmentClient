@@ -38,11 +38,6 @@ namespace APAssignmentClient.View
             set { cmbCourseTaught.SelectedValue = value; }
         }
 
-        public String StaffCourseTaught
-        {
-            get { return cmbCourseTaught.SelectedItem.ToString(); }
-        }
-
         public String StaffSupportSession
         {
             get { return txtbSupportSession.Text; }

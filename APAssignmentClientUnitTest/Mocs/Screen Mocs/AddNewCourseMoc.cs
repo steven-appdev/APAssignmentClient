@@ -20,17 +20,17 @@ namespace APAssignmentClientUnitTest.Mocs.ScreenMocs
         public String ErrTitle { get; set; }
         public bool FormClosed { get; set; } = false;
 
-        void IAddNewCourse.CloseForm()
+        public void CloseForm()
         {
             FormClosed = true;
         }
 
-        void IAddNewCourse.DisplayErrorMessage(string msg, string title)
+        public void DisplayErrorMessage(string msg, string title)
         {
             ErrMsg = msg;
             ErrTitle = title;
         }
 
-        void IAddNewCourse.Register(AddNewCoursePresenter _presenter){}
+        public void Register(AddNewCoursePresenter _presenter){}
     }
 }
