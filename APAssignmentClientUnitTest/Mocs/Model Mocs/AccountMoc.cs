@@ -21,7 +21,7 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
         public String Email { set; get; }
         public String Contact { set; get; }
 
-        bool IAccountModel.Login(string username, string password)
+        public bool Login(string username, string password)
         {
             Username = username;
             Password = password;

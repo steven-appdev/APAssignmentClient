@@ -17,7 +17,7 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
         public int Duration { get; set; }
         public DateTime Date { get; set; }
 
-        void IBookingModel.AddNewBooking(int clientID, int duration, DateTime date)
+        public void AddNewBooking(int clientID, int duration, DateTime date)
         {
             ClientID = clientID;
             Duration = duration;
