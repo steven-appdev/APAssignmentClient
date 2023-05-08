@@ -26,9 +26,9 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             Deleted = true;
         }
 
-        string[] IClientModel.GetClient()
+        public String[] GetClient()
         {
-            throw new NotImplementedException();
+            return new string[] { "1", "Test", "Test", "Test", "07000000000", "0.00" };
         }
 
         public DataTable RetrieveAllClients()

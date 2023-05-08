@@ -22,31 +22,37 @@ namespace APAssignmentClient.View
 
         public String Username
         {
+            set { txtbUsername.Text = value; }
             get { return txtbUsername.Text; }
         }
 
         public String Password
         {
+            set { txtbPassword.Text = value; }
             get { return txtbPassword.Text; }
         }
 
         public String FullName
         {
+            set { txtbName.Text = value; }
             get { return txtbName.Text; }
         }
 
         public String Address
         {
+            set { txtbAddress.Text = value; }
             get { return txtbAddress.Text; }
         }
 
         public String EmailAddress
         {
+            set { txtbEmail.Text = value; }
             get { return txtbEmail.Text; }
         }
 
         public String ContactNumber
         {
+            set { txtbContact.Text = value; }
             get { return txtbContact.Text; }
         }
 

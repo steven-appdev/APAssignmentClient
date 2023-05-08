@@ -55,11 +55,6 @@ namespace APAssignmentClient.View
             presenter = _presenter;
         }
 
-        public void AddName(String name)
-        {
-            cmbManagementName.Items.Add(name);
-        }
-
         private void NewBooking_Load(object sender, EventArgs e)
         {
             presenter.NewBooking_Load();

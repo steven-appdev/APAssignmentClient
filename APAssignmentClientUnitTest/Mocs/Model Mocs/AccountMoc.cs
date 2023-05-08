@@ -2,6 +2,7 @@
 using APAssignmentClient.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,10 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
 
         public String Username { set; get; }
         public String Password { set; get; }
+        public String Fullname { set; get; }
+        public String Address { set; get; }
+        public String Email { set; get; }
+        public String Contact { set; get; }
 
         bool IAccountModel.Login(string username, string password)
         {
@@ -23,12 +28,17 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             return false;
         }
 
-        void IAccountModel.Register(string username, string password, string fullname, string address, string email, string contact)
+        public void Register(string username, string password, string fullname, string address, string email, string contact)
         {
-            throw new NotImplementedException();
+            Username = username;
+            Password = password;
+            Fullname = fullname;
+            Address = address;
+            Email = email;
+            Contact = contact;
         }
 
-        Client IAccountModel.RetrieveClient()
+        public Client RetrieveClient()
         {
             throw new NotImplementedException();
         }

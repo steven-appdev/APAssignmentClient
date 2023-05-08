@@ -56,6 +56,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
@@ -69,9 +70,14 @@
     <Compile Include="Mocs\Screen Mocs\AddNewStaffMoc.cs" />
     <Compile Include="Mocs\Screen Mocs\AdminDashboardMoc.cs" />
     <Compile Include="Mocs\Screen Mocs\ClientDashboardMoc.cs" />
+    <Compile Include="Mocs\Screen Mocs\CourseDescriptionMoc.cs" />
+    <Compile Include="Mocs\Screen Mocs\EnrolNewCourseMoc.cs" />
     <Compile Include="Mocs\Screen Mocs\LoginMoc.cs" />
+    <Compile Include="Mocs\Screen Mocs\NewBookingMoc.cs" />
+    <Compile Include="Mocs\Screen Mocs\NewRegisterMoc.cs" />
     <Compile Include="Model Test\AccountModelUnitTest.cs" />
     <Compile Include="Model Test\BookingModelUnitTest.cs" />
+    <Compile Include="Mocs\Screen Mocs\ClientInformationMoc.cs" />
     <Compile Include="Model Test\ClientModelUnitTest.cs" />
     <Compile Include="Model Test\CourseModelUnitTest.cs" />
     <Compile Include="Model Test\StaffModelUnitTest.cs" />
@@ -79,7 +85,12 @@
     <Compile Include="Presenter Test\AddNewStaffPresenterUnitTest.cs" />
     <Compile Include="Presenter Test\AdminDashboardPresenterUnitTest.cs" />
     <Compile Include="Presenter Test\ClientDashboardPresenterUnitTest.cs" />
+    <Compile Include="Presenter Test\ClientInformationPresenterUnitTest.cs" />
+    <Compile Include="Presenter Test\CourseDescriptionPresenterUnitTest.cs" />
+    <Compile Include="Presenter Test\EnrolNewCoursePresenterUnitTest.cs" />
     <Compile Include="Presenter Test\LoginPresenterUnitTest.cs" />
+    <Compile Include="Presenter Test\NewBookingPresenterUnitTest.cs" />
+    <Compile Include="Presenter Test\NewRegisterPresenterUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

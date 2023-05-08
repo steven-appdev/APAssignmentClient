@@ -28,9 +28,11 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             Deleted = true;
         }
 
-        void IStaffModel.EditNewStaff(string name, string supportSession, int courseID)
+        public void EditNewStaff(string name, string supportSession, int courseID)
         {
-            throw new NotImplementedException();
+            StaffName = name;
+            StaffSupportSession = supportSession;
+            StaffCourseTaughtID = courseID;
         }
 
         public DataTable RetrieveAllStaffs()

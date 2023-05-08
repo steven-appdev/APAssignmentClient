@@ -13,10 +13,15 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
         public int ManagementID { get; set; }
         public int BookingID { get; set; }
         public bool Dropped { get; set; } = false;
+        public int ClientID { get; set; }
+        public int Duration { get; set; }
+        public DateTime Date { get; set; }
 
         void IBookingModel.AddNewBooking(int clientID, int duration, DateTime date)
         {
-            throw new NotImplementedException();
+            ClientID = clientID;
+            Duration = duration;
+            Date = date;
         }
 
         public void DropBooking(int clientID)
@@ -34,14 +39,17 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             return dt;
         }
 
-        DataTable IBookingModel.RetrieveAllManagement()
+        public DataTable RetrieveAllManagement()
         {
-            throw new NotImplementedException();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            return dt;
         }
 
-        string IBookingModel.RetrieveSupportSession()
+        public String RetrieveSupportSession()
         {
-            throw new NotImplementedException();
+            return "Support Session";
         }
     }
 }

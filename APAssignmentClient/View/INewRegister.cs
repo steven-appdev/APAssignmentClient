@@ -9,12 +9,12 @@ namespace APAssignmentClient.View
 {
     public interface INewRegister
     {
-        String Username { get; }
-        String Password { get; }
-        String FullName { get; }
-        String Address { get; }
-        String EmailAddress { get; }
-        String ContactNumber { get; }
+        String Username { set; get; }
+        String Password { set; get; }
+        String FullName { set; get; }
+        String Address { set; get; }
+        String EmailAddress { set; get; }
+        String ContactNumber { set; get; }
         void SetRegisterButtonsEnabled(bool enabled);
         void DisplayErrorMessage(String msg, String title);
         void Register(NewRegisterPresenter presenter);

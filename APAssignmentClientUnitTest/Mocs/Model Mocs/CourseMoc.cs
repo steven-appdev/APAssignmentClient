@@ -19,6 +19,8 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
         public int CourseDuration { set; get; }
         public bool Deleted { get; set; } = false;
         public bool Dropped { get; set; } = false;
+        public bool Returned { get; set; } = false;
+        public bool Enrolled { get; set; } = false;
 
         public void AddNewCourse(string _courseName, string _courseDescription, double _coursePrice, string _courseType, int _courseDuration)
         {
@@ -39,14 +41,19 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             Dropped = true;
         }
 
-        void ICourseModel.EditCourse(int _courseID, string _courseName, string _courseDescription, double _coursePrice, string _courseType, int _courseDuration)
+        public void EditCourse(int _courseID, string _courseName, string _courseDescription, double _coursePrice, string _courseType, int _courseDuration)
         {
-            throw new NotImplementedException();
+            CourseID = _courseID;
+            CourseName = _courseName;
+            CourseDescription = _courseDescription;
+            CoursePrice = _coursePrice;
+            CourseType = _courseType;
+            CourseDuration = _courseDuration;
         }
 
         public void EnrolSelectedCourse(int clientID, int courseID)
         {
-            
+            Enrolled = true;
         }
 
         public DataTable RetrieveAllCourses()
@@ -63,19 +70,25 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             return new string[]{ "1", "Test", "Test Desc", "Video Course", "0", "0.00"};
         }
 
-        string ICourseModel.RetrieveCourseStartDate(int ClientID, int CourseID)
+        public String RetrieveCourseStartDate(int ClientID, int CourseID)
         {
-            throw new NotImplementedException();
+            return "Returned date";
         }
 
-        string ICourseModel.RetrieveCourseStatus(int ClientID, int _courseID)
+        public String RetrieveCourseStatus(int ClientID, int _courseID)
         {
-            throw new NotImplementedException();
+            return "Course will started on";
         }
 
-        DataTable ICourseModel.RetrieveEnrollableCourses(int id)
+        public DataTable RetrieveEnrollableCourses(int id)
         {
-            throw new NotImplementedException();
+            DataTable dt = new DataTable();
+            dt.Columns.Add("id");
+            dt.Columns.Add("name");
+            dt.Columns.Add("type");
+            dt.Columns.Add("duration");
+            dt.Columns.Add("price");
+            return dt;
         }
 
         public DataTable RetrieveEnrolledCourses(int id)
@@ -89,9 +102,9 @@ namespace APAssignmentClientUnitTest.Mocs.ModelMocs
             return dt;
         }
 
-        void ICourseModel.ReturnToCourseWaitingList(int ClientID, int CourseID)
+        public void ReturnToCourseWaitingList(int ClientID, int CourseID)
         {
-            throw new NotImplementedException();
+            Returned = true;
         }
     }
 }
